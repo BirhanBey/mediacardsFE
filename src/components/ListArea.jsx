@@ -1,21 +1,33 @@
-import React from "react";
-import Card from "react-bootstrap/Card";
+import React, { useState } from "react";
+import AddButton from "./AddButton";
+import CardLink from "./CardLink";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
 
 const ListArea = () => {
+  const [cards, setCards] = useState([]);
+
+  const addCard = (link) => {
+    setCards((prevCards) => [...prevCards, link]);
+  };
+
   return (
     <>
-      <Row className="justify-content-md-center">
-        <Col md="auto">
-          <Card border="dark" style={{ width: "50rem" }}>
-            <Card.Body className="text-center">
-              <a href="https://www.instagram.com/noahbovee/">Instagram</a>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>
+      {cards.map((link, index) => (
+        <Row className="justify-content-md-center" key={index}>
+          <Col md="auto">
+            <br />
+            <Card border="dark" style={{ width: "50rem" }}>
+              <Card.Body className="text-center">
+                <CardLink link={link} />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+      ))}
       <br />
+      <AddButton addCard={addCard} />
     </>
   );
 };
