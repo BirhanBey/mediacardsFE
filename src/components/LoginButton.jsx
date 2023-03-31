@@ -6,16 +6,19 @@ const LoginButton = () => {
   const [show, setShow] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   const Close = () => setShow(false);
   const Show = () => setShow(true);
 
   const UsernameChange = (event) => {
     setUsername(event.target.value);
+    setError("");
   };
 
   const PasswordChange = (event) => {
     setPassword(event.target.value);
+    setError("");
   };
 
   const Submit = async (event) => {
@@ -33,11 +36,13 @@ const LoginButton = () => {
         setUsername("");
         setPassword("");
         setShow(false);
+      } else if (response.status === 401) {
+        setError("Invalid email or password");
       } else {
         //   login error
       }
     } catch (error) {
-      //   network error
+      setError("Network error");
     }
   };
 
@@ -72,6 +77,7 @@ const LoginButton = () => {
                 onChange={PasswordChange}
               />
             </FloatingLabel>
+            {error && <p className="text-danger mt-2">{error}</p>}
             <Button className="mx-auto mt-3" size='lg' variant="primary" type="submit">
               Submit
             </Button>
