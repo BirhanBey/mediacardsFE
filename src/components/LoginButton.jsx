@@ -58,10 +58,19 @@ const LoginButton = () => {
               label="Email address"
               className="mb-3"
             >
-              <Form.Control type="email"  placeholder="Email address"/>
+              <Form.Control 
+                type="email"  
+                placeholder="Email address" 
+                value={username}
+                onChange={UsernameChange}/>
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword" label="Password">
-              <Form.Control type="password" placeholder="Password" />
+              <Form.Control 
+                type="password" 
+                placeholder="Password" 
+                value={password}
+                onChange={PasswordChange}
+              />
             </FloatingLabel>
             <Button className="mx-auto mt-3" size='lg' variant="primary" type="submit">
               Submit
