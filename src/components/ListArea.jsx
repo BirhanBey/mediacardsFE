@@ -19,7 +19,7 @@ const ListArea = () => {
           <Col md="auto">
             <br />
             <Card border="dark" style={{ width: "50rem" }}>
-              <Card.Body className="text-center">
+              <Card.Body className="text-center list-item">
                 <CardLink link={link} />
               </Card.Body>
             </Card>
