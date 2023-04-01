@@ -21,9 +21,14 @@ const ListArea = () => {
         <Row className="d-flex justify-content-md-center" key={index}>
           <Col md="auto" >
             <br />
+
+            <Card border="dark" style={{ width: "50rem" }}>
+              <Card.Body className="text-center list-item">
+
             <Card border="none"  >
              <DelButton />            
               <Card.Body className="d-flex text-center">
+
                 <CardLink link={link} />
               </Card.Body>
             </Card>
