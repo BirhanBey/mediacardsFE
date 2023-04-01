@@ -20,7 +20,7 @@ const AddButton = ({ addCard }) => {
 
   return (
     <>
-      <Row className="justify-content-sm-center">
+      <Row className="justify-content-sm-center  mt-5">
         <Col sm="auto">
           <Button variant="primary" onClick={handleShow}>
             Add Link

@@ -5,6 +5,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from 'react-bootstrap/Container'
+import DelButton from "./DelButton";
 
 const ListArea = () => {
   const [cards, setCards] = useState([]);
@@ -21,6 +22,7 @@ const ListArea = () => {
           <Col md="auto" >
             <br />
             <Card border="none"  >
+             <DelButton />            
               <Card.Body className="d-flex text-center">
                 <CardLink link={link} />
               </Card.Body>
@@ -28,7 +30,6 @@ const ListArea = () => {
           </Col>
         </Row>
       ))}
-      <br />
       <AddButton addCard={addCard} />
     </Container>
   );
