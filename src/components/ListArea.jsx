@@ -4,7 +4,7 @@ import CardLink from "./CardLink";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Container from 'react-bootstrap/Container'
+import Container from "react-bootstrap/Container";
 import DelButton from "./DelButton";
 
 const ListArea = () => {
@@ -15,21 +15,20 @@ const ListArea = () => {
   };
 
   return (
-    <Container >
+    <Container>
       {cards.map((link, index) => (
-        
         <Row className="d-flex justify-content-md-center" key={index}>
-          <Col md="auto" >
+          <Col md="auto">
             <br />
 
             <Card border="dark" style={{ width: "50rem" }}>
               <Card.Body className="text-center list-item">
-
-            <Card border="none"  >
-             <DelButton />            
-              <Card.Body className="d-flex text-center">
-
-                <CardLink link={link} />
+                <Card border="none">
+                  <DelButton />
+                  <Card.Body className="d-flex text-center">
+                    <CardLink link={link} />
+                  </Card.Body>
+                </Card>
               </Card.Body>
             </Card>
           </Col>
