@@ -3,6 +3,7 @@ import ListArea from "./components/ListArea";
 import Footer from "./components/Footer";
 import LoginButton from "./components/LoginButton";
 import React, { useState } from "react";
+import RegisterModal from "./components/RegisterModal";
 import "./components/darkmode/darkMode.css";
 
 //☀︎ ☽
@@ -11,7 +12,7 @@ function App() {
   
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
-      <div className="mode">
+      <div className="mode me-2">
         <span className="sunmoon" style={{ color: darkMode ? "grey" : "yellow" }}>☀︎</span>
         <div className="switch-checkbox">
           <label className="switch">
@@ -22,7 +23,10 @@ function App() {
         <span className="sunmoon" style={{ color: darkMode ? "#c96dfd" : "blue" }}>☽</span>
       </div>
       <div>
-        <LoginButton />
+        <div className="d-flex justify-content-end">
+          <LoginButton />
+          <RegisterModal />
+        </div>
         <Header />
         <ListArea />
         <Footer />      
