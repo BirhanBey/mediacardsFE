@@ -59,7 +59,7 @@ const RegisterModal = () => {
         Register
       </Button>
 
-      <Modal show={showModal} onHide={handleClose}>
+      <Modal className="mt-5" show={showModal} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
