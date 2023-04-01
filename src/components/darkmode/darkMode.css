@@ -14,7 +14,7 @@
   
   }
   
-  span {
+  .sunmoon {
     font-size: 40px
   }
   
@@ -34,7 +34,7 @@
   
   .mode {
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     flex-direction: row;
   }
@@ -118,6 +118,6 @@
     background-color: #23434a;
   }
   .row a {
-    color: white;
+    color: rgb(122, 122, 122);
     text-decoration: none;
   }

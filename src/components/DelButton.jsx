@@ -38,9 +38,9 @@ const DelButton = () => {
         <Modal.Footer>
           <Button variant='danger' type='submit' onClick={handleCloseModal}>Delete</Button>
             <Button variant="primary" onClick={handleCloseModal}>Cancel</Button>
-            </Modal.Footer>
-        </Modal>
-      </>
+        </Modal.Footer>
+      </Modal>
+    </>
     );
 }
 

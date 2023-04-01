@@ -17,13 +17,13 @@ const ListArea = () => {
   return (
     <Container>
       {cards.map((link, index) => (
-        <Row className="d-flex justify-content-md-center" key={index}>
-          <Col md="auto">
+        <Row className="d-flex justify-content-sm-center" key={index}>
+          <Col sm="auto">
             <br />
 
-            <Card border="dark" style={{ width: "50rem" }}>
-              <Card.Body className="text-center list-item">
-                <Card border="none">
+            <Card border="dark" >
+              <Card.Body className="text-center list-item ">
+                <Card>
                   <DelButton />
                   <Card.Body className="d-flex text-center">
                     <CardLink link={link} />
