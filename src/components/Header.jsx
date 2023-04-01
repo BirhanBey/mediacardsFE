@@ -8,8 +8,8 @@ const Header = () => {
   return (
     <>
       <Container>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row className="justify-content-sm-center">
+          <Col sm="auto">
             <Figure>
               <Figure.Image
                 width={171}
@@ -21,8 +21,8 @@ const Header = () => {
             </Figure>
           </Col>
         </Row>
-        <Row className="justify-content-md-center">
-          <Col md="auto">
+        <Row className="justify-content-sm-center">
+          <Col sm="auto">
             <p>Some information about the person</p>
           </Col>
         </Row>
