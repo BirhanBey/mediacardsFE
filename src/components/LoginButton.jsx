@@ -48,7 +48,7 @@ const LoginButton = () => {
 
   return (
     <div className="d-flex flex-row"  md={6}>
-      <Button className="ms-auto me-5 " variant="primary" onClick={Show} size='lg'>
+      <Button className="ms-auto me-2 " variant="primary" onClick={Show} size='lg'>
         Login
       </Button>
 
