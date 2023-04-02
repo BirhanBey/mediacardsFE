@@ -3,21 +3,36 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import axios from "axios";
 
 const AddButton = ({ addCard }) => {
   const [show, setShow] = useState(false);
-  const [link, setLink] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [url, setUrl] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  const handleLinkChange = (event) => setLink(event.target.value);
+  const handleNameChange = (event) => setName(event.target.value);
+  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  const handleUrlChange = (event) => setUrl(event.target.value);
 
-  const handleSave = () => {
-    addCard(link);
-    setLink("");
-    handleClose();
+  const handleSave = async () => {
+    try {
+      const response = await axios.post("http://localhost/api/lists", {
+        name,
+        description,
+        url,
+      });
+      addCard(response.data); // update the state in the parent component
+      setName("");
+      setDescription("");
+      setUrl("");
+      handleClose();
+    } catch (error) {
+      console.error(error);
+    }
   };
-
   return (
     <Row className="justify-content-center mt-5">
       <Col xs="auto" className="text-center">
@@ -31,13 +46,13 @@ const AddButton = ({ addCard }) => {
           </Modal.Header>
           <Modal.Body>
             <form>
-              <label htmlFor="link">Link:</label>
+              <label htmlFor="name">Name:</label>
               <input
                 type="text"
-                id="link"
-                name="link"
-                value={link}
-                onChange={handleLinkChange}
+                id="name"
+                name="name"
+                value={name}
+                onChange={handleNameChange}
               />
             </form>
           </Modal.Body>
