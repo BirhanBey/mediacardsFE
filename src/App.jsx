@@ -9,18 +9,28 @@ import "./components/darkmode/darkMode.css";
 //☀︎ ☽
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-  
+
   return (
     <div className={darkMode ? "dark-mode" : "light-mode"}>
       <div className="mode me-2">
-        <span className="sunmoon" style={{ color: darkMode ? "grey" : "yellow" }}>☀︎</span>
+        <span
+          className="sunmoon"
+          style={{ color: darkMode ? "grey" : "yellow" }}
+        >
+          ☀︎
+        </span>
         <div className="switch-checkbox">
           <label className="switch">
             <input type="checkbox" onChange={() => setDarkMode(!darkMode)} />
             <span className="slider round"> </span>
           </label>
         </div>
-        <span className="sunmoon" style={{ color: darkMode ? "#c96dfd" : "blue" }}>☽</span>
+        <span
+          className="sunmoon"
+          style={{ color: darkMode ? "#c96dfd" : "blue" }}
+        >
+          ☽
+        </span>
       </div>
       <div>
         <div className="d-flex justify-content-end">
@@ -29,9 +39,9 @@ function App() {
         </div>
         <Header />
         <ListArea />
-        <Footer />      
+        <Footer />
       </div>
     </div>
   );
-};
+}
 export default App;

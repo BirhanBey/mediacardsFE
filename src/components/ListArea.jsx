@@ -7,11 +7,17 @@ import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import DelButton from "./DelButton";
 
-const ListArea = () => {
+const ListArea = ({ deleteCard }) => {
   const [cards, setCards] = useState([]);
 
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
+  };
+
+  const removeCard = (index) => {
+    const newCards = [...cards];
+    newCards.splice(index, 1);
+    setCards(newCards);
   };
 
   return (
@@ -21,10 +27,10 @@ const ListArea = () => {
           <Col sm="auto">
             <br />
 
-            <Card border="dark" >
+            <Card border="dark">
               <Card.Body className="text-center list-item ">
                 <Card>
-                  <DelButton />
+                  <DelButton index={index} removeCard={removeCard} />
                   <Card.Body className="d-flex text-center">
                     <CardLink link={link} />
                   </Card.Body>
