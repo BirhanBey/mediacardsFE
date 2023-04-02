@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-const DelButton = () => {
+const DelButton = ({ index, removeCard }) => {
   const [showModal, setShowModal] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
 
   const handleCloseModal = () => setShowModal(false);
+
+  const handleDelete = () => {
+    removeCard(index);
+    handleCloseModal();
+  };
 
   return (
     <>
@@ -42,7 +47,7 @@ const DelButton = () => {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="danger" type="submit" onClick={handleCloseModal}>
+          <Button variant="danger" type="submit" onClick={handleDelete}>
             Delete
           </Button>
           <Button variant="primary" onClick={handleCloseModal}>
