@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col";
 
 const Header = () => {
   return (
-    <>
-      <Container>
-        <Row className="justify-content-sm-center">
+    <div className="header-container">
+      <Container className="text-center">
+        <Row className="justify-content-center">
           <Col sm="auto">
             <Figure>
               <Figure.Image
@@ -21,13 +21,13 @@ const Header = () => {
             </Figure>
           </Col>
         </Row>
-        <Row className="justify-content-sm-center">
+        <Row className="justify-content-center">
           <Col sm="auto">
             <p>Some information about the person</p>
           </Col>
         </Row>
       </Container>
-    </>
+    </div>
   );
 };
 
