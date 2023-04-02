@@ -5,6 +5,7 @@ import LoginButton from "./components/LoginButton";
 import React, { useState } from "react";
 import RegisterModal from "./components/RegisterModal";
 import "./components/darkmode/darkMode.css";
+import UserSettings from "./components/userSettings/UserSettings";
 
 //☀︎ ☽
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <div className="d-flex justify-content-end">
           <LoginButton />
           <RegisterModal />
+          <UserSettings />
         </div>
         <Header />
         <ListArea />
