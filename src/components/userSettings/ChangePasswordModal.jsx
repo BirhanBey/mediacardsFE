@@ -9,7 +9,7 @@ function ChangePasswordModal(props) {
   }
   
   return (
-    <div style={{width: '50%'}}>
+    <div>
     <Modal show={true} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Change Password</Modal.Title>
