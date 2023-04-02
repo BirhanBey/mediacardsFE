@@ -26,7 +26,6 @@ const ListArea = ({ deleteCard }) => {
         <Row className="d-flex justify-content-sm-center" key={index}>
           <Col sm="auto">
             <br />
-
             <Card border="dark">
               <Card.Body className="text-center list-item ">
                 <Card>
