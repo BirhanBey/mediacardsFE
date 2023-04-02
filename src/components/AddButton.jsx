@@ -19,41 +19,39 @@ const AddButton = ({ addCard }) => {
   };
 
   return (
-    <>
-      <Row className="justify-content-sm-center  mt-5">
-        <Col sm="auto">
-          <Button variant="primary" onClick={handleShow}>
-            Add Link
-          </Button>
+    <Row className="justify-content-center mt-5">
+      <Col xs="auto" className="text-center">
+        <Button variant="primary" onClick={handleShow}>
+          Add Link
+        </Button>
 
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>New Link</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <form>
-                <label htmlFor="link">Link:</label>
-                <input
-                  type="text"
-                  id="link"
-                  name="link"
-                  value={link}
-                  onChange={handleLinkChange}
-                />
-              </form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                Close
-              </Button>
-              <Button variant="primary" onClick={handleSave}>
-                Save
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </Col>
-      </Row>
-    </>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>New Link</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <form>
+              <label htmlFor="link">Link:</label>
+              <input
+                type="text"
+                id="link"
+                name="link"
+                value={link}
+                onChange={handleLinkChange}
+              />
+            </form>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>
+              Close
+            </Button>
+            <Button variant="primary" onClick={handleSave}>
+              Save
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Col>
+    </Row>
   );
 };
 
