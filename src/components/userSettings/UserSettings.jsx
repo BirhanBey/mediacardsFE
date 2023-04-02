@@ -1,37 +1,48 @@
 import React, { useState } from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
-import ChangePasswordModal from './ChangePasswordModal'; // assuming you have a separate ChangePasswordModal component
+import ChangePasswordModal from './ChangePasswordModal';
+import ChangePic from './ChangePic'; // assuming you have a separate ChangePic component
 
-function UserSettings() {
-  const [showModal, setShowModal] = useState(false);
-  
-  const handleActionClick = () => {
-    setShowModal(true);
-  }
-  
-  const handleCloseModal = () => {
-    setShowModal(false);
-  }
-  
-  return (
-    <>
-      <DropdownButton
-        id="dropdown-button-dark-example2"
-        // variant="secondary"
-        // menuVariant="dark"
-        title="Settings ⚙️"
-        className="mt-2 btn-lg me-5"
-      >
-        <Dropdown.Item onClick={handleActionClick} active>Change Password</Dropdown.Item>
-        <Dropdown.Item href="#/action-2">Profile Picture</Dropdown.Item>
-        <Dropdown.Item href="#/action-3">Chance Background</Dropdown.Item>
-        <Dropdown.Divider />
-        <Dropdown.Item href="#/action-4">Log Out</Dropdown.Item>
-      </DropdownButton>
-      {showModal && <ChangePasswordModal handleClose={handleCloseModal} />}
-    </>
-  );
-}
+    function UserSettings() {
+        const [showPasswordModal, setShowPasswordModal] = useState(false);
+        const [showPicModal, setShowPicModal] = useState(false);
 
-export default UserSettings;
+        const handlePasswordClick = () => {
+            setShowPasswordModal(true);
+        }
+
+        const handlePicClick = () => {
+            setShowPicModal(true);
+        }
+
+        const handleClosePasswordModal = () => {
+            setShowPasswordModal(false);
+        }
+
+        const handleClosePicModal = () => {
+            setShowPicModal(false);
+        }
+
+        return (
+        <div className='bg-primary rounded' style={{margin: '0', padding :'0'}}>
+            <DropdownButton
+                id="dropdown-button-dark-example2"
+                title="Settings ⚙️"
+                className="mt-1"
+                
+            >
+                <Dropdown.Item onClick={handlePasswordClick} active>Change Password</Dropdown.Item>
+                <Dropdown.Item onClick={handlePicClick}>Profile Picture</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Change Background</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item href="#/action-4">Log Out</Dropdown.Item>
+            </DropdownButton>
+            {showPasswordModal && <ChangePasswordModal handleClose={handleClosePasswordModal} />}
+            {showPicModal && <ChangePic handleClose={handleClosePicModal} />}
+        </div>
+        );
+    }
+
+    export default UserSettings;
+
