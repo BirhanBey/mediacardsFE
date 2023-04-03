@@ -1,17 +1,33 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
+import axios from "axios";
 
-const DelButton = ({ index, removeCard }) => {
+const DelButton = ({ linkId }) => {
   const [showModal, setShowModal] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false); // add new state
 
   const handleShowModal = () => setShowModal(true);
-
   const handleCloseModal = () => setShowModal(false);
 
-  const handleDelete = () => {
-    removeCard(index);
-    handleCloseModal();
+  const handleDelete = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost/api/lists/${linkId}`
+      );
+      if (response.status === 204) {
+        setIsDeleted(true); // update the state to mark the card as deleted
+        handleCloseModal();
+      } else {
+        console.log("Failed to delete card");
+      }
+    } catch (error) {
+      console.error("Error deleting card:", error);
+    }
   };
+
+  if (isDeleted) {
+    return null; // return null instead of rendering the card if it has been deleted
+  }
 
   return (
     <>
