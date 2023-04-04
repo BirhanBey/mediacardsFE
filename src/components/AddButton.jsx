@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import {
+  Button,
+  Modal,
+  Container,
+  Row,
+  Col,
+  Stack,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 import axios from "axios";
 
 const AddButton = ({ addCard }) => {
@@ -45,16 +51,51 @@ const AddButton = ({ addCard }) => {
             <Modal.Title>New Link</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={name}
-                onChange={handleNameChange}
-              />
-            </form>
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Name:</Form.Label>
+                <Form.Control
+                  placeholder="Enter name..."
+                  autoFocus
+                  onChange={handleNameChange}
+                  id="name"
+                  name="name"
+                  value={name}
+                  type="text"
+                />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput2"
+              >
+                <Form.Label htmlFor="basic-url">URL:</Form.Label>
+                <InputGroup className="mb-3">
+                  {/* <InputGroup.Text id="basic-addon3" placeholder="Enter url...">
+                    https://example.com/users/
+                  </InputGroup.Text> */}
+                  <Form.Control
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                  />
+                </InputGroup>
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Enter description..."
+                />
+              </Form.Group>
+            </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
