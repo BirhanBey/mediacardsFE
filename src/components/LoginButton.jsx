@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
-import FloatingLabel from 'react-bootstrap/FloatingLabel';
+import FloatingLabel from "react-bootstrap/FloatingLabel";
 
 const LoginButton = () => {
   const [show, setShow] = useState(false);
@@ -47,8 +47,8 @@ const LoginButton = () => {
   };
 
   return (
-    <div className="d-flex flex-row"  md={6}>
-      <Button className="ms-auto me-2 " variant="primary" onClick={Show} size='lg'>
+    <>
+      <Button className="me-2" variant="primary" onClick={Show}>
         Login
       </Button>
 
@@ -63,28 +63,34 @@ const LoginButton = () => {
               label="Email address"
               className="mb-3"
             >
-              <Form.Control 
-                type="email"  
-                placeholder="Email address" 
+              <Form.Control
+                type="email"
+                placeholder="Email address"
                 value={username}
-                onChange={UsernameChange}/>
+                onChange={UsernameChange}
+              />
             </FloatingLabel>
             <FloatingLabel controlId="floatingPassword" label="Password">
-              <Form.Control 
-                type="password" 
-                placeholder="Password" 
+              <Form.Control
+                type="password"
+                placeholder="Password"
                 value={password}
                 onChange={PasswordChange}
               />
             </FloatingLabel>
             {error && <p className="text-danger mt-2">{error}</p>}
-            <Button className="mx-auto mt-3" size='lg' variant="primary" type="submit">
+            <Button
+              className="mx-auto mt-3"
+              size="lg"
+              variant="primary"
+              type="submit"
+            >
               Submit
             </Button>
           </Form>
         </Modal.Body>
       </Modal>
-    </div>
+    </>
   );
 };
 
