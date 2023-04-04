@@ -25,11 +25,14 @@ const AddButton = ({ addCard }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post("http://localhost/api/lists", {
-        name,
-        description,
-        url,
-      });
+      const response = await axios.post(
+        "https://s10.syntradeveloper.be/api/lists",
+        {
+          name,
+          description,
+          url,
+        }
+      );
       addCard(response.data); // update the state in the parent component
       setName("");
       setDescription("");
