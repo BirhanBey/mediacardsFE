@@ -22,18 +22,21 @@ const RegisterModal = () => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-          password_confirmation: passwordConfirmation,
-        }),
-      });
+      const response = await fetch(
+        "https://s10.syntradeveloper.be/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name,
+            email,
+            password,
+            password_confirmation: passwordConfirmation,
+          }),
+        }
+      );
 
       if (!response.ok) {
         throw new Error("Failed to register user");
@@ -55,7 +58,11 @@ const RegisterModal = () => {
 
   return (
     <>
-      <Button className="me-2" variant="primary" onClick={() => setShowModal(true)}>
+      <Button
+        className="me-2"
+        variant="primary"
+        onClick={() => setShowModal(true)}
+      >
         Register
       </Button>
 
@@ -65,11 +72,7 @@ const RegisterModal = () => {
         </Modal.Header>
         <Modal.Body className="d-flex flex-column">
           <Form onSubmit={handleSubmit}>
-            <FloatingLabel
-              controlId="formName"
-              label="Name"
-              className="mb-3"
-            >
+            <FloatingLabel controlId="formName" label="Name" className="mb-3">
               <Form.Control
                 type="text"
                 placeholder="Enter name"
@@ -77,7 +80,7 @@ const RegisterModal = () => {
                 onChange={(event) => setName(event.target.value)}
               />
             </FloatingLabel>
-            
+
             <FloatingLabel
               controlId="formEmail"
               label="Email address"
@@ -89,7 +92,7 @@ const RegisterModal = () => {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
               />
-            </FloatingLabel>          
+            </FloatingLabel>
 
             <FloatingLabel
               controlId="formPassword"
@@ -102,7 +105,7 @@ const RegisterModal = () => {
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
               />
-            </FloatingLabel> 
+            </FloatingLabel>
 
             <FloatingLabel
               controlId="formPasswordConfirmation"
@@ -114,7 +117,8 @@ const RegisterModal = () => {
                 placeholder="Confirm Password"
                 value={passwordConfirmation}
                 onChange={(event) =>
-                  setPasswordConfirmation(event.target.value)}
+                  setPasswordConfirmation(event.target.value)
+                }
               />
             </FloatingLabel>
 
@@ -124,7 +128,12 @@ const RegisterModal = () => {
 
             {error && <Alert variant="danger">{error}</Alert>}
 
-            <Button className="btn-lg d-flex mx-auto" variant="primary" type="submit" disabled={isSubmitting}>
+            <Button
+              className="btn-lg d-flex mx-auto"
+              variant="primary"
+              type="submit"
+              disabled={isSubmitting}
+            >
               {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           </Form>

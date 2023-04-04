@@ -24,7 +24,7 @@ const LoginButton = () => {
   const Submit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost/api/login", {
+      const response = await fetch("https://s10.syntradeveloper.be/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

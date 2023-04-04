@@ -23,7 +23,9 @@ const ListArea = ({ deleteCard }) => {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get("http://localhost/api/lists");
+        const response = await axios.get(
+          "https://s10.syntradeveloper.be/api/lists"
+        );
         console.log(response.data);
         setCards(response.data); // update cards state with the retrieved data
       } catch (error) {
