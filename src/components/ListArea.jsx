@@ -41,20 +41,10 @@ const ListArea = ({ deleteCard }) => {
         <Row className="d-flex justify-content-sm-center" key={index}>
           <Col sm="auto">
             <br />
-            <Card border="dark">
-              <Card.Body className="text-center list-item ">
-                <Card>
-                  <DelButton
-                    index={index}
-                    removeCard={removeCard}
-                    linkId={link.id}
-                  />
-                  <Card.Body className="d-flex text-center">
-                    <CardLink link={link} />
-                  </Card.Body>
-                </Card>
-              </Card.Body>
-            </Card>
+
+            <Card.Body className="d-flex text-center text-center list-item">
+              <CardLink link={link} />
+            </Card.Body>
           </Col>
         </Row>
       ))}
