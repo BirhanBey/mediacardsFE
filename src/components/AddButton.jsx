@@ -81,8 +81,12 @@ const AddButton = ({ addCard }) => {
                     https://example.com/users/
                   </InputGroup.Text> */}
                   <Form.Control
+                    placeholder="htttps://..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
+                    onChange={handleUrlChange}
+                    name="url"
+                    value={url}
                   />
                 </InputGroup>
               </Form.Group>
@@ -91,11 +95,14 @@ const AddButton = ({ addCard }) => {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
-                <Form.Label>Description</Form.Label>
+                <Form.Label>Description:</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
                   placeholder="Enter description..."
+                  onChange={handleDescriptionChange}
+                  name="description"
+                  value={description}
                 />
               </Form.Group>
             </Form>
