@@ -1,3 +1,21 @@
+/* -------SCROLLBAR------- */
+
+::-webkit-scrollbar-track {
+  background-color: #fefbea;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background-color: #f5f5f5;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #1a1919;
+}
+
+/* ---------------- */
+
 * {
   box-sizing: border-box;
   margin: 0px;
