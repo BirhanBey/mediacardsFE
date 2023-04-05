@@ -25,11 +25,14 @@ const AddButton = ({ addCard }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post("http://localhost/api/lists", {
-        name,
-        description,
-        url,
-      });
+      const response = await axios.post(
+        "https://s10.syntradeveloper.be/api/lists",
+        {
+          name,
+          description,
+          url,
+        }
+      );
       addCard(response.data); // update the state in the parent component
       setName("");
       setDescription("");
@@ -78,8 +81,12 @@ const AddButton = ({ addCard }) => {
                     https://example.com/users/
                   </InputGroup.Text> */}
                   <Form.Control
+                    placeholder="htttps://..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
+                    onChange={handleUrlChange}
+                    name="url"
+                    value={url}
                   />
                 </InputGroup>
               </Form.Group>
@@ -88,11 +95,14 @@ const AddButton = ({ addCard }) => {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
-                <Form.Label>Description</Form.Label>
+                <Form.Label>Description:</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
                   placeholder="Enter description..."
+                  onChange={handleDescriptionChange}
+                  name="description"
+                  value={description}
                 />
               </Form.Group>
             </Form>
