@@ -61,6 +61,7 @@ function App() {
         </Offcanvas>
 
         <Header />
+
         <ListArea />
         <Footer />
       </div>
