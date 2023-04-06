@@ -8,18 +8,28 @@ import "./components/darkmode/darkMode.css";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 
-//☀︎ ☽
 function App() {
   const [darkMode, setDarkMode] = useState(false);
-
   const [show, setShow] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  const handleLogin = (email) => {
+    setUserEmail(email);
+    setLoggedIn(true);
+    handleClose();
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUserEmail("");
+  };
+
   return (
     <>
-      {/* DARK MODE */}{" "}
       <div className={darkMode ? "dark-mode" : "light-mode"}>
         <div className="mode me-2">
           <span
@@ -42,23 +52,40 @@ function App() {
           </span>
         </div>
 
-        {/* OFF CANVAS */}
-        <Button variant="primary" onClick={handleShow}>
-          Menu
-        </Button>
+        <Container
+          fluid
+          className="d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <Button variant="primary" onClick={handleShow}>
+              Menu
+            </Button>
+            {loggedIn && <span className="ms-3">Logged in as {userEmail}</span>}
+          </div>
 
-        <Offcanvas show={show} onHide={handleClose}>
-          <Offcanvas.Header closeButton>
-            <Offcanvas.Title>Menu</Offcanvas.Title>
-          </Offcanvas.Header>
-          <Offcanvas.Body>
-            <Stack gap={3}>
-              <LoginButton />
-              <RegisterModal />
-              <UserSettings />
-            </Stack>
-          </Offcanvas.Body>
-        </Offcanvas>
+          <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas.Header closeButton>
+              <Offcanvas.Title>Menu</Offcanvas.Title>
+            </Offcanvas.Header>
+            <Offcanvas.Body>
+              <Stack gap={3}>
+                {loggedIn ? (
+                  <>
+                    <Button variant="secondary" onClick={handleLogout}>
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <LoginButton handleLogin={handleLogin} />
+                    <RegisterModal />
+                  </>
+                )}
+                <UserSettings />
+              </Stack>
+            </Offcanvas.Body>
+          </Offcanvas>
+        </Container>
 
         <Header />
 
@@ -68,4 +95,5 @@ function App() {
     </>
   );
 }
+
 export default App;
