@@ -1,8 +1,14 @@
 import React, { useState } from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+import {
+  Button,
+  Modal,
+  Container,
+  Row,
+  Col,
+  Stack,
+  Form,
+  InputGroup,
+} from "react-bootstrap";
 import axios from "axios";
 
 const AddButton = ({ addCard }) => {
@@ -19,11 +25,14 @@ const AddButton = ({ addCard }) => {
 
   const handleSave = async () => {
     try {
-      const response = await axios.post("http://localhost/api/lists", {
-        name,
-        description,
-        url,
-      });
+      const response = await axios.post(
+        "https://s10.syntradeveloper.be/api/lists",
+        {
+          name,
+          description,
+          url,
+        }
+      );
       addCard(response.data); // update the state in the parent component
       setName("");
       setDescription("");
@@ -45,16 +54,58 @@ const AddButton = ({ addCard }) => {
             <Modal.Title>New Link</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <form>
-              <label htmlFor="name">Name:</label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={name}
-                onChange={handleNameChange}
-              />
-            </form>
+            <Form>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput1"
+              >
+                <Form.Label>Name:</Form.Label>
+                <Form.Control
+                  placeholder="Enter name..."
+                  autoFocus
+                  onChange={handleNameChange}
+                  id="name"
+                  name="name"
+                  value={name}
+                  type="text"
+                />
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput2"
+              >
+                <Form.Label htmlFor="basic-url">URL:</Form.Label>
+                <InputGroup className="mb-3">
+                  {/* <InputGroup.Text id="basic-addon3" placeholder="Enter url...">
+                    https://example.com/users/
+                  </InputGroup.Text> */}
+                  <Form.Control
+                    placeholder="htttps://..."
+                    id="basic-url"
+                    aria-describedby="basic-addon3"
+                    onChange={handleUrlChange}
+                    name="url"
+                    value={url}
+                  />
+                </InputGroup>
+              </Form.Group>
+
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlTextarea1"
+              >
+                <Form.Label>Description:</Form.Label>
+                <Form.Control
+                  as="textarea"
+                  rows={3}
+                  placeholder="Enter description..."
+                  onChange={handleDescriptionChange}
+                  name="description"
+                  value={description}
+                />
+              </Form.Group>
+            </Form>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>

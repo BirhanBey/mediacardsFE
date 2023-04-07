@@ -23,7 +23,9 @@ const ListArea = ({ deleteCard }) => {
   useEffect(() => {
     const fetchLinks = async () => {
       try {
-        const response = await axios.get("http://localhost/api/lists");
+        const response = await axios.get(
+          "https://s10.syntradeveloper.be/api/lists"
+        );
         console.log(response.data);
         setCards(response.data); // update cards state with the retrieved data
       } catch (error) {
@@ -39,20 +41,10 @@ const ListArea = ({ deleteCard }) => {
         <Row className="d-flex justify-content-sm-center" key={index}>
           <Col sm="auto">
             <br />
-            <Card border="dark">
-              <Card.Body className="text-center list-item ">
-                <Card>
-                  <DelButton
-                    index={index}
-                    removeCard={removeCard}
-                    linkId={link.id}
-                  />
-                  <Card.Body className="d-flex text-center">
-                    <CardLink link={link} />
-                  </Card.Body>
-                </Card>
-              </Card.Body>
-            </Card>
+
+            <Card.Body className="d-flex text-center text-center list-item">
+              <CardLink link={link} />
+            </Card.Body>
           </Col>
         </Row>
       ))}
