@@ -15,7 +15,7 @@ const Header = () => {
                 width={171}
                 height={180}
                 alt="171x180"
-                src="../../public/profilePicTest.png"
+                src="/public/profilePicTest.png"
               />
               <Figure.Caption className="text-center">@UserName</Figure.Caption>
             </Figure>
@@ -23,7 +23,7 @@ const Header = () => {
         </Row>
         <Row className="justify-content-center">
           <Col sm="auto">
-            <p>Some information about the person</p>
+            <p style={{ color: "grey" }}>Some information about the person</p>
           </Col>
         </Row>
       </Container>

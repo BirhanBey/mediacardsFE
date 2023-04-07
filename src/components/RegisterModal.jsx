@@ -60,7 +60,7 @@ const RegisterModal = () => {
     <>
       <Button
         className="me-2"
-        variant="primary"
+        variant="dark"
         onClick={() => setShowModal(true)}
       >
         Register
@@ -130,7 +130,7 @@ const RegisterModal = () => {
 
             <Button
               className="btn-lg d-flex mx-auto"
-              variant="primary"
+              variant="dark"
               type="submit"
               disabled={isSubmitting}
             >
