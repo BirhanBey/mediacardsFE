@@ -17,7 +17,12 @@ const CardLink = ({ link, index, removeCard }) => {
           className="d-flex flex-md-row align-items-sm-center"
           id="card-item"
           onClick={toggleExpand}
-          style={{ cursor: "pointer", width: "700px", minHeight: "80px" }}
+          style={{
+            cursor: "pointer",
+            width: "700px",
+            minHeight: "80px",
+            backgroundColor: "#212529",
+          }}
         >
           {/* <Col xs={3}>
             <Card.Img

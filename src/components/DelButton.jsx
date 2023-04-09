@@ -66,7 +66,7 @@ const DelButton = ({ linkId }) => {
           <Button variant="danger" type="submit" onClick={handleDelete}>
             Delete
           </Button>
-          <Button variant="primary" onClick={handleCloseModal}>
+          <Button variant="secondary" onClick={handleCloseModal}>
             Cancel
           </Button>
         </Modal.Footer>

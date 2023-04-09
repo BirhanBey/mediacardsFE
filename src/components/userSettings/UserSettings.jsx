@@ -25,13 +25,14 @@ function UserSettings() {
   };
 
   return (
-    <div className="bg-primary rounded " style={{ margin: "0", padding: "0" }}>
+    <div className="bg-dark  rounded " style={{ margin: "0", padding: "0" }}>
       <DropdownButton
         id="dropdown-button-dark-example2"
         title="Settings ⚙️"
         className="text-center"
+        variant="dark"
       >
-        <Dropdown.Item onClick={handlePasswordClick} active>
+        <Dropdown.Item onClick={handlePasswordClick}>
           Change Password
         </Dropdown.Item>
         <Dropdown.Item onClick={handlePicClick}>Profile Picture</Dropdown.Item>

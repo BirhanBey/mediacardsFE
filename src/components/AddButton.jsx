@@ -45,7 +45,7 @@ const AddButton = ({ addCard }) => {
   return (
     <Row className="justify-content-center mt-5">
       <Col xs="auto" className="text-center">
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="dark" onClick={handleShow}>
           Add Link
         </Button>
 
@@ -108,11 +108,11 @@ const AddButton = ({ addCard }) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="dark" onClick={handleSave}>
+              Save
+            </Button>
             <Button variant="secondary" onClick={handleClose}>
               Close
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
-              Save
             </Button>
           </Modal.Footer>
         </Modal>

@@ -51,7 +51,7 @@ const LoginButton = ({ handleLogin }) => {
 
   return (
     <>
-      <Button className="me-2" variant="primary" onClick={handleShow}>
+      <Button className="me-2" variant="dark" onClick={handleShow}>
         Login
       </Button>
 
@@ -85,7 +85,7 @@ const LoginButton = ({ handleLogin }) => {
             <Button
               className="mx-auto mt-3"
               size="lg"
-              variant="primary"
+              variant="dark"
               type="submit"
             >
               Submit
