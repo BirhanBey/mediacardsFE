@@ -30,7 +30,7 @@ const RegisterModal = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            name,
+            userName: name,
             email,
             password,
             password_confirmation: passwordConfirmation,
