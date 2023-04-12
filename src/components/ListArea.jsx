@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import DelButton from "./DelButton";
 import axios from "axios";
 
-const ListArea = ({ deleteCard }) => {
+const ListArea = ({ userId }) => {
   const [cards, setCards] = useState([]);
   const [token, setToken] = useState(""); // define the token variable
 
@@ -24,20 +24,25 @@ const ListArea = ({ deleteCard }) => {
     const fetchLinks = async () => {
       try {
         const response = await axios.get(
-          "https://s10.syntradeveloper.be/api/lists"
+          `https://s3.syntradeveloper.be/api/users/${userId}`
         );
-        console.log(response.data);
-        setCards(response.data); // update cards state with the retrieved data
+        // console.log("response" + response);
+        // console.log("r" + JSON.stringify(response.data.url));
+
+        setCards(response.data.url); // update cards state with the retrieved data
       } catch (error) {
+        // console.log("response" + data.user.description);
+        // console.log("r" + JSON.stringify(response.data.url));
+
         console.error(error);
       }
     };
     fetchLinks();
-  }, []);
+  }, [userId]);
 
   return (
     <Container>
-      {cards.map((link, index) => (
+      {cards.map((link, index, name) => (
         <Row className="d-flex justify-content-sm-center" key={index}>
           <Col sm="auto">
             <br />
@@ -48,7 +53,7 @@ const ListArea = ({ deleteCard }) => {
           </Col>
         </Row>
       ))}
-      <AddButton addCard={addCard} setToken={setToken} />{" "}
+      <AddButton addCard={addCard} setToken={setToken} userId={userId} />{" "}
     </Container>
   );
 };

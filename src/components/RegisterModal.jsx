@@ -42,6 +42,20 @@ const RegisterModal = () => {
     setIsSubmitting(true);
 
     try {
+      const response = await fetch(
+        "https://s3.syntradeveloper.be/api/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            userName: name,
+            email,
+            password,
+            password_confirmation: passwordConfirmation,
+          }),
+          
       const response = await axios.post(
         "https://s10.syntradeveloper.be/api/register",
         {
@@ -49,6 +63,7 @@ const RegisterModal = () => {
           email,
           password,
           password_confirmation: passwordConfirmation,
+
         }
       );
 
@@ -82,7 +97,7 @@ const RegisterModal = () => {
     <>
       <Button
         className="me-2"
-        variant="primary"
+        variant="dark"
         onClick={() => setShowModal(true)}
       >
         Register
@@ -93,6 +108,74 @@ const RegisterModal = () => {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex flex-column">
+
+          <Form onSubmit={handleSubmit}>
+            <FloatingLabel controlId="formName" label="Name" className="mb-3">
+              <Form.Control
+                type="text"
+                placeholder="Enter name"
+                value={name}
+                onChange={(event) => setName(event.target.value)}
+              />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="formEmail"
+              label="Email address"
+              className="mb-3"
+            >
+              <Form.Control
+                type="email"
+                placeholder="Enter E-mail"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
+              />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="formPassword"
+              label="Password"
+              className="mb-3"
+            >
+              <Form.Control
+                type="password"
+                placeholder="Password"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+              />
+            </FloatingLabel>
+
+            <FloatingLabel
+              controlId="formPasswordConfirmation"
+              label="Confirm Password"
+              className="mb-3"
+            >
+              <Form.Control
+                type="password"
+                placeholder="Confirm Password"
+                value={passwordConfirmation}
+                onChange={(event) =>
+                  setPasswordConfirmation(event.target.value)
+                }
+              />
+            </FloatingLabel>
+
+            {!passwordsMatch && (
+              <Alert variant="danger">Passwords do not match.</Alert>
+            )}
+
+            {error && <Alert variant="danger">{error}</Alert>}
+
+            <Button
+              className="btn-lg d-flex mx-auto"
+              variant="dark"
+              type="submit"
+              disabled={isSubmitting}
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
+          </Form>
+
           {isRegistered ? (
             <div className="text-center">
               <p className="mb-3">Registration successful!</p>
@@ -176,6 +259,7 @@ const RegisterModal = () => {
               </Button>
             </Form>
           )}
+
         </Modal.Body>
       </Modal>
     </>

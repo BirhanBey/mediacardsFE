@@ -31,22 +31,29 @@ body {
   height: 100%;
 }
 
+#hamburger:hover {
+  transform: scale(1.2);
+}
+
 .sunmoon {
   font-size: 40px;
 }
 
 .dark-mode {
   background-color: #1a1919;
-  color: #999;
-  height: 100%;
+  color: white;
   transition: background-color 0.25s ease-in-out;
 }
 
 .light-mode {
-  background-color: #f8f9f5;
-  color: #333;
+  /* background-color: gray; */
+  color: white;
   height: 100%;
   transition: background-color 0.25s ease-in-out;
+}
+
+#card-item {
+  border-radius: 50px;
 }
 
 #card-item:hover {
@@ -54,7 +61,6 @@ body {
   box-shadow: 0px 8px 16px rgba(38, 38, 38, 0.2);
   top: -4px;
   border: 1px solid #cccccc;
-  background-color: white;
 }
 
 .mode {

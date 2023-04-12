@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const AddButton = ({ addCard }) => {
+const AddButton = ({ addCard, userId }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,14 +26,15 @@ const AddButton = ({ addCard }) => {
   const handleSave = async () => {
     try {
       const response = await axios.post(
-        "https://s10.syntradeveloper.be/api/lists",
+        `https://s3.syntradeveloper.be/api/users/${userId}`,
         {
           name,
-          description,
+          isActive: 0,
           url,
         }
       );
       addCard(response.data); // update the state in the parent component
+      console.log("ttt" + response.data);
       setName("");
       setDescription("");
       setUrl("");
@@ -45,7 +46,7 @@ const AddButton = ({ addCard }) => {
   return (
     <Row className="justify-content-center mt-5">
       <Col xs="auto" className="text-center">
-        <Button variant="primary" onClick={handleShow}>
+        <Button variant="dark" onClick={handleShow}>
           Add Link
         </Button>
 
@@ -108,11 +109,11 @@ const AddButton = ({ addCard }) => {
             </Form>
           </Modal.Body>
           <Modal.Footer>
+            <Button variant="dark" onClick={handleSave}>
+              Save
+            </Button>
             <Button variant="secondary" onClick={handleClose}>
               Close
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
-              Save
             </Button>
           </Modal.Footer>
         </Modal>

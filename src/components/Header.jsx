@@ -4,7 +4,7 @@ import Figure from "react-bootstrap/Figure";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Header = () => {
+const Header = ({ userName, userBio }) => {
   return (
     <div className="header-container">
       <Container className="text-center">
@@ -15,15 +15,17 @@ const Header = () => {
                 width={171}
                 height={180}
                 alt="171x180"
-                src="../../public/profilePicTest.png"
+                src="/public/profilePicTest.png"
               />
-              <Figure.Caption className="text-center">@UserName</Figure.Caption>
+              <Figure.Caption className="text-center">
+                {userName}
+              </Figure.Caption>
             </Figure>
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col sm="auto">
-            <p>Some information about the person</p>
+            <p style={{ color: "grey" }}>{userBio}</p>
           </Col>
         </Row>
       </Container>
