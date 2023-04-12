@@ -9,7 +9,6 @@ import DelButton from "./DelButton";
 import axios from "axios";
 
 const ListArea = ({ userId }) => {
-  console.log(userId + "test");
   const [cards, setCards] = useState([]);
   const [token, setToken] = useState(""); // define the token variable
 
@@ -27,13 +26,13 @@ const ListArea = ({ userId }) => {
         const response = await axios.get(
           `https://s3.syntradeveloper.be/api/users/${userId}`
         );
-        console.log("response" + response);
-        console.log("r" + JSON.stringify(response.data.url));
+        // console.log("response" + response);
+        // console.log("r" + JSON.stringify(response.data.url));
 
         setCards(response.data.url); // update cards state with the retrieved data
       } catch (error) {
-        console.log("response" + response);
-        console.log("r" + JSON.stringify(response.data.url));
+        // console.log("response" + data.user.description);
+        // console.log("r" + JSON.stringify(response.data.url));
 
         console.error(error);
       }
