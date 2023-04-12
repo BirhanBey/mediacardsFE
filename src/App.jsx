@@ -21,6 +21,7 @@ function App() {
   const handleLogin = (data) => {
     setLoggedIn(true);
     setUserId(data.user.id);
+    setUserEmail(data.user.email);
   };
 
   const handleLogout = () => {
@@ -73,7 +74,11 @@ function App() {
               />
             </svg>
             {/* <Button variant="dark">Menu</Button> */}
-            {loggedIn && <span className="ms-3">Logged in as {userEmail}</span>}
+            {loggedIn && (
+              <span className="ms-3" style={{ color: "blue" }}>
+                Logged in as {userEmail}
+              </span>
+            )}
           </div>
 
           <Offcanvas show={show} onHide={handleClose}>
