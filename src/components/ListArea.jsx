@@ -54,7 +54,7 @@ const ListArea = ({ userId }) => {
           </Col>
         </Row>
       ))}
-      <AddButton addCard={addCard} setToken={setToken} />{" "}
+      <AddButton addCard={addCard} setToken={setToken} userId={userId} />{" "}
     </Container>
   );
 };

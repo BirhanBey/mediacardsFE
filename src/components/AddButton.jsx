@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const AddButton = ({ addCard }) => {
+const AddButton = ({ addCard, userId }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
@@ -26,14 +26,15 @@ const AddButton = ({ addCard }) => {
   const handleSave = async () => {
     try {
       const response = await axios.post(
-        "https://s3.syntradeveloper.be/api/users",
+        `https://s3.syntradeveloper.be/api/users/${userId}`,
         {
           name,
-          description,
+          isActive: 0,
           url,
         }
       );
       addCard(response.data); // update the state in the parent component
+      console.log("ttt" + response.data);
       setName("");
       setDescription("");
       setUrl("");

@@ -14,6 +14,8 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userId, setUserId] = useState(null); // Add this line
+  const [userName, setUserName] = useState("");
+  const [userBio, setUserBio] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -21,7 +23,9 @@ function App() {
   const handleLogin = (data) => {
     setLoggedIn(true);
     setUserId(data.user.id);
+    setUserName(data.user.userName);
     setUserEmail(data.user.email);
+    setUserBio(data.user.description);
   };
 
   const handleLogout = () => {
@@ -105,9 +109,9 @@ function App() {
           </Offcanvas>
         </Container>
 
-        <Header />
+        <Header userName={userName} />
 
-        <ListArea userId={userId} />
+        <ListArea userId={userId} userBio={userBio} />
 
         <Footer />
       </div>
