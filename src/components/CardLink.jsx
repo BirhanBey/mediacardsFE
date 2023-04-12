@@ -34,7 +34,7 @@ const CardLink = ({ link, index, removeCard }) => {
                   <Card.Text className="text-wrap">
                     {link.description || "No description available."}
                   </Card.Text>
-                  <Card.Link href={link.url}>Go to my {link.name}</Card.Link>
+                  <Card.Link href={link.link}>Go to my {link.name}</Card.Link>
                   <div className="d-flex justify-content-end">
                     <DelButton
                       index={index}

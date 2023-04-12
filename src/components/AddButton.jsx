@@ -26,7 +26,7 @@ const AddButton = ({ addCard }) => {
   const handleSave = async () => {
     try {
       const response = await axios.post(
-        "https://s10.syntradeveloper.be/api/lists",
+        "https://s3.syntradeveloper.be/api/users",
         {
           name,
           description,

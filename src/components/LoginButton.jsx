@@ -20,11 +20,10 @@ const LoginButton = ({ handleLogin }) => {
     setPassword(event.target.value);
     setError("");
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("https://s10.syntradeveloper.be/api/login", {
+      const response = await fetch("https://s3.syntradeveloper.be/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -32,12 +31,16 @@ const LoginButton = ({ handleLogin }) => {
         body: JSON.stringify({ email, password }),
       });
       if (response.ok) {
+        const data = await response.json();
+        const { id_user } = data;
         // successful login
         setEmail("");
         setPassword("");
         setError("");
         handleClose();
-        handleLogin(email);
+        handleLogin(data);
+        console.log("yes" + data.user.id);
+        console.log("yes" + JSON.stringify(data));
       } else if (response.status === 401) {
         setError("Invalid email or password");
       } else {

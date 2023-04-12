@@ -13,14 +13,14 @@ function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState(null); // Add this line
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleLogin = (email) => {
-    setUserEmail(email);
+  const handleLogin = (data) => {
     setLoggedIn(true);
-    handleClose();
+    setUserId(data.user.id);
   };
 
   const handleLogout = () => {
@@ -102,7 +102,8 @@ function App() {
 
         <Header />
 
-        <ListArea />
+        <ListArea userId={userId} />
+
         <Footer />
       </div>
     </>
