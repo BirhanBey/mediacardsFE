@@ -13,14 +13,15 @@ function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
+  const [userId, setUserId] = useState(null); // Add this line
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const handleLogin = (email) => {
-    setUserEmail(email);
+  const handleLogin = (data) => {
     setLoggedIn(true);
-    handleClose();
+    setUserId(data.user.id);
+    setUserEmail(data.user.email);
   };
 
   const handleLogout = () => {
@@ -73,7 +74,11 @@ function App() {
               />
             </svg>
             {/* <Button variant="dark">Menu</Button> */}
-            {loggedIn && <span className="ms-3">Logged in as {userEmail}</span>}
+            {loggedIn && (
+              <span className="ms-3" style={{ color: "blue" }}>
+                Logged in as {userEmail}
+              </span>
+            )}
           </div>
 
           <Offcanvas show={show} onHide={handleClose}>
@@ -102,7 +107,8 @@ function App() {
 
         <Header />
 
-        <ListArea />
+        <ListArea userId={userId} />
+
         <Footer />
       </div>
     </>

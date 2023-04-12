@@ -12,7 +12,7 @@ const DelButton = ({ linkId }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://s10.syntradeveloper.be/api/lists/${linkId}`
+        `https://s3.syntradeveloper.be/api/users/${linkId}`
       );
       if (response.status === 204) {
         setIsDeleted(true); // update the state to mark the card as deleted

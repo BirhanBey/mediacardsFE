@@ -23,7 +23,7 @@ const RegisterModal = () => {
 
     try {
       const response = await fetch(
-        "https://s10.syntradeveloper.be/api/register",
+        "https://s3.syntradeveloper.be/api/register",
         {
           method: "POST",
           headers: {
