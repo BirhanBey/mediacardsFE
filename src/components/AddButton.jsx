@@ -11,32 +11,44 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const AddButton = ({ addCard, userId }) => {
+const AddButton = ({ addCard, userId, token }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
+  const [active, setActive] = useState(false);
   const [url, setUrl] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleNameChange = (event) => setName(event.target.value);
-  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  const handleActiveChange = (event) => {
+    if (event.target.checked) {
+      setActive(true);
+    } else {
+      setActive(false);
+    }
+  };
   const handleUrlChange = (event) => setUrl(event.target.value);
 
   const handleSave = async () => {
     try {
+      console.log("this is tokenz" + token);
       const response = await axios.post(
         `https://s3.syntradeveloper.be/api/users/${userId}`,
         {
           name,
-          isActive: 0,
-          url,
+          active,
+          link: url,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       addCard(response.data); // update the state in the parent component
-      console.log("ttt" + response.data);
+
       setName("");
-      setDescription("");
+      setActive(false);
       setUrl("");
       handleClose();
     } catch (error) {
@@ -96,14 +108,11 @@ const AddButton = ({ addCard, userId }) => {
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
               >
-                <Form.Label>Description:</Form.Label>
-                <Form.Control
-                  as="textarea"
-                  rows={3}
-                  placeholder="Enter description..."
-                  onChange={handleDescriptionChange}
-                  name="description"
-                  value={description}
+                <Form.Check
+                  type="checkbox"
+                  label="Active"
+                  onChange={handleActiveChange}
+                  checked={active}
                 />
               </Form.Group>
             </Form>
@@ -111,9 +120,6 @@ const AddButton = ({ addCard, userId }) => {
           <Modal.Footer>
             <Button variant="dark" onClick={handleSave}>
               Save
-            </Button>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
             </Button>
           </Modal.Footer>
         </Modal>
