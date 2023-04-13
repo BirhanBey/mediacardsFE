@@ -16,6 +16,7 @@ function App() {
   const [userId, setUserId] = useState(null); // Add this line
   const [userName, setUserName] = useState("");
   const [userBio, setUserBio] = useState("");
+  const [token, setToken] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -26,11 +27,13 @@ function App() {
     setUserName(data.user.userName);
     setUserEmail(data.user.email);
     setUserBio(data.user.description);
+    setToken(data.token);
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
     setUserEmail("");
+    setToken(null);
   };
 
   return (
@@ -99,7 +102,10 @@ function App() {
                   </>
                 ) : (
                   <>
-                    <LoginButton handleLogin={handleLogin} />
+                    <LoginButton
+                      handleLogin={handleLogin}
+                      setToken={setToken}
+                    />
                     <RegisterModal />
                   </>
                 )}
@@ -111,7 +117,7 @@ function App() {
 
         <Header userName={userName} userBio={userBio} />
 
-        <ListArea userId={userId} />
+        <ListArea userId={userId} token={token} />
 
         <Footer />
       </div>

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import AddButton from "./AddButton";
 import CardLink from "./CardLink";
-import CardAccordion from "./CardAccordion";
-import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import DelButton from "./DelButton";
 import axios from "axios";
 
-const ListArea = ({ userId }) => {
-  console.log(userId + "test");
+const ListArea = ({ userId, token }) => {
   const [cards, setCards] = useState([]);
-  const [token, setToken] = useState("");
 
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
@@ -25,9 +25,6 @@ const ListArea = ({ userId }) => {
         const response = await axios.get(
           `https://s3.syntradeveloper.be/api/users/${userId}`
         );
-        console.log("response" + response);
-        console.log("r" + JSON.stringify(response.data.url));
-
         setCards(response.data.url);
       } catch (error) {
         console.error(error);
@@ -43,15 +40,20 @@ const ListArea = ({ userId }) => {
           <Col sm="auto">
             <br />
             <Card.Body className="d-flex text-center text-center list-item">
-              <CardAccordion link={link} />
+              <CardLink link={link} />
+              <DelButton
+                removeCard={removeCard}
+                linkId={link.id}
+                userId={userId}
+                token={token}
+              />
             </Card.Body>
           </Col>
         </Row>
       ))}
-      <AddButton addCard={addCard} setToken={setToken} userId={userId} />
+      <AddButton addCard={addCard} token={token} userId={userId} />
     </Container>
   );
 };
-
 
 export default ListArea;

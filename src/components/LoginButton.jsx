@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
-
 const LoginButton = ({ handleLogin }) => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [token, setToken] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -32,19 +32,15 @@ const LoginButton = ({ handleLogin }) => {
       });
       if (response.ok) {
         const data = await response.json();
-        const { id_user } = data;
-        // successful login
+        const { token } = data;
         setEmail("");
         setPassword("");
         setError("");
         handleClose();
-        handleLogin(data);
-        // console.log("yes" + data.user.id);
-        // console.log("yes" + JSON.stringify(data));
+        handleLogin(data, token); // pass token to handleLogin function
       } else if (response.status === 401) {
         setError("Invalid email or password");
       } else {
-        // login error
         setError("Something went wrong. Please try again later.");
       }
     } catch (error) {

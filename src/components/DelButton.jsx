@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const DelButton = ({ linkId }) => {
+const DelButton = ({ linkId, userId, token }) => {
   const [showModal, setShowModal] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false); // add new state
 
@@ -12,16 +12,25 @@ const DelButton = ({ linkId }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://s3.syntradeveloper.be/api/users/${linkId}`
+        `https://s3.syntradeveloper.be/api/users/${userId}/urls/${linkId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
+
       if (response.status === 204) {
         setIsDeleted(true); // update the state to mark the card as deleted
         handleCloseModal();
+        console.log("delete id " + linkId);
       } else {
         console.log("Failed to delete card");
+        console.log("delete id " + linkId);
       }
     } catch (error) {
       console.error("Error deleting card:", error);
+      console.log("delete id " + linkId);
     }
   };
 
