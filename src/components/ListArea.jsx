@@ -7,8 +7,9 @@ import DelButton from "./DelButton";
 import axios from "axios";
 
 const ListArea = ({ userId }) => {
+  console.log(userId + "test");
   const [cards, setCards] = useState([]);
-  const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
+  const [token, setToken] = useState("");
 
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
@@ -18,17 +19,16 @@ const ListArea = ({ userId }) => {
     setCards((prevCards) => prevCards.filter((link) => link.id !== linkId));
   };
 
-  const handleAccordionToggle = (eventKey) => {
-    setActiveEventKey(eventKey === activeEventKey ? null : eventKey); // toggle the active event key state
-  };
-
   useEffect(() => {
     const fetchLinks = async () => {
       try {
         const response = await axios.get(
           `https://s3.syntradeveloper.be/api/users/${userId}`
         );
-        setCards(response.data.url); // update cards state with the retrieved data
+        console.log("response" + response);
+        console.log("r" + JSON.stringify(response.data.url));
+
+        setCards(response.data.url);
       } catch (error) {
         console.error(error);
       }
@@ -38,50 +38,20 @@ const ListArea = ({ userId }) => {
 
   return (
     <Container>
-      {cards.map((link, index) => {
-        const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
-        const isActive = eventKey === activeEventKey; // check if current item is active
-
-        return (
-          <Row className="d-flex justify-content-sm-center" key={index}>
-            <Col sm="auto">
-              <br />
-              <Card.Body className="d-flex text-center text-center list-item ">
-                <Accordion
-                  activeKey={isActive ? eventKey : null}
-                  onSelect={handleAccordionToggle}
-                >
-                  <Accordion.Item eventKey={eventKey}>
-                    <Accordion.Header>{link.name}</Accordion.Header>
-                    <Accordion.Body>
-                      <div>
-                        {" "}
-                        {link.description || "No description available."}
-                      </div>
-                      <br />
-                      <div>
-                        {" "}
-                        <a href={link.link}>Go to my {link.name}</a>
-                      </div>
-
-                      <div className="d-flex justify-content-end">
-                        <DelButton
-                          index={index}
-                          removeCard={removeCard}
-                          linkId={link.id}
-                        />
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Card.Body>
-            </Col>
-          </Row>
-        );
-      })}
-      <AddButton addCard={addCard} userId={userId} />{" "}
+      {cards.map((link, index, name) => (
+        <Row className="d-flex justify-content-sm-center" key={index}>
+          <Col sm="auto">
+            <br />
+            <Card.Body className="d-flex text-center text-center list-item">
+              <CardAccordion link={link} />
+            </Card.Body>
+          </Col>
+        </Row>
+      ))}
+      <AddButton addCard={addCard} setToken={setToken} userId={userId} />
     </Container>
   );
 };
+
 
 export default ListArea;

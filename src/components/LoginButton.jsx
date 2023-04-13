@@ -39,8 +39,8 @@ const LoginButton = ({ handleLogin }) => {
         setError("");
         handleClose();
         handleLogin(data);
-        console.log("yes" + data.user.id);
-        console.log("yes" + JSON.stringify(data));
+        // console.log("yes" + data.user.id);
+        // console.log("yes" + JSON.stringify(data));
       } else if (response.status === 401) {
         setError("Invalid email or password");
       } else {

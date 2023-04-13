@@ -109,9 +109,9 @@ function App() {
           </Offcanvas>
         </Container>
 
-        <Header userName={userName} />
+        <Header userName={userName} userBio={userBio} />
 
-        <ListArea userId={userId} userBio={userBio} />
+        <ListArea userId={userId} />
 
         <Footer />
       </div>
