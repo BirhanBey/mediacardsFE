@@ -36,7 +36,7 @@ const AddButton = ({ addCard, userId, token }) => {
         `https://s3.syntradeveloper.be/api/users/${userId}`,
         {
           name,
-          active,
+          isActive: active,
           link: url,
         },
         {
