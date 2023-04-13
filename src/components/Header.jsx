@@ -15,7 +15,7 @@ const Header = ({ userName, userBio }) => {
                 width={171}
                 height={180}
                 alt="171x180"
-                src="/public/profilePicTest.png"
+                src="/profilePicTest.png"
               />
               <Figure.Caption className="text-center">
                 {userName}
