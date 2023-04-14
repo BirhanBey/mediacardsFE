@@ -2,7 +2,7 @@ import Header from "./components/Header";
 import ListArea from "./components/ListArea";
 import Footer from "./components/Footer";
 import LoginButton from "./components/LoginButton";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import RegisterModal from "./components/RegisterModal";
 import "./components/darkmode/darkMode.css";
 import UserSettings from "./components/userSettings/UserSettings";
@@ -13,10 +13,29 @@ function App() {
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [userEmail, setUserEmail] = useState("");
-  const [userId, setUserId] = useState(null); // Add this line
+  const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
   const [userBio, setUserBio] = useState("");
   const [token, setToken] = useState("");
+  const [userImage, setUserImage] = useState("");
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("token");
+    const storedUserId = localStorage.getItem("userId");
+    if (storedToken && storedUserId) {
+      setToken(storedToken);
+      setLoggedIn(true);
+      setUserId(storedUserId);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (loggedIn) {
+      localStorage.setItem("token", token);
+    } else {
+      localStorage.removeItem("token");
+    }
+  }, [loggedIn, token]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -28,12 +47,21 @@ function App() {
     setUserEmail(data.user.email);
     setUserBio(data.user.description);
     setToken(data.token);
+
+    localStorage.setItem("userId", data.user.id);
   };
 
   const handleLogout = () => {
     setLoggedIn(false);
     setUserEmail("");
-    setToken(null);
+    setToken("");
+    setUserId(null);
+
+    localStorage.removeItem("userId");
+  };
+
+  const handleUserImageChange = (imageUrl) => {
+    setUserImage(imageUrl);
   };
 
   return (
@@ -109,13 +137,22 @@ function App() {
                     <RegisterModal />
                   </>
                 )}
-                <UserSettings />
+                <UserSettings
+                  userId={userId}
+                  token={token}
+                  setImageUrl={handleUserImageChange}
+                />
               </Stack>
             </Offcanvas.Body>
           </Offcanvas>
         </Container>
 
-        <Header userName={userName} userBio={userBio} />
+        <Header
+          userId={userId}
+          userName={userName}
+          userBio={userBio}
+          setUserImage={handleUserImageChange}
+        />
 
         <ListArea userId={userId} token={token} />
 
