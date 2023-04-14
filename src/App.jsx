@@ -111,7 +111,7 @@ function App() {
             {/* <Button variant="dark">Menu</Button> */}
             {loggedIn && (
               <span className="ms-3" style={{ color: "blue" }}>
-                Logged in as {userEmail}
+                Logged in as {userName}
               </span>
             )}
           </div>
