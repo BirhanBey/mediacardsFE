@@ -4,7 +4,7 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import ChangePasswordModal from "./ChangePasswordModal";
 import ChangePic from "./ChangePic"; // assuming you have a separate ChangePic component
 
-function UserSettings() {
+function UserSettings({ userId, token, setImageUrl }) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showPicModal, setShowPicModal] = useState(false);
 
@@ -43,7 +43,14 @@ function UserSettings() {
       {showPasswordModal && (
         <ChangePasswordModal handleClose={handleClosePasswordModal} />
       )}
-      {showPicModal && <ChangePic handleClose={handleClosePicModal} />}
+      {showPicModal && (
+        <ChangePic
+          token={token}
+          userId={userId}
+          handleClose={handleClosePicModal}
+          setImageUrl={setImageUrl}
+        />
+      )}
     </div>
   );
 }
