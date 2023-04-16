@@ -41,7 +41,11 @@ function UserSettings({ userId, token, setImageUrl }) {
         <Dropdown.Item href="#/action-4">Log Out</Dropdown.Item>
       </DropdownButton>
       {showPasswordModal && (
-        <ChangePasswordModal handleClose={handleClosePasswordModal} />
+        <ChangePasswordModal
+          token={token}
+          userId={userId}
+          handleClose={handleClosePasswordModal}
+        />
       )}
       {showPicModal && (
         <ChangePic
