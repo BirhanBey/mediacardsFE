@@ -70,7 +70,7 @@ function App() {
       {!loggedIn ? (
         <NotLoggedIn handleLogin={handleLogin} setToken={setToken} />
       ) : (
-        <div className={darkMode ? "dark-mode" : "light-mode"}>
+        <div className={darkMode ? "dark-mode" : "light-mode"} style={{height: '100%'}}>
           <div className="mode me-2">
             <span
               className="sunmoon"
@@ -94,19 +94,6 @@ function App() {
             >
               ☽
             </span>
-
-              <path
-                fill-rule="evenodd"
-                d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-              />
-            </svg>
-            {/* <Button variant="dark">Menu</Button> */}
-            {loggedIn && (
-              <span className="ms-3" style={{ color: "blue" }}>
-                Logged in as {userName}
-              </span>
-            )}
-
           </div>
 
           <Container
