@@ -1,35 +1,47 @@
 import React, { useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import axios from "axios";
 
 function ChangePasswordModal({ userId, token, handleClose }) {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordAgain, setNewPasswordAgain] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const handleChangePassword = () => {
-    const requestOptions = {
-      method: "PUT",
+    const data = {
+      old_password: currentPassword,
+      password: newPassword,
+      password_confirmation: newPasswordAgain,
+    };
+
+    const config = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        currentPassword: currentPassword,
-        newPassword: newPassword,
-        newPasswordAgain: newPasswordAgain,
-      }),
     };
 
-    fetch(`https://s3.syntradeveloper.be/api/users/${userId}`, requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data); // You can do something with the response data here
-        handleClose();
+    axios
+      .put(
+        `https://s3.syntradeveloper.be/api/users/${userId}/pass`,
+        data,
+        config
+      )
+      .then((response) => {
+        console.log(response.data); // You can do something with the response data here
+        setFeedback("Password has been changed");
       })
       .catch((error) => {
         console.error(error);
+        setFeedback("Failed to change password");
       });
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleChangePassword();
   };
 
   return (
@@ -39,7 +51,7 @@ function ChangePasswordModal({ userId, token, handleClose }) {
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="d-flex flex-column">
+          <Form className="d-flex flex-column" onSubmit={handleSubmit}>
             <FloatingLabel
               controlId="floatingPassword"
               label="Current Password"
@@ -74,12 +86,14 @@ function ChangePasswordModal({ userId, token, handleClose }) {
                 onChange={(e) => setNewPasswordAgain(e.target.value)}
               />
             </FloatingLabel>
+
+            <Button variant="dark" type="submit">
+              Save Changes
+            </Button>
           </Form>
+          <div>{feedback}</div>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="dark" onClick={handleChangePassword}>
-            Save Changes
-          </Button>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
