@@ -77,6 +77,15 @@ body {
   background-color: #1a1919;
   color: white;
   transition: background-color 0.25s ease-in-out;
+#hamburger{
+  background-color: white;
+}
+#accordion:hover{
+box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
+}
+#footer-text{
+  color: white;
+}
 }
 
 .light-mode {
@@ -86,14 +95,14 @@ body {
   transition: background-color 0.25s ease-in-out;
 }
 
-#card-item {
+#accordion-body {
   border-radius: 50px;
 }
 
-#card-item:hover {
+#accordion:hover {
   transition: all 0.2s ease-out;
-  box-shadow: 0px 8px 16px rgba(38, 38, 38, 0.2);
-  top: -4px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
   border: 1px solid #cccccc;
 }
 
