@@ -11,7 +11,7 @@ import {
 } from "react-bootstrap";
 import axios from "axios";
 
-const AddButton = ({ addCard, userId, token }) => {
+const AddButton = ({ addCard, userId, token, handleRerender }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [active, setActive] = useState(false);
@@ -51,6 +51,7 @@ const AddButton = ({ addCard, userId, token }) => {
       setActive(false);
       setUrl("");
       handleClose();
+      handleRerender();
     } catch (error) {
       console.error(error);
     }

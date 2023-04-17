@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 
-const DelButton = ({ linkId, userId, token }) => {
+const DelButton = ({ linkId, userId, token, handleRerender }) => {
   const [showModal, setShowModal] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false); // add new state
 
@@ -23,6 +23,7 @@ const DelButton = ({ linkId, userId, token }) => {
       if (response.status === 204) {
         setIsDeleted(true); // update the state to mark the card as deleted
         handleCloseModal();
+        handleRerender();
         console.log("delete id " + linkId);
       } else {
         console.log("Failed to delete card");
