@@ -60,7 +60,7 @@ const ListArea = ({ userId, token }) => {
                   </Accordion.Header>
                   <Accordion.Body id="accordion-body">
                     {link.description || "No description available."}
-                    <a href={link.link}>Go to my {link.name}</a>
+                    <a href={link.link} target="_blank">Go to my {link.name}</a>
                     <div className="d-flex justify-content-end">
                       <EditButton
                         userId={userId}
