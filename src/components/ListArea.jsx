@@ -10,7 +10,7 @@ import axios from "axios";
 const ListArea = ({ userId, token }) => {
   const [cards, setCards] = useState([]);
   const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
-
+  const [rerender, setRerender] = useState(0);
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
   };
@@ -29,13 +29,17 @@ const ListArea = ({ userId, token }) => {
         const response = await axios.get(
           `https://s3.syntradeveloper.be/api/users/${userId}`
         );
-        setCards(response.data.url); // update cards state with the retrieved data
+        setCards(response.data.url);
       } catch (error) {
         console.error(error);
       }
     };
     fetchLinks();
-  }, [userId]);
+  }, [userId, rerender]); // add rerender to the dependency array of useEffect
+
+  const handleRerender = () => {
+    setRerender(rerender + 1); // update rerender state to trigger re-render
+  };
 
   return (
     <Container>
@@ -64,6 +68,7 @@ const ListArea = ({ userId, token }) => {
                         removeCard={removeCard}
                         linkId={link.id}
                         token={token}
+                        handleRerender={handleRerender} // pass handleRerender function to DelButton component
                       />
                     </div>
                   </Accordion.Body>
@@ -75,7 +80,12 @@ const ListArea = ({ userId, token }) => {
         <Container className="d-flex justify-content-center align-items-center">
           <Row>
             <Col>
-              <AddButton addCard={addCard} token={token} userId={userId} />
+              <AddButton
+                addCard={addCard}
+                token={token}
+                userId={userId}
+                handleRerender={handleRerender}
+              />
             </Col>
           </Row>
         </Container>
