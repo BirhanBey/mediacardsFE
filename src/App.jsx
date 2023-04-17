@@ -5,7 +5,7 @@ import LoginButton from "./components/LoginButton";
 import React, { useState, useEffect } from "react";
 import RegisterModal from "./components/RegisterModal";
 import NotLoggedIn from "./components/NotLoggedIn";
-import "./components/darkmode/darkMode.css";
+import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 
@@ -70,13 +70,15 @@ function App() {
       {!loggedIn ? (
         <NotLoggedIn handleLogin={handleLogin} setToken={setToken} />
       ) : (
-        <div className={darkMode ? "dark-mode" : "light-mode"} style={{height: '100%'}}>
+        <div
+          className={darkMode ? "dark-mode" : "light-mode"}
+          style={{ height: "100%" }}
+        >
           <div className="mode me-2">
             <span
               className="sunmoon"
               style={{ color: darkMode ? "grey" : "yellow" }}
             >
-
               ☀︎
             </span>
             <div className="switch-checkbox">

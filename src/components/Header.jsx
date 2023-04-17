@@ -32,6 +32,7 @@ const Header = ({ userName, userBio, userId }) => {
                   height={180}
                   alt="171x180"
                   src={userImage}
+                  style={{ borderRadius: "50%" }}
                 />
               ) : (
                 <Figure.Image
@@ -42,7 +43,7 @@ const Header = ({ userName, userBio, userId }) => {
                 />
               )}
               <Figure.Caption className="text-center">
-                {userName}
+                <h1>{userName}</h1>
               </Figure.Caption>
             </Figure>
           </Col>
