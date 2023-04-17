@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CardAccordion from "./CardAccordion";
 import AddButton from "./AddButton";
+import EditButton from "./EditButton";
 import CardLink from "./CardLink";
 import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
 
@@ -46,7 +47,7 @@ const ListArea = ({ userId, token }) => {
           <Row className="d-flex justify-content-sm-center" key={index}>
             <Col sm="auto">
               <br />
-              <Card.Body className="d-flex text-center text-center list-item">
+              <Card.Body className="d-flex text-center text-center list-item" >
                 <Accordion
                   activeKey={isActive ? eventKey : null}
                   onSelect={handleAccordionToggle}
@@ -57,6 +58,7 @@ const ListArea = ({ userId, token }) => {
                       {link.description || "No description available."}
                       <a href={link.link}>Go to my {link.name}</a>
                       <div className="d-flex justify-content-end">
+                        <EditButton />
                         <DelButton
                           userId={userId}
                           removeCard={removeCard}
