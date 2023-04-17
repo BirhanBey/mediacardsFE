@@ -38,41 +38,46 @@ const ListArea = ({ userId, token }) => {
 
   return (
     <Container>
-      {cards.map((link, index) => {
-        const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
-        const isActive = eventKey === activeEventKey; // check if current item is active
+      <Row xs={1} md={2} lg={4}>
+        {cards.map((link, index) => {
+          const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
+          const isActive = eventKey === activeEventKey; // check if current item is active
 
-        return (
-          <Row className="d-flex justify-content-sm-center" key={index}>
-            <Col sm="auto">
-              <br />
-              <Card.Body className="d-flex text-center text-center list-item">
-                <Accordion
-                  activeKey={isActive ? eventKey : null}
-                  onSelect={handleAccordionToggle}
-                >
-                  <Accordion.Item eventKey={eventKey}>
-                    <Accordion.Header>{link.name}</Accordion.Header>
-                    <Accordion.Body>
-                      {link.description || "No description available."}
-                      <a href={link.link}>Go to my {link.name}</a>
-                      <div className="d-flex justify-content-end">
-                        <DelButton
-                          userId={userId}
-                          removeCard={removeCard}
-                          linkId={link.id}
-                          token={token}
-                        />
-                      </div>
-                    </Accordion.Body>
-                  </Accordion.Item>
-                </Accordion>
-              </Card.Body>
+          return (
+            <Col key={index} className="mb-3">
+              <Accordion
+                activeKey={isActive ? eventKey : null}
+                onSelect={handleAccordionToggle}
+              >
+                <Accordion.Item eventKey={eventKey} id="accordion">
+                  <Accordion.Header id="accordion-header">
+                    <h5>{link.name}</h5>
+                  </Accordion.Header>
+                  <Accordion.Body id="accordion-body">
+                    {link.description || "No description available."}
+                    <a href={link.link}>Go to my {link.name}</a>
+                    <div className="d-flex justify-content-end">
+                      <DelButton
+                        userId={userId}
+                        removeCard={removeCard}
+                        linkId={link.id}
+                        token={token}
+                      />
+                    </div>
+                  </Accordion.Body>
+                </Accordion.Item>
+              </Accordion>
+            </Col>
+          );
+        })}
+        <Container className="d-flex justify-content-center align-items-center">
+          <Row>
+            <Col>
+              <AddButton addCard={addCard} token={token} userId={userId} />
             </Col>
           </Row>
-        );
-      })}
-      <AddButton addCard={addCard} token={token} userId={userId} />{" "}
+        </Container>
+      </Row>
     </Container>
   );
 };
