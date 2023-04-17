@@ -16,6 +16,7 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "^18.2.0",
     "react-dropzone": "^14.2.3",
+    "react-spinners": "^0.13.8",
     "sass": "^1.62.0"
   },
   "devDependencies": {
@@ -23,5 +24,18 @@
     "@types/react-dom": "^18.0.11",
     "@vitejs/plugin-react": "^3.1.0",
     "vite": "^4.2.0"
-  }
+  },
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BirhanBey/mediacardsFE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BirhanBey/mediacardsFE/issues"
+  },
+  "homepage": "https://github.com/BirhanBey/mediacardsFE#readme",
+  "description": ""
 }

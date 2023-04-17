@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import FloatingLabel from "react-bootstrap/FloatingLabel";
+import ScaleLoader from "react-spinners/ScaleLoader";
 
 const LoginButton = ({ handleLogin }) => {
   const [show, setShow] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -22,6 +24,7 @@ const LoginButton = ({ handleLogin }) => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch("https://s3.syntradeveloper.be/api/login", {
         method: "POST",
@@ -48,9 +51,12 @@ const LoginButton = ({ handleLogin }) => {
         setError("Something went wrong. Please try again later.");
       }
     } catch (error) {
-      setError("Network error");
-    }
-  };
+        setError("Network error");
+      }
+      setTimeout(() => {
+        setIsLoading(false); // Loader'ı gizlemek için
+      }, 5000);
+    };
 
   return (
     <>
@@ -85,14 +91,21 @@ const LoginButton = ({ handleLogin }) => {
               />
             </FloatingLabel>
             {error && <p className="text-danger mt-2">{error}</p>}
-            <Button
-              className="mx-auto mt-3"
-              size="lg"
-              variant="dark"
-              type="submit"
-            >
-              Submit
-            </Button>
+              <ScaleLoader
+                color={"#36d7b7"}
+                loading={isLoading}
+                size={100}
+                className="d-flex justify-content-center"
+              />
+              <Button
+                className="mx-auto mt-3"
+                size="lg"
+                variant="dark"
+                type="submit"
+                disabled={isLoading} 
+              >
+                {isLoading ? <div className="loader"></div> : "Submit"}
+              </Button>
           </Form>
         </Modal.Body>
       </Modal>
