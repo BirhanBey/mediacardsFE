@@ -28,10 +28,12 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
       } else {
         console.log("Failed to delete card");
         console.log("delete id " + linkId);
+        handleRerender();
       }
     } catch (error) {
       console.error("Error deleting card:", error);
       console.log("delete id " + linkId);
+      handleRerender();
     }
   };
 
