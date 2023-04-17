@@ -62,7 +62,15 @@ const ListArea = ({ userId, token }) => {
                     {link.description || "No description available."}
                     <a href={link.link}>Go to my {link.name}</a>
                     <div className="d-flex justify-content-end">
-                      <EditButton />
+                      <EditButton
+                        userId={userId}
+                        linkId={link.id}
+                        name={link.name}
+                        description={link.description}
+                        url={link.link}
+                        token={token}
+                        handleRerender={handleRerender}
+                      />
                       <DelButton
                         userId={userId}
                         removeCard={removeCard}
