@@ -57,7 +57,7 @@ const AddButton = ({ addCard, userId, token, handleRerender }) => {
     }
   };
   return (
-    <Row className="justify-content-center mt-5">
+    <Row className="mt-0 mb-3">
       <Col xs="auto" className="text-center">
         <Button variant="dark" onClick={handleShow}>
           Add Link

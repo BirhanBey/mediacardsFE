@@ -68,14 +68,24 @@
   align-items: center;
   padding: 20px;
   box-sizing: border-box;
-  transition: .8s;
-  transform: translateY(-100px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+  transition: 0.8s;
+  box-shadow: inset 10px 10px 15px -4px rgba(0,0,0,0.3), inset -8px -10px 15px -3px rgba(0,0,0,0.2),0px 10px 15px -3px rgba(0,0,0,0.4);  
+  transform: rotatex(90deg);
+  top: -20px;
+  z-index: 1;
+  background: white;
 }
 
 .container .card:hover .slide.slide2{
   transform: translateY(0);
+}
 
+.modal-content{
+  background-color: #414141 !important;
+  color: white;
+}
+.modal-body, .modal-header{
+  color: #ccc;
 }
 
 // .container .card .slide.slide2::after{

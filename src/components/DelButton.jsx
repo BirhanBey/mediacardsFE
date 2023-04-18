@@ -42,9 +42,9 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
   }
 
   return (
-    <>
+    <div>
       <button
-        className="btn btn-danger ms-auto me-1 mt-1 rounded"
+        className="btn btn-danger me-1 mt-1 rounded"
         onClick={handleShowModal}
       >
         <svg
@@ -59,7 +59,11 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
         </svg>
       </button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal 
+        show={showModal} 
+        onHide={handleCloseModal} 
+     
+      >
         <Modal.Header closeButton>
           <Modal.Title>Sure?</Modal.Title>
         </Modal.Header>
@@ -83,7 +87,7 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

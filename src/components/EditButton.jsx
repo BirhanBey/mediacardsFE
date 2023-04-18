@@ -66,12 +66,12 @@ const EditButton = ({
   };
 
   return (
-    <>
+    <div className="ms-auto ">
       <button
         className="btn btn-danger ms-auto me-1 mt-1 rounded"
         onClick={handleShowModal}
       >
-        Edit
+        🖋️
       </button>
 
       <Modal show={showModal} onHide={handleCloseModal}>
@@ -154,7 +154,7 @@ const EditButton = ({
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

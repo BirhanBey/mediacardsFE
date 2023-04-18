@@ -30,7 +30,7 @@ function UserSettings({ userId, token, setImageUrl }) {
         id="dropdown-button-dark-example2"
         title="Settings ⚙️"
         className="text-center"
-        variant="dark"
+        variant="dark"        
       >
         <Dropdown.Item onClick={handlePasswordClick}>
           Change Password
