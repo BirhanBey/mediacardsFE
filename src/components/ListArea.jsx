@@ -4,7 +4,7 @@ import AddButton from "./AddButton";
 import EditButton from "./EditButton";
 import CardLink from "./CardLink";
 import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
-
+import FancyCards from "./FancyCards";
 import DelButton from "./DelButton";
 import axios from "axios";
 const ListArea = ({ userId, token }) => {
@@ -43,45 +43,25 @@ const ListArea = ({ userId, token }) => {
 
   return (
     <Container>
-      <Row xs={1} md={2} lg={4}>
+      <Row xs={1} md={2} lg={4} gap={1}>
         {cards.map((link, index) => {
-          const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
-          const isActive = eventKey === activeEventKey; // check if current item is active
+          // const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
+          // const isActive = eventKey === activeEventKey; // check if current item is active
 
           return (
             <Col key={index} className="mb-3">
-              <Accordion
-                activeKey={isActive ? eventKey : null}
-                onSelect={handleAccordionToggle}
-              >
-                <Accordion.Item eventKey={eventKey} id="accordion">
-                  <Accordion.Header id="accordion-header">
-                    <h5>{link.name}</h5>
-                  </Accordion.Header>
-                  <Accordion.Body id="accordion-body">
-                    {link.description || "No description available."}
-                    <a href={link.link} target="_blank">Go to my {link.name}</a>
-                    <div className="d-flex justify-content-end">
-                      <EditButton
-                        userId={userId}
-                        linkId={link.id}
-                        name={link.name}
-                        description={link.description}
-                        url={link.link}
-                        token={token}
-                        handleRerender={handleRerender}
-                      />
-                      <DelButton
-                        userId={userId}
-                        removeCard={removeCard}
-                        linkId={link.id}
-                        token={token}
-                        handleRerender={handleRerender} // pass handleRerender function to DelButton component
-                      />
-                    </div>
-                  </Accordion.Body>
-                </Accordion.Item>
-              </Accordion>
+              <FancyCards
+                link={link}
+                index={index}
+                removeCard={removeCard}
+                userId={userId}
+                linkId={link.id}
+                name={link.name}
+                description={link.description}
+                url={link.link}
+                token={token}
+                handleRerender={handleRerender}
+              />
             </Col>
           );
         })}
