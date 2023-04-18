@@ -27,21 +27,19 @@ const FancyCards = ({
   return (
     <>
       <Container>
-        <div className="card border-0">
-          <div className="slide slide1">
-            <div className="content">
-              <div className="icon">
-                <i className="fa fa-user-circle" aria-hidden="true"></i>
-              </div>
+        <div className="flip-card">
+          <div className="flip-card-inner">
+            <div className="flip-card-front">
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
             </div>
-          </div>
-          <div className="slide slide2">
-            <div className="content">
-              <h5>{link.name}</h5>
-              {link.description || "No description available."}
-              <a href={link.link} target="_blank">
-                Go to site
-              </a>
+            <div className="flip-card-back">
+              <h3>{link.name}</h3>
+              <p> {link.description || "No description available."}</p>
+              <p>
+                <a href={link.link} target="_blank">
+                  Go to site
+                </a>
+              </p>
               <div id="card-buttons">
                 <EditButton
                   userId={userId}
