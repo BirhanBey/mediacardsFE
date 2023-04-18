@@ -51,12 +51,12 @@ const LoginButton = ({ handleLogin }) => {
         setError("Something went wrong. Please try again later.");
       }
     } catch (error) {
-        setError("Network error");
-      }
-      setTimeout(() => {
-        setIsLoading(false); // Loader'ı gizlemek için
-      }, 5000);
-    };
+      setError("Network error");
+    }
+    setTimeout(() => {
+      setIsLoading(false); // Loader'ı gizlemek için
+    }, 5000);
+  };
 
   return (
     <>
@@ -91,21 +91,21 @@ const LoginButton = ({ handleLogin }) => {
               />
             </FloatingLabel>
             {error && <p className="text-danger mt-2">{error}</p>}
-              <ScaleLoader
-                color={"#36d7b7"}
-                loading={isLoading}
-                size={100}
-                className="d-flex justify-content-center"
-              />
-              <Button
-                className="mx-auto mt-3"
-                size="lg"
-                variant="dark"
-                type="submit"
-                disabled={isLoading} 
-              >
-                {isLoading ? <div className="loader"></div> : "Submit"}
-              </Button>
+            <ScaleLoader
+              color={"#36d7b7"}
+              loading={isLoading}
+              size={100}
+              className="d-flex justify-content-center"
+            />
+            <Button
+              className="mx-auto mt-3"
+              size="lg"
+              variant="dark"
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? <div className="loader"></div> : "Submit"}
+            </Button>
           </Form>
         </Modal.Body>
       </Modal>

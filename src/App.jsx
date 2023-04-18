@@ -7,7 +7,16 @@ import RegisterModal from "./components/RegisterModal";
 import NotLoggedIn from "./components/NotLoggedIn";
 import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
-import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
+import LogoutModal from "./components/LogoutModal";
+import {
+  Row,
+  Container,
+  Col,
+  Button,
+  Offcanvas,
+  Stack,
+  Modal,
+} from "react-bootstrap";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -19,6 +28,7 @@ function App() {
   const [userBio, setUserBio] = useState("");
   const [token, setToken] = useState("");
   const [userImage, setUserImage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -53,6 +63,10 @@ function App() {
   };
 
   const handleLogout = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
     setLoggedIn(false);
     setUserEmail("");
     setToken("");
@@ -134,9 +148,10 @@ function App() {
                 <Stack gap={3}>
                   {loggedIn ? (
                     <>
-                      <Button variant="secondary" onClick={handleLogout}>
-                        Logout
-                      </Button>
+                      <LogoutModal
+                        handleLogout={handleLogout}
+                        isLoading={isLoading}
+                      />
                     </>
                   ) : (
                     <>
