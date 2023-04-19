@@ -27,6 +27,7 @@ function App() {
     const storedUserEmail = localStorage.getItem("userEmail");
     const storedUserName = localStorage.getItem("userName");
     const storedUserBio = localStorage.getItem("userBio");
+    const darkModeSetting = localStorage.getItem("darkMode");
     if (storedToken && storedUserId) {
       setToken(storedToken);
       setLoggedIn(true);
@@ -34,6 +35,7 @@ function App() {
       setUserEmail(storedUserEmail);
       setUserName(storedUserName);
       setUserBio(storedUserBio);
+      setDarkMode(JSON.parse(darkModeSetting));
     }
   }, []);
 
@@ -44,6 +46,7 @@ function App() {
       localStorage.setItem("userEmail", userEmail);
       localStorage.setItem("userName", userName);
       localStorage.setItem("userBio", userBio);
+      localStorage.setItem("darkMode", JSON.stringify(darkMode));
     } else {
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
@@ -51,7 +54,7 @@ function App() {
       localStorage.removeItem("userName");
       localStorage.removeItem("userBio");
     }
-  }, [loggedIn, token, userId, userEmail, userName, userBio]);
+  }, [loggedIn, token, userId, userEmail, userName, userBio, darkMode]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -106,6 +109,7 @@ function App() {
                 <input
                   type="checkbox"
                   onChange={() => setDarkMode(!darkMode)}
+                  checked={darkMode}
                 />
                 <span className="slider round"> </span>
               </label>
@@ -135,7 +139,7 @@ function App() {
                 style={{ backgroundColor: darkMode ? "#212529" : "white", color: darkMode ? "white" : "black"}}
               >
                 <path
-                  fill-rule="evenodd"
+                  fillRule="evenodd"
                   fill={darkMode ? "white" : "black"}
                   d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                 />
