@@ -4,7 +4,7 @@ import Figure from "react-bootstrap/Figure";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-const Header = ({ userName, userBio, userId }) => {
+const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
   const [userImage, setUserImage] = useState(null);
 
   useEffect(() => {

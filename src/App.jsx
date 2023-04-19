@@ -7,16 +7,7 @@ import RegisterModal from "./components/RegisterModal";
 import NotLoggedIn from "./components/NotLoggedIn";
 import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
-import LogoutModal from "./components/LogoutModal";
-import {
-  Row,
-  Container,
-  Col,
-  Button,
-  Offcanvas,
-  Stack,
-  Modal,
-} from "react-bootstrap";
+import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -28,28 +19,46 @@ function App() {
   const [userBio, setUserBio] = useState("");
   const [token, setToken] = useState("");
   const [userImage, setUserImage] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [rerender, setRerender] = useState(0);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const storedUserId = localStorage.getItem("userId");
+    const storedUserEmail = localStorage.getItem("userEmail");
+    const storedUserName = localStorage.getItem("userName");
+    const storedUserBio = localStorage.getItem("userBio");
     if (storedToken && storedUserId) {
       setToken(storedToken);
       setLoggedIn(true);
       setUserId(storedUserId);
+      setUserEmail(storedUserEmail);
+      setUserName(storedUserName);
+      setUserBio(storedUserBio);
     }
   }, []);
 
   useEffect(() => {
     if (loggedIn) {
       localStorage.setItem("token", token);
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("userEmail", userEmail);
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("userBio", userBio);
     } else {
       localStorage.removeItem("token");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("userEmail");
+      localStorage.removeItem("userName");
+      localStorage.removeItem("userBio");
     }
-  }, [loggedIn, token]);
+  }, [loggedIn, token, userId, userEmail, userName, userBio]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const handleRerender = () => {
+    setRerender(rerender + 1);
+  };
 
   const handleLogin = (data) => {
     setLoggedIn(true);
@@ -63,14 +72,12 @@ function App() {
   };
 
   const handleLogout = () => {
-    setIsLoading(true);
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
     setLoggedIn(false);
     setUserEmail("");
     setToken("");
     setUserId(null);
+    setUserName("");
+    setUserBio("");
 
     localStorage.removeItem("userId");
   };
@@ -154,10 +161,9 @@ function App() {
                 <Stack gap={3}>
                   {loggedIn ? (
                     <>
-                      <LogoutModal
-                        handleLogout={handleLogout}
-                        isLoading={isLoading}
-                      />
+                      <Button variant="secondary" onClick={handleLogout}>
+                        Logout
+                      </Button>
                     </>
                   ) : (
                     <>
@@ -183,9 +189,16 @@ function App() {
             userName={userName}
             userBio={userBio}
             setUserImage={handleUserImageChange}
+            rerender={rerender}
+            handleRerender={handleRerender}
           />
 
-          <ListArea userId={userId} token={token} />
+          <ListArea
+            userId={userId}
+            token={token}
+            rerender={rerender}
+            handleRerender={handleRerender}
+          />
 
           <Footer />
         </div>

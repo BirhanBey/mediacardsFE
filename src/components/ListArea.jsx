@@ -7,10 +7,10 @@ import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
 import FancyCards from "./FancyCards";
 import DelButton from "./DelButton";
 import axios from "axios";
-const ListArea = ({ userId, token }) => {
+const ListArea = ({ userId, token, rerender, handleRerender }) => {
   const [cards, setCards] = useState([]);
   const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
-  const [rerender, setRerender] = useState(0);
+
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
   };
@@ -36,10 +36,6 @@ const ListArea = ({ userId, token }) => {
     };
     fetchLinks();
   }, [userId, rerender]); // add rerender to the dependency array of useEffect
-
-  const handleRerender = () => {
-    setRerender(rerender + 1); // update rerender state to trigger re-render
-  };
 
   return (
     <Container>
