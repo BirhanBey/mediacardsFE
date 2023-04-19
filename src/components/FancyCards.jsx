@@ -27,15 +27,23 @@ const FancyCards = ({
   handleRerender,
   darkMode,
   selectedIcon,
+  onIconChange,
 }) => {
+  const [cardIcon, setCardIcon] = useState(selectedIcon);
+
+  const handleIconClick = (icon) => {
+    setCardIcon(icon);
+    onIconChange(index, icon);
+  };
+
   return (
     <>
       <Container className="d-flex justify-content-center">
         <div className="card border-0 bg-transparent">
           <div className="slide slide1 position-relative d-flex justify-content-center align-items-center">
-            <div className="icon rounded">
-              {selectedIcon ? (
-                selectedIcon
+            <div className="icon rounded" onClick={() => handleIconClick(cardIcon)}>
+              {cardIcon ? (
+                cardIcon
               ) : (
                 <i className="fa fa-user-circle" aria-hidden="true"></i>
               )}

@@ -21,12 +21,12 @@ function App() {
   const [token, setToken] = useState("");
   const [userImage, setUserImage] = useState("");
   const [rerender, setRerender] = useState(0);
-
   const icons = [<FaYoutube />, <FaTwitter />, <FaFacebook />];
   const [selectedIcon, setSelectedIcon] = useState(null);
 
   const handleIconChange = (icon) => {
     setSelectedIcon(icon);
+    localStorage.setItem("selectedIcon", JSON.stringify(icon));
   };
 
   useEffect(() => {
