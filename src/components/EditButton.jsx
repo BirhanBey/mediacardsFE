@@ -10,13 +10,14 @@ const EditButton = ({
   name,
   url,
   description,
+  isActive,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState({
     name: name,
     url: url,
     description: description,
-    isActive: false,
+    isActive: isActive,
   });
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -31,6 +32,14 @@ const EditButton = ({
     setFormValues({
       ...formValues,
       [name]: value,
+    });
+  };
+
+  const handleCheckboxChange = (event) => {
+    const { name, checked } = event.target;
+    setFormValues({
+      ...formValues,
+      [name]: checked,
     });
   };
 
@@ -64,7 +73,6 @@ const EditButton = ({
         }
       });
   };
-
   return (
     <div className="ms-auto ">
       <button
@@ -134,7 +142,7 @@ const EditButton = ({
                 id="active"
                 name="isActive"
                 checked={formValues.isActive}
-                onChange={handleInputChange}
+                onChange={handleCheckboxChange}
               />
             </Form.Group>
           </Form>
