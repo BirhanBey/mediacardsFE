@@ -8,6 +8,7 @@ import NotLoggedIn from "./components/NotLoggedIn";
 import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
+import { FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,6 +21,13 @@ function App() {
   const [token, setToken] = useState("");
   const [userImage, setUserImage] = useState("");
   const [rerender, setRerender] = useState(0);
+
+  const icons = [<FaYoutube />, <FaTwitter />, <FaFacebook />];
+  const [selectedIcon, setSelectedIcon] = useState(null);
+
+  const handleIconChange = (icon) => {
+    setSelectedIcon(icon);
+  };
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -87,13 +95,14 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? "dark-mode h-100" : "light-mode"}
+    <div
+      className={darkMode ? "dark-mode h-100" : "light-mode"}
       style={{ height: "100%" }}
     >
       {!loggedIn ? (
         <NotLoggedIn handleLogin={handleLogin} setToken={setToken} />
       ) : (
-        <div className={darkMode ? "dark-mode" : "light-mode"}> 
+        <div className={darkMode ? "dark-mode" : "light-mode"}>
           <div className="mode me-2">
             <span
               className="sunmoon"
@@ -132,7 +141,10 @@ function App() {
                 viewBox="0 0 16 16"
                 onClick={handleShow}
                 id="hamburger"
-                style={{ backgroundColor: darkMode ? "#212529" : "white", color: darkMode ? "white" : "black"}}
+                style={{
+                  backgroundColor: darkMode ? "#212529" : "white",
+                  color: darkMode ? "white" : "black",
+                }}
               >
                 <path
                   fill-rule="evenodd"
@@ -140,19 +152,26 @@ function App() {
                   d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                 />
               </svg>
-              <br/>              
-              {loggedIn && (                
-                <span className="ms-2" style={{ color: darkMode ? "white" : "black"}}>
+              <br />
+              {loggedIn && (
+                <span
+                  className="ms-2"
+                  style={{ color: darkMode ? "white" : "black" }}
+                >
                   Logged in as {userEmail}
                 </span>
               )}
             </div>
 
-            <Offcanvas 
-              show={show} 
-              onHide={handleClose}  
+            <Offcanvas
+              show={show}
+              onHide={handleClose}
               className={darkMode ? "dark-mode" : "light-mode"}
-              style={{ backgroundColor: darkMode ? "#212529" : "white", color: darkMode ? "white" : "black", position: "absolute"}}
+              style={{
+                backgroundColor: darkMode ? "#212529" : "white",
+                color: darkMode ? "white" : "black",
+                position: "absolute",
+              }}
             >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Menu</Offcanvas.Title>
@@ -198,6 +217,9 @@ function App() {
             token={token}
             rerender={rerender}
             handleRerender={handleRerender}
+            selectedIcon={selectedIcon}
+            handleIconChange={handleIconChange}
+            icons={icons}
           />
 
           <Footer />
