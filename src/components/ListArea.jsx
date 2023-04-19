@@ -7,7 +7,16 @@ import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
 import FancyCards from "./FancyCards";
 import DelButton from "./DelButton";
 import axios from "axios";
-const ListArea = ({ userId, token, rerender, handleRerender }) => {
+
+const ListArea = ({
+  userId,
+  token,
+  rerender,
+  handleRerender,
+  handleIconChange,
+  selectedIcon,
+  icons,
+}) => {
   const [cards, setCards] = useState([]);
   const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
 
@@ -39,9 +48,14 @@ const ListArea = ({ userId, token, rerender, handleRerender }) => {
 
   return (
     <Container>
-      <Row 
-        xs={1} md={2} lg={3} xl={3} xxl={4} gap={1}
-        className="d-flex justify-content-center"      
+      <Row
+        xs={1}
+        md={2}
+        lg={3}
+        xl={3}
+        xxl={4}
+        gap={1}
+        className="d-flex justify-content-center"
       >
         {cards.map((link, index) => {
           // const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
@@ -60,23 +74,28 @@ const ListArea = ({ userId, token, rerender, handleRerender }) => {
                 url={link.link}
                 token={token}
                 handleRerender={handleRerender}
+                selectedIcon={selectedIcon}
+                handleIconChange={handleIconChange}
               />
             </Col>
           );
         })}
       </Row>
-        <Container className="d-flex justify-content-center align-items-center">
-          <Row>
-            <Col>
-              <AddButton
-                addCard={addCard}
-                token={token}
-                userId={userId}
-                handleRerender={handleRerender}
-              />
-            </Col>
-          </Row>
-        </Container>
+      <Container className="d-flex justify-content-center align-items-center">
+        <Row>
+          <Col>
+            <AddButton
+              addCard={addCard}
+              token={token}
+              userId={userId}
+              handleRerender={handleRerender}
+              selectedIcon={selectedIcon}
+              handleIconChange={handleIconChange}
+              icons={icons}
+            />
+          </Col>
+        </Row>
+      </Container>
     </Container>
   );
 };

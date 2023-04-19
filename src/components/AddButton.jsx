@@ -8,10 +8,19 @@ import {
   Stack,
   Form,
   InputGroup,
+  Dropdown,
 } from "react-bootstrap";
 import axios from "axios";
 
-const AddButton = ({ addCard, userId, token, handleRerender }) => {
+const AddButton = ({
+  addCard,
+  userId,
+  token,
+  handleRerender,
+  selectedIcon,
+  handleIconChange,
+  icons,
+}) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [active, setActive] = useState(false);
@@ -103,6 +112,28 @@ const AddButton = ({ addCard, userId, token, handleRerender }) => {
                     value={url}
                   />
                 </InputGroup>
+              </Form.Group>
+
+              <Form.Group className="mb-3">
+                <Form.Label>Select a fiting icon to you card </Form.Label>
+                {/* <IconPicker
+                  selectedIcon={selectedIcon}
+                  handleIconChange={handleIconChange}
+                /> */}
+                <Dropdown
+                  onSelect={(eventKey) => handleIconChange(icons[eventKey])}
+                >
+                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+                    {selectedIcon ? selectedIcon : "Select an icon"}
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    {icons.map((icon, index) => (
+                      <Dropdown.Item key={index} eventKey={index}>
+                        {icon}
+                      </Dropdown.Item>
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
               </Form.Group>
 
               <Form.Group
