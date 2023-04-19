@@ -14,6 +14,7 @@ function App() {
   const [darkMode, setDarkMode] = useState(false);
   const [show, setShow] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedOut, setLoggedOut] = useState(false);
   const [userEmail, setUserEmail] = useState("");
   const [userId, setUserId] = useState(null);
   const [userName, setUserName] = useState("");
@@ -84,6 +85,7 @@ function App() {
 
   const handleLogout = () => {
     setLoggedIn(false);
+    setLoggedOut(true);
     setUserEmail("");
     setToken("");
     setUserId(null);
@@ -103,7 +105,11 @@ function App() {
       style={{ height: "100%" }}
     >
       {!loggedIn ? (
-        <NotLoggedIn handleLogin={handleLogin} setToken={setToken} />
+        <NotLoggedIn
+          handleLogin={handleLogin}
+          setToken={setToken}
+          loggedOut={loggedOut}
+        />
       ) : (
         <div className={darkMode ? "dark-mode" : "light-mode"}>
           <div className="mode me-2">

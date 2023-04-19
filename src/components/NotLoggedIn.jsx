@@ -3,7 +3,7 @@ import RegisterModal from "./RegisterModal";
 import LoginButton from "./LoginButton";
 import { Container, Card, Row, Col, Navbar, Stack } from "react-bootstrap/";
 
-const NotLoggedIn = ({ handleLogin, setToken }) => {
+const NotLoggedIn = ({ handleLogin, setToken, loggedOut }) => {
   return (
     <>
       <Navbar
@@ -24,7 +24,11 @@ const NotLoggedIn = ({ handleLogin, setToken }) => {
       <Stack className="d-flex align-items-center justify-content-center h-100">
         <div className="flex-grow-1"></div>
         <Stack direction="row" gap={3} className="align-items-center">
-          <h1 id="welcome">Welcome!</h1>
+          {loggedOut ? (
+            <h1 id="welcome">See you soon! </h1>
+          ) : (
+            <h1 id="welcome">Welcome!</h1>
+          )}
           <div>
             <LoginButton handleLogin={handleLogin} setToken={setToken} />
             <RegisterModal />
