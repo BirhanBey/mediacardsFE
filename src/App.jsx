@@ -80,14 +80,13 @@ function App() {
   };
 
   return (
-    <>
+    <div className={darkMode ? "dark-mode h-100" : "light-mode"}
+      style={{ height: "100%" }}
+    >
       {!loggedIn ? (
         <NotLoggedIn handleLogin={handleLogin} setToken={setToken} />
       ) : (
-        <div
-          className={darkMode ? "dark-mode" : "light-mode"}
-          style={{ height: "100%" }}
-        >
+        <div className={darkMode ? "dark-mode" : "light-mode"}> 
           <div className="mode me-2">
             <span
               className="sunmoon"
@@ -116,31 +115,38 @@ function App() {
             fluid
             className="d-flex justify-content-between align-items-center"
           >
-            <div>
+            <div className="menu">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="50"
                 height="50"
                 fillRule="currentColor"
-                className="bi bi-list"
+                className="bi bi-list rounded"
                 viewBox="0 0 16 16"
                 onClick={handleShow}
                 id="hamburger"
+                style={{ backgroundColor: darkMode ? "#212529" : "white", color: darkMode ? "white" : "black"}}
               >
                 <path
                   fill-rule="evenodd"
+                  fill={darkMode ? "white" : "black"}
                   d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
                 />
               </svg>
-              {/* <Button variant="dark">Menu</Button> */}
-              {loggedIn && (
-                <span className="ms-3" style={{ color: "blue" }}>
+              <br/>              
+              {loggedIn && (                
+                <span className="ms-2" style={{ color: darkMode ? "white" : "black"}}>
                   Logged in as {userEmail}
                 </span>
               )}
             </div>
 
-            <Offcanvas show={show} onHide={handleClose}>
+            <Offcanvas 
+              show={show} 
+              onHide={handleClose}  
+              className={darkMode ? "dark-mode" : "light-mode"}
+              style={{ backgroundColor: darkMode ? "#212529" : "white", color: darkMode ? "white" : "black", position: "absolute"}}
+            >
               <Offcanvas.Header closeButton>
                 <Offcanvas.Title>Menu</Offcanvas.Title>
               </Offcanvas.Header>
@@ -184,7 +190,7 @@ function App() {
           <Footer />
         </div>
       )}
-    </>
+    </div>
   );
 }
 

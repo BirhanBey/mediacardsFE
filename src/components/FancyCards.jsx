@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Card, Accordion } from "react-bootstrap/";
 import DelButton from "./DelButton";
 import EditButton from "./EditButton";
+// import "./darkmode/darkMode.scss";
 import {
   Row,
   Container,
@@ -23,26 +24,33 @@ const FancyCards = ({
   token,
   url,
   handleRerender,
+  darkMode
 }) => {
   return (
     <>
-      <Container>
-        <div className="card border-0">
-          <div className="slide slide1">
+      <Container className="d-flex justify-content-center">
+        <div className="card border-0 bg-transparent">
+          <div className="slide slide1 position-relative d-flex justify-content-center align-items-center">
             <div className="content">
-              <div className="icon">
+              <div className="icon rounded">
                 <i className="fa fa-user-circle" aria-hidden="true"></i>
               </div>
             </div>
           </div>
-          <div className="slide slide2">
-            <div className="content">
+          <div 
+            className="slide slide2 position-relative d-flex justify-content-center align-items-center p-20 rounded"
+          >
+            <div 
+              className="content w-100"
+              style={{ color: darkMode ? "#c96dfd" : "black"}}
+            >
               <h5>{link.name}</h5>
               {link.description || "No description available."}
+              <br/>
               <a href={link.link} target="_blank">
-                Go to site
+                Go to {link.name}
               </a>
-              <div id="card-buttons">
+              <div className="d-flex mt-3" id="card-buttons">
                 <EditButton
                   userId={userId}
                   linkId={link.id}

@@ -43,7 +43,10 @@ const ListArea = ({ userId, token }) => {
 
   return (
     <Container>
-      <Row xs={1} md={2} lg={4} gap={1}>
+      <Row 
+        xs={1} md={2} lg={3} xl={3} xxl={4} gap={1}
+        className="d-flex justify-content-center"      
+      >
         {cards.map((link, index) => {
           // const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
           // const isActive = eventKey === activeEventKey; // check if current item is active
@@ -65,6 +68,7 @@ const ListArea = ({ userId, token }) => {
             </Col>
           );
         })}
+      </Row>
         <Container className="d-flex justify-content-center align-items-center">
           <Row>
             <Col>
@@ -77,7 +81,6 @@ const ListArea = ({ userId, token }) => {
             </Col>
           </Row>
         </Container>
-      </Row>
     </Container>
   );
 };
