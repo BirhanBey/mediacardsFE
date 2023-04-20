@@ -16,6 +16,8 @@ const ListArea = ({
   handleIconChange,
   selectedIcon,
   icons,
+  colors,
+  setColor,
 }) => {
   const [cards, setCards] = useState([]);
   const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
@@ -92,6 +94,8 @@ const ListArea = ({
               selectedIcon={selectedIcon}
               handleIconChange={handleIconChange}
               icons={icons}
+              colors={colors}
+              setColor={setColor}
             />
           </Col>
         </Row>
