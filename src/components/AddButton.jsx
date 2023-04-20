@@ -54,6 +54,7 @@ const AddButton = ({
           isActive: active,
           link: url,
           theme: newColor,
+          icon: name.toLowerCase(),
         },
         {
           headers: {
@@ -90,7 +91,7 @@ const AddButton = ({
             <Form>
               <Form.Group
                 className="mb-3"
-                controlId="exampleForm.ControlInput1"
+                // controlId="exampleForm.ControlInput1"
               >
                 <Form.Label>Name:</Form.Label>
                 <Form.Control
@@ -106,7 +107,7 @@ const AddButton = ({
 
               <Form.Group
                 className="mb-3"
-                controlId="exampleForm.ControlInput2"
+                // controlId="exampleForm.ControlInput2"
               >
                 <Form.Label htmlFor="basic-url">URL:</Form.Label>
                 <InputGroup className="mb-3">
@@ -147,7 +148,7 @@ const AddButton = ({
               </Form.Group>
               <Form.Group
                 className="mb-3"
-                controlId="exampleForm.ControlInput4"
+                // controlId="exampleForm.ControlInput4"
               >
                 <Form.Label>Select a fiting color to you card </Form.Label>
                 <Dropdown className="color-switcher">
@@ -169,7 +170,7 @@ const AddButton = ({
               </Form.Group>
               <Form.Group
                 className="mb-3"
-                controlId="exampleForm.ControlTextarea1"
+                // controlId="exampleForm.ControlTextarea1"
               >
                 <Form.Check
                   type="checkbox"

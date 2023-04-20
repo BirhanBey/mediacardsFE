@@ -29,6 +29,7 @@ const FancyCards = ({
   selectedIcon,
   onIconChange,
   theme,
+  icon
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
 
@@ -42,18 +43,39 @@ const FancyCards = ({
       <Container className="d-flex justify-content-center">
         <div className="card border-0 bg-transparent">
           <div className="slide slide1 position-relative d-flex justify-content-center align-items-center">
-            <div
-              className="icon rounded"
-              onClick={() => handleIconClick(cardIcon)}
-              style={{ backgroundColor: `${theme}` }}
-            >
-              {cardIcon ? (
-                cardIcon
+          <div
+            className="icon rounded"
+            onClick={() => handleIconClick(cardIcon)}
+            style={{ backgroundColor: `${theme}` }}
+          >
+            {cardIcon ? (
+              cardIcon
               ) : (
-                <i className="fa fa-user-circle" aria-hidden="true"></i>
-              )}
-              {/* use the selectedIcon if it exists, otherwise use the default icon */}
-            </div>
+                icon !== "facebook" 
+                && icon !== "instagram" 
+                && icon !== "twitter" 
+                && icon !== "linkedin" 
+                && icon !== "youtube" 
+                && icon !== "tiktok" 
+                && icon !== "reddit" 
+                && icon !== "snapchat" 
+                && icon !== "github" 
+                && icon !== "slack" 
+                && icon !== "discord" 
+                && icon !== "spotify" 
+                && icon !== "apple" 
+                && icon !== "google" 
+                && icon !== "amazon" 
+                && icon !== "skype" 
+                && icon !== "zoom" 
+                && icon !== "soundcloud"                 
+                ? (
+                  <i className="fa fa-user" aria-hidden="true"></i>
+                  ) : (
+                    <i className={`fa fa-${icon}`} aria-hidden="true"></i>
+                  )
+                  )}
+          </div>
           </div>
           <div className="slide slide2 position-relative d-flex justify-content-center align-items-center p-20 rounded">
             <div
