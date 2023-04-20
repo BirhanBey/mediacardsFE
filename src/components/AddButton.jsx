@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ColorItem from "./ColorItem";
 import {
   Button,
   Modal,
@@ -20,6 +21,8 @@ const AddButton = ({
   selectedIcon,
   handleIconChange,
   icons,
+  colors,
+  setColor,
 }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
@@ -135,7 +138,28 @@ const AddButton = ({
                   </Dropdown.Menu>
                 </Dropdown>
               </Form.Group>
+              <Form.Group
+                className="mb-3"
+                controlId="exampleForm.ControlInput4"
+              >
+                <Form.Label>Select a fiting color to you card </Form.Label>
+                <Dropdown className="color-switcher">
+                  <Dropdown.Toggle variant="secondary" id="color-dropdown">
+                    Select a color
+                  </Dropdown.Toggle>
 
+                  <Dropdown.Menu>
+                    {colors.map((color, index) => (
+                      <ColorItem
+                        className="color-item"
+                        key={index}
+                        color={color}
+                        setColor={setColor}
+                      />
+                    ))}
+                  </Dropdown.Menu>
+                </Dropdown>
+              </Form.Group>
               <Form.Group
                 className="mb-3"
                 controlId="exampleForm.ControlTextarea1"
