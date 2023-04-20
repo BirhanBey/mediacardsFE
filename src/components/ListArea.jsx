@@ -80,6 +80,7 @@ const ListArea = ({
                 selectedIcon={selectedIcon}
                 handleIconChange={handleIconChange}
                 theme={link.theme}
+                icon={link.icon}
               />
             </Col>
           );

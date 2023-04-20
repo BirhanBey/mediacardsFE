@@ -29,6 +29,7 @@ const FancyCards = ({
   selectedIcon,
   onIconChange,
   theme,
+  icon
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
 
@@ -50,7 +51,8 @@ const FancyCards = ({
               {cardIcon ? (
                 cardIcon
               ) : (
-                <i className="fa fa-user-circle" aria-hidden="true"></i>
+                <i className={`fa fa-${icon}`} aria-hidden="true"></i>
+
               )}
               {/* use the selectedIcon if it exists, otherwise use the default icon */}
             </div>
