@@ -18,6 +18,7 @@ const ListArea = ({
   icons,
   colors,
   setColor,
+  newColor,
 }) => {
   const [cards, setCards] = useState([]);
   const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
@@ -78,6 +79,7 @@ const ListArea = ({
                 handleRerender={handleRerender}
                 selectedIcon={selectedIcon}
                 handleIconChange={handleIconChange}
+                theme={link.theme}
               />
             </Col>
           );
@@ -96,6 +98,7 @@ const ListArea = ({
               icons={icons}
               colors={colors}
               setColor={setColor}
+              newColor={newColor}
             />
           </Col>
         </Row>

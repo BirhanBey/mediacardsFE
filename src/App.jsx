@@ -24,6 +24,7 @@ function App() {
   const [rerender, setRerender] = useState(0);
   const icons = [<FaYoutube />, <FaTwitter />, <FaFacebook />];
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [newColor, setNewcolor] = useState("");
   const colors = [
     "#2d3436",
     "#be2edd",
@@ -35,17 +36,19 @@ function App() {
   ];
   useEffect(() => {
     const currentColor = localStorage.getItem("color");
-    setTheme(currentColor);
-    console.log(currentColor);
+    // setTheme(currentColor);
+
+    console.log("current color " + currentColor);
   }, []);
 
-  const setTheme = (color) => {
-    document.documentElement.style.setProperty("--bg-color", color);
-  };
+  // const setTheme = (color) => {
+  //   document.documentElement.style.setProperty("--bg-color", color);
+  // };
   const setColor = (event) => {
     const currentColor = event.target.style.getPropertyValue("--bg-color");
-    console.log(currentColor);
-    setTheme(currentColor);
+    console.log("current color " + currentColor);
+
+    setNewcolor(currentColor);
 
     localStorage.setItem("color", currentColor);
   };
@@ -257,6 +260,7 @@ function App() {
             icons={icons}
             colors={colors}
             setColor={setColor}
+            newColor={newColor}
           />
 
           <Footer />

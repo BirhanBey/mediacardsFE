@@ -23,11 +23,14 @@ const AddButton = ({
   icons,
   colors,
   setColor,
+  color,
+  newColor,
 }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
   const [active, setActive] = useState(false);
   const [url, setUrl] = useState("");
+  const [selectedColor, setSelectedColor] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -50,6 +53,7 @@ const AddButton = ({
           name,
           isActive: active,
           link: url,
+          theme: newColor,
         },
         {
           headers: {
@@ -58,16 +62,19 @@ const AddButton = ({
         }
       );
       addCard(response.data); // update the state in the parent component
-
+      console.log("newcolor" + newColor);
       setName("");
       setActive(false);
       setUrl("");
+      setSelectedColor("");
       handleClose();
       handleRerender();
     } catch (error) {
+      console.log("cnewcolor" + newColor);
       console.error(error);
     }
   };
+
   return (
     <Row className="mt-0 mb-3">
       <Col xs="auto" className="text-center">
