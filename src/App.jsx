@@ -24,7 +24,9 @@ function App() {
   const [rerender, setRerender] = useState(0);
   const icons = [<FaYoutube />, <FaTwitter />, <FaFacebook />];
   const [selectedIcon, setSelectedIcon] = useState(null);
+  const [selectedBackgroundImage, setSelectedBackgroundImage] = useState("");
   const [newColor, setNewcolor] = useState("");
+
   const colors = [
     "#2d3436",
     "#be2edd",
@@ -127,10 +129,18 @@ function App() {
     setUserImage(imageUrl);
   };
 
+  const handleBackgroundChange = (imageUrl) => {
+    setSelectedBackgroundImage(imageUrl);
+  };
+
   return (
     <div
-      className={darkMode ? "dark-mode h-100" : "light-mode"}
-      style={{ height: "100%" }}
+      style={{
+        backgroundImage: `url(${selectedBackgroundImage})`,
+
+        backgroundSize: "cover",
+        className: darkMode ? "dark-mode h-100" : "light-mode",
+      }}
     >
       {!loggedIn ? (
         <NotLoggedIn
@@ -164,7 +174,6 @@ function App() {
               ☽
             </span>
           </div>
-
           <Container
             fluid
             className="d-flex justify-content-between align-items-center"
@@ -200,7 +209,6 @@ function App() {
                 </span>
               )}
             </div>
-
             <Offcanvas
               show={show}
               onHide={handleClose}
@@ -234,13 +242,14 @@ function App() {
                   <UserSettings
                     userId={userId}
                     token={token}
+                    handleUserImageChange={handleUserImageChange}
+                    handleBackgroundChange={handleBackgroundChange}
                     setImageUrl={handleUserImageChange}
                   />
                 </Stack>
               </Offcanvas.Body>
             </Offcanvas>
           </Container>
-
           <Header
             userId={userId}
             userName={userName}
@@ -262,7 +271,6 @@ function App() {
             setColor={setColor}
             newColor={newColor}
           />
-
           <Footer />
         </div>
       )}

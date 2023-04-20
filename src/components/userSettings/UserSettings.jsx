@@ -2,18 +2,31 @@ import React, { useState } from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import ChangePasswordModal from "./ChangePasswordModal";
-import ChangePic from "./ChangePic";
+import BackgroundSelector from "./BackgroundSelector";
 import ChangeInfo from "./ChangeInfo";
+import ChangePic from "./ChangePic";
 
-function UserSettings({ userId, token, setImageUrl, setUsername, setBio }) {
+function UserSettings({
+  userId,
+  token,
+  setImageUrl,
+  setUsername,
+  setBio,
+  handleBackgroundChange,
+  backgroundImage,
+}) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showPicModal, setShowPicModal] = useState(false);
   const [showInfoModal, setShowInfoModal] = useState(false);
+  const [showBackGroundModal, setBackGroundModal] = useState(false);
 
   const handlePasswordClick = () => {
     setShowPasswordModal(true);
   };
 
+  const handleBackgroundClick = () => {
+    setBackGroundModal(true);
+  };
   const handlePicClick = () => {
     setShowPicModal(true);
   };
@@ -33,7 +46,9 @@ function UserSettings({ userId, token, setImageUrl, setUsername, setBio }) {
   const handleCloseInfoModal = () => {
     setShowInfoModal(false);
   };
-
+  const handleCloseBackGroundModal = () => {
+    setBackGroundModal(false);
+  };
   return (
     <div className="bg-dark  rounded " style={{ margin: "0", padding: "0" }}>
       <DropdownButton
@@ -47,6 +62,9 @@ function UserSettings({ userId, token, setImageUrl, setUsername, setBio }) {
         </Dropdown.Item>
         <Dropdown.Item onClick={handlePicClick}>Profile Picture</Dropdown.Item>
         <Dropdown.Item onClick={handleInfoClick}>Edit Profile</Dropdown.Item>
+        <Dropdown.Item onClick={handleBackgroundClick}>
+          Edit Background Image
+        </Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item href="#/action-4">Log Out</Dropdown.Item>
       </DropdownButton>
@@ -74,8 +92,27 @@ function UserSettings({ userId, token, setImageUrl, setUsername, setBio }) {
           setBio={setBio}
         />
       )}
+
+      {showBackGroundModal && (
+        <BackgroundSelector
+          token={token}
+          userId={userId}
+          handleClose={handleCloseBackGroundModal}
+          setUsername={setUsername}
+          setBio={setBio}
+          handleBackgroundChange={handleBackgroundChange}
+        />
+      )}
+
+      {/* {backgroundImage && (
+        <img src={backgroundImage} alt="Background" className="w-100" />
+      )} */}
     </div>
   );
 }
 
 export default UserSettings;
+
+{
+  /* <BackgroundSelector handleBackgroundChange={handleBackgroundChange} /> */
+}
