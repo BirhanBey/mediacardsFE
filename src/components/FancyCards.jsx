@@ -28,6 +28,7 @@ const FancyCards = ({
   darkMode,
   selectedIcon,
   onIconChange,
+  theme,
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
 
@@ -41,7 +42,11 @@ const FancyCards = ({
       <Container className="d-flex justify-content-center">
         <div className="card border-0 bg-transparent">
           <div className="slide slide1 position-relative d-flex justify-content-center align-items-center">
-            <div className="icon rounded" onClick={() => handleIconClick(cardIcon)}>
+            <div
+              className="icon rounded"
+              onClick={() => handleIconClick(cardIcon)}
+              style={{ backgroundColor: `${theme}` }}
+            >
               {cardIcon ? (
                 cardIcon
               ) : (
@@ -53,7 +58,9 @@ const FancyCards = ({
           <div className="slide slide2 position-relative d-flex justify-content-center align-items-center p-20 rounded">
             <div
               className="content w-100"
-              style={{ color: darkMode ? "#c96dfd" : "black" }}
+              style={{
+                color: darkMode ? "#ff0000" : "black",
+              }}
             >
               <h5>{link.name}</h5>
               {link.description || "No description available."}
