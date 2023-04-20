@@ -131,7 +131,14 @@ function App() {
 
   const handleBackgroundChange = (imageUrl) => {
     setSelectedBackgroundImage(imageUrl);
+    localStorage.setItem("backgroundImage", imageUrl);
   };
+  useEffect(() => {
+    const storedBackgroundImage = localStorage.getItem("backgroundImage");
+    if (storedBackgroundImage) {
+      setSelectedBackgroundImage(storedBackgroundImage);
+    }
+  }, []);
 
   return (
     <div
