@@ -142,11 +142,11 @@ function App() {
 
   return (
     <div
+      className= {darkMode ? "dark-mode" : "light-mode"}
       style={{
         backgroundImage: `url(${selectedBackgroundImage})`,
-
         backgroundSize: "cover",
-        className: darkMode ? "dark-mode h-100" : "light-mode",
+        height: '100%'
       }}
     >
       {!loggedIn ? (
@@ -156,7 +156,10 @@ function App() {
           loggedOut={loggedOut}
         />
       ) : (
-        <div className={darkMode ? "dark-mode" : "light-mode"}>
+        <div 
+          className={darkMode ? "dark-mode" : "light-mode"}
+          style={{height:"100%"}}
+        >
           <div className="mode me-2">
             <span
               className="sunmoon"
