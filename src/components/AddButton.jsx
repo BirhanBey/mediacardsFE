@@ -115,7 +115,7 @@ const AddButton = ({
                     https://example.com/users/
                   </InputGroup.Text> */}
                   <Form.Control
-                    placeholder="htttps://..."
+                    placeholder="https://..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
                     onChange={handleUrlChange}
