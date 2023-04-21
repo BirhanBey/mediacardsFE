@@ -102,6 +102,7 @@ function App() {
 
   const handleRerender = () => {
     setRerender(rerender + 1);
+    console.log("rerendered");
   };
 
   const handleLogin = (data) => {
@@ -147,6 +148,10 @@ function App() {
       navigate(`/${userName}`);
     }
   }, [userName, navigate]);
+
+  useEffect(() => {
+    setRerender(rerender + 1);
+  }, [userName, userBio]);
 
   return (
     <div
@@ -259,6 +264,11 @@ function App() {
                     handleUserImageChange={handleUserImageChange}
                     handleBackgroundChange={handleBackgroundChange}
                     setImageUrl={handleUserImageChange}
+                    handleRerender={handleRerender}
+                    setUserName={setUserName}
+                    setUserBio={setUserBio}
+                    userName={userName}
+                    userBio={userBio}
                   />
                 </Stack>
               </Offcanvas.Body>
@@ -271,6 +281,9 @@ function App() {
             setUserImage={handleUserImageChange}
             rerender={rerender}
             handleRerender={handleRerender}
+            setUserName={setUserName}
+            setUserBio={setUserBio}
+            loggedIn={loggedIn}
           />
 
           <ListArea

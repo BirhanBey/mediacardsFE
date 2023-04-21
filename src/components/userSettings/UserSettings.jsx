@@ -10,10 +10,15 @@ function UserSettings({
   userId,
   token,
   setImageUrl,
-  setUsername,
-  setBio,
+  setUserName,
+
   handleBackgroundChange,
   backgroundImage,
+  handleRerender,
+  userName,
+  userBio,
+
+  setUserBio,
 }) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showPicModal, setShowPicModal] = useState(false);
@@ -88,8 +93,11 @@ function UserSettings({
           token={token}
           userId={userId}
           handleClose={handleCloseInfoModal}
-          setUsername={setUsername}
-          setBio={setBio}
+          setUserName={setUserName}
+          setUserBio={setUserBio}
+          handleRerender={handleRerender}
+          userName={userName}
+          userBio={userBio}
         />
       )}
 
@@ -98,8 +106,7 @@ function UserSettings({
           token={token}
           userId={userId}
           handleClose={handleCloseBackGroundModal}
-          setUsername={setUsername}
-          setBio={setBio}
+          setUserName={setUserName}
           handleBackgroundChange={handleBackgroundChange}
         />
       )}

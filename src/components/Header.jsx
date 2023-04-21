@@ -18,7 +18,7 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
     };
 
     fetchUserImage();
-  }, [userId]);
+  }, [userId, handleRerender]);
 
   return (
     <div className="header-container">

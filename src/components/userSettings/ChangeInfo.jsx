@@ -3,7 +3,16 @@ import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function ChangeInfo({ userName, userBio, token, userId, handleClose }) {
+function ChangeInfo({
+  userName,
+  userBio,
+  token,
+  userId,
+  handleClose,
+  handleRerender,
+  setUserName,
+  setUserBio,
+}) {
   const [newUserName, setNewUserName] = useState(userName);
   const [newUserBio, setNewUserBio] = useState(userBio);
 
@@ -14,10 +23,22 @@ function ChangeInfo({ userName, userBio, token, userId, handleClose }) {
   const handleUserBioChange = (event) => {
     setNewUserBio(event.target.value);
   };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
+      const updatedData = {};
+      if (newUserName !== userName) {
+        updatedData.userName = newUserName;
+        localStorage.setItem("userName", newUserName);
+        setUserName(newUserName); // Call the setUserName function from props
+      }
+
+      if (newUserBio !== userBio) {
+        updatedData.description = newUserBio;
+        localStorage.setItem("userBio", newUserBio);
+        setUserBio(newUserBio); // Update the value of userBio in App state
+      }
+
       const response = await fetch(
         `https://s3.syntradeveloper.be/api/users/${userId}`,
         {
@@ -26,15 +47,14 @@ function ChangeInfo({ userName, userBio, token, userId, handleClose }) {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          body: JSON.stringify({
-            userName: newUserName,
-            description: newUserBio,
-          }),
+          body: JSON.stringify(updatedData),
         }
       );
       const data = await response.json();
       console.log(data);
+
       handleClose();
+      handleRerender();
     } catch (error) {
       console.log(error);
     }
