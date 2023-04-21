@@ -4,7 +4,9 @@ import axios from "axios";
 
 const DelButton = ({ linkId, userId, token, handleRerender }) => {
   const [showModal, setShowModal] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false); // add new state
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState(null);
+  const [feedbackMessage, setFeedbackMessage] = useState(null);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -20,29 +22,40 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
         }
       );
 
-      if (response.status === 204) {
-        setIsDeleted(true); // update the state to mark the card as deleted
+      if (response.status === 200) {
+        setIsDeleted(true);
+        setFeedbackMessage("Card deleted successfully!");
         handleCloseModal();
         handleRerender();
-        console.log("delete id " + linkId);
       } else {
         console.log("Failed to delete card");
-        console.log("delete id " + linkId);
+        setFeedbackMessage("Failed to delete card");
         handleRerender();
+        handleCloseModal();
       }
     } catch (error) {
       console.error("Error deleting card:", error);
-      console.log("delete id " + linkId);
+      setFeedbackMessage("Error deleting card");
       handleRerender();
+      handleCloseModal();
     }
   };
 
   if (isDeleted) {
-    return null; // return null instead of rendering the card if it has been deleted
+    return (
+      <div className="alert alert-success mt-3" role="alert">
+        {deleteMessage}
+      </div>
+    );
   }
 
   return (
     <div>
+      {feedbackMessage && (
+        <div className="alert alert-info mt-3" role="alert">
+          {feedbackMessage}
+        </div>
+      )}
       <button
         className="btn btn-danger me-1 mt-1 rounded"
         onClick={handleShowModal}
@@ -59,11 +72,7 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
         </svg>
       </button>
 
-      <Modal 
-        show={showModal} 
-        onHide={handleCloseModal} 
-     
-      >
+      <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
           <Modal.Title>Sure?</Modal.Title>
         </Modal.Header>
