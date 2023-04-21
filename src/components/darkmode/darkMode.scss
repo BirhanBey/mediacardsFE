@@ -45,8 +45,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: #2c73df;
-  background-color: var(--bg-color);
+  
 
 }
 
@@ -55,13 +54,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 80px;
+  font-size: 5rem;
   color: #fff;
 }
 
 .container .card .slide {
-  width: 300px;
-  height: 200px;
+  width: 18.75rem;
+  height: 12.5rem;
   transition: 0.5s;
 }
 
@@ -72,13 +71,10 @@
   align-items: center;
   z-index: 1;
   transition: .7s;
-  transform: translateY(100px);
+ 
 }
 
-.container .card:hover .slide.slide1{
-  transform: translateY(0px);
-  transform: scale(1.1);
-}
+
 
 .container .card .slide.slide2 {
   position: relative;
@@ -128,9 +124,8 @@
 }
 
 .container .card .slide.slide2 .content h3 {
-  // margin: 0 0 10px 0;
-  // padding: 0;
-  font-size: 24px;
+
+  font-size: 2rem;
   text-align: center;
   color: #414141;
 
@@ -141,8 +136,8 @@
 
 #welcome {
   font-weight: 600;
-  font-size: 70px;
-  line-height: 65px;
+  font-size: 4rem;
+  line-height: 4rem;
   letter-spacing: 10px;
   text-align: center;
   text-transform: uppercase;
@@ -189,36 +184,43 @@
 
 /* ---------------- */
 
+
+
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
 }
-#root {
-  height: 100%;
-}
 
-html,
-body {
-  min-height: 100vh;
-  height: 100%;
+
+
+
+#landing-container{
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #hamburger:hover {
+  transition: 0.2s;
   transform: scale(1.2);
 }
 
 .sunmoon {
-  font-size: 40px;
+  font-size: 2.5rem;
 }
 
 .dark-mode {
   background-color: #1a1919;
   color: white;
   transition: background-color 0.25s ease-in-out;
-#hamburger{
-  background-color: white;
-}
+
+
+  #username{
+    color: white;
+  }
+
 #accordion:hover{
 box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
 }
@@ -228,10 +230,12 @@ box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
 }
 
 .light-mode {
-  /* background-color: gray; */
   color: black;
   height: 100%;
   transition: background-color 0.25s ease-in-out;
+  #username{
+    color: white;
+  }
 }
 
 #accordion-body {
@@ -252,18 +256,18 @@ box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
   flex-direction: row;
 }
 
-/* .switch {
+.switch {
     position: relative;
     display: inline-block;
     width: 60px;
     height: 14px;
-  } */
+  } 
 
-/* .switch input { 
+.switch input { 
     opacity: 0;
     width: 0;
     height: 0;
-  } */
+  } 
 
 .switch {
   position: relative;
@@ -319,14 +323,13 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+  
 }
 .switch-checkbox {
   padding: 10px;
+  
 }
 
-/* span {
-    color: #ccc;
-  } */
 
 .row a {
   color: rgb(122, 122, 122);

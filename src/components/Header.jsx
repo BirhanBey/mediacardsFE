@@ -25,7 +25,7 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
       <Container className="text-center">
         <Row className="justify-content-center">
           <Col sm="auto">
-            <Figure>
+            <Figure id="profile-pic">
               {userImage ? (
                 <Figure.Image
                   width={171}
@@ -43,14 +43,14 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
                 />
               )}
               <Figure.Caption className="text-center">
-                <h1>{userName}</h1>
+                <h1 id="username">{userName}</h1>
               </Figure.Caption>
             </Figure>
           </Col>
         </Row>
         <Row className="justify-content-center">
           <Col sm="auto">
-            <p style={{ color: "grey" }}>{userBio}</p>
+            <p style={{ color: "white" }}>{userBio}</p>
           </Col>
         </Row>
       </Container>
