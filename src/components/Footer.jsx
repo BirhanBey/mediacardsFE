@@ -10,7 +10,7 @@ function Footer() {
         <Row className="justify-content-md-center">
           <Col md="auto">
             <Navbar>
-              <Container className="fixed-bottom">
+              <Container>
                 <Navbar.Collapse className="justify-content-center">
                   <Navbar.Text className="text-center" id="footer-text">
                     copyright{" "}

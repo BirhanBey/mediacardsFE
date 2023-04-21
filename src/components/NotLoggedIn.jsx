@@ -5,7 +5,7 @@ import { Container, Card, Row, Col, Navbar, Stack } from "react-bootstrap/";
 
 const NotLoggedIn = ({ handleLogin, setToken, loggedOut }) => {
   return (
-    <>
+    <div>
       <Navbar
         bg="dark"
         variant="dark"
@@ -20,23 +20,24 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut }) => {
           </Navbar.Brand>
         </Container>
       </Navbar>
-
-      <Stack className="d-flex align-items-center justify-content-center h-100">
-        <div className="flex-grow-1"></div>
-        <Stack direction="row" gap={3} className="align-items-center">
-          {loggedOut ? (
-            <h1 id="welcome">See you soon! </h1>
-          ) : (
-            <h1 id="welcome">Welcome!</h1>
-          )}
-          <div>
-            <LoginButton handleLogin={handleLogin} setToken={setToken} />
-            <RegisterModal />
-          </div>
+      <Container id="landing-container">
+        <Stack className="align-items-center">
+          <div className="flex-grow-1"></div>
+          <Stack direction="row" gap={3} className="align-items-center">
+            {loggedOut ? (
+              <h1 id="welcome">See you soon! </h1>
+            ) : (
+              <h1 id="welcome">Welcome!</h1>
+            )}
+            <div>
+              <LoginButton handleLogin={handleLogin} setToken={setToken} />
+              <RegisterModal />
+            </div>
+          </Stack>
+          <div className="flex-grow-1"></div>
         </Stack>
-        <div className="flex-grow-1"></div>
-      </Stack>
-    </>
+      </Container>
+    </div>
   );
 };
 

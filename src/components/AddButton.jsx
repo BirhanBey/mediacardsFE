@@ -77,8 +77,8 @@ const AddButton = ({
   };
 
   return (
-    <Row className="mt-0 mb-3">
-      <Col xs="auto" className="text-center">
+    <Row>
+      <Col className="text-center">
         <Button variant="dark" onClick={handleShow}>
           Add Link
         </Button>

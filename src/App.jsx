@@ -203,7 +203,7 @@ function App() {
                 onClick={handleShow}
                 id="hamburger"
                 style={{
-                  backgroundColor: darkMode ? "#212529" : "white",
+                  backgroundColor: darkMode ? "#212529" : "none",
                   color: darkMode ? "white" : "black",
                 }}
               >

@@ -31,10 +31,6 @@ const ListArea = ({
     setCards((prevCards) => prevCards.filter((link) => link.id !== linkId));
   };
 
-  const handleAccordionToggle = (eventKey) => {
-    setActiveEventKey(eventKey === activeEventKey ? null : eventKey); // toggle the active event key state
-  };
-
   useEffect(() => {
     const fetchLinks = async () => {
       try {
@@ -61,12 +57,10 @@ const ListArea = ({
         className="d-flex justify-content-center"
       >
         {cards.map((link, index) => {
-          // const eventKey = `accordion-${index}`; // generate unique event key for each accordion item
-          // const isActive = eventKey === activeEventKey; // check if current item is active
-
           return (
             <Col key={index} className="mb-3">
               <FancyCards
+                id="card-container"
                 link={link}
                 index={index}
                 removeCard={removeCard}
