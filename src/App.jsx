@@ -9,6 +9,7 @@ import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 import { FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -26,6 +27,7 @@ function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState("");
   const [newColor, setNewcolor] = useState("");
+  const navigate = useNavigate();
 
   const colors = [
     "#2d3436",
@@ -140,6 +142,12 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    if (userName) {
+      navigate(`/${userName}`);
+    }
+  }, [userName, navigate]);
+
   return (
     <div
       className={darkMode ? "dark-mode" : "light-mode"}
@@ -155,10 +163,7 @@ function App() {
           loggedOut={loggedOut}
         />
       ) : (
-        <div
-          className={darkMode ? "dark-mode" : "light-mode"}
-          style={{ height: "100%" }}
-        >
+        <div className={darkMode ? "dark-mode" : "light-mode"}>
           <div className="mode me-2">
             <span
               className="sunmoon"
