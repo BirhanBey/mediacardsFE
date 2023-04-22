@@ -16,7 +16,7 @@ function ChangePic({ handleClose, userId, setImageUrl, token }) {
 
       try {
         const response = await fetch(
-          `https://s3.syntradeveloper.be/api/users/${userId}/pic`,
+          `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/pic`,
           {
             method: "POST",
             headers: {

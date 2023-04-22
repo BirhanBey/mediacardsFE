@@ -14,7 +14,7 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
+        `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -46,7 +46,7 @@ const EditButton = ({
   const handleSave = () => {
     axios
       .put(
-        `https://s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
+        `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
         {
           name: formValues.name,
           link: formValues.url,

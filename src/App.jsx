@@ -9,7 +9,7 @@ import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 import { FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -27,7 +27,7 @@ function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState("");
   const [newColor, setNewcolor] = useState("");
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const colors = [
     "#2d3436",
@@ -143,11 +143,11 @@ function App() {
     }
   }, []);
 
-  useEffect(() => {
-    if (userName) {
-      navigate(`/${userName}`);
-    }
-  }, [userName, navigate]);
+  // useEffect(() => {
+  //   if (userName) {
+  //     navigate(`/${userName}`);
+  //   }
+  // }, [userName, navigate]);
 
   useEffect(() => {
     setRerender(rerender + 1);
