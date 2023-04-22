@@ -10,7 +10,7 @@
 
 .color-list {
   display: flex;
- flex-direction: row;
+  flex-direction: row;
   gap: 1rem;
 }
 
@@ -20,21 +20,20 @@
   border-radius: 20px;
   background-color: var(--bg-color);
 }
-.color-item:hover{
+.color-item:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
 /* ----------- NEW CARDS -------------- */
 
-
-.icon{
+.icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.content > .card-buttons  {
+.content > .card-buttons {
   display: flex;
   justify-content: center;
 }
@@ -45,8 +44,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  
-
 }
 
 .container .card .icon .fa {
@@ -70,11 +67,8 @@
   justify-content: center;
   align-items: center;
   z-index: 1;
-  transition: .7s;
- 
+  transition: 0.7s;
 }
-
-
 
 .container .card .slide.slide2 {
   position: relative;
@@ -84,22 +78,25 @@
   padding: 20px;
   box-sizing: border-box;
   transition: 0.8s;
-  box-shadow: inset 10px 10px 15px -4px rgba(0,0,0,0.3), inset -8px -10px 15px -3px rgba(0,0,0,0.2),0px 10px 15px -3px rgba(0,0,0,0.4);  
+  box-shadow: inset 10px 10px 15px -4px rgba(0, 0, 0, 0.3),
+    inset -8px -10px 15px -3px rgba(0, 0, 0, 0.2),
+    0px 10px 15px -3px rgba(0, 0, 0, 0.4);
   transform: rotatex(90deg);
   top: -20px;
   z-index: 1;
   background: white;
 }
 
-.container .card:hover .slide.slide2{
+.container .card:hover .slide.slide2 {
   transform: translateY(0);
 }
 
-.modal-content{
+.modal-content {
   background-color: #414141 !important;
   color: white;
 }
-.modal-body, .modal-header{
+.modal-body,
+.modal-header {
   color: #ccc;
 }
 
@@ -120,17 +117,13 @@
   padding: 0;
   text-align: center;
   color: #414141;
-
 }
 
 .container .card .slide.slide2 .content h3 {
-
   font-size: 2rem;
   text-align: center;
   color: #414141;
-
-} 
-
+}
 
 /* ------ LANDING PAGE ----- */
 
@@ -184,18 +177,13 @@
 
 /* ---------------- */
 
-
-
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
 }
 
-
-
-
-#landing-container{
+#landing-container {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -215,25 +203,22 @@
   background-color: #1a1919;
   color: white;
   transition: background-color 0.25s ease-in-out;
+    #username {
+      color: white;
+    }
 
-
-  #username{
-    color: white;
-  }
-
-#accordion:hover{
-box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
-}
-#footer-text{
-  color: white;
-}
+    #accordion:hover {
+      box-shadow: 0px 2px 10px rgb(198, 193, 193);
+    }
+    #footer-text {
+      color: white;
+    }
 }
 
 .light-mode {
   color: black;
-  height: 100%;
   transition: background-color 0.25s ease-in-out;
-  #username{
+  #username {
     color: white;
   }
 }
@@ -257,17 +242,17 @@ box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
 }
 
 .switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 14px;
-  } 
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 14px;
+}
 
-.switch input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-  } 
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
 .switch {
   position: relative;
@@ -296,7 +281,7 @@ box-shadow: 0px 2px 10px rgb(198, 193, 193) ;
 
 .slider:before {
   position: absolute;
-  content: "";
+  content: '';
   height: 26px;
   width: 26px;
   left: 4px;
@@ -323,13 +308,10 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
-  
 }
 .switch-checkbox {
   padding: 10px;
-  
 }
-
 
 .row a {
   color: rgb(122, 122, 122);
