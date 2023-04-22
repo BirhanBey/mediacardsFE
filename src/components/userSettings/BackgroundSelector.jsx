@@ -24,7 +24,7 @@ function BackgroundSelector({
     backgroundColor: "transparent",
     border: "none",
     padding: "0",
-    margin: "0",
+    margin: "0px",
   };
 
   return (
