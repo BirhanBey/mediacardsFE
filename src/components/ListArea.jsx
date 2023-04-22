@@ -75,6 +75,9 @@ const ListArea = ({
                 handleIconChange={handleIconChange}
                 theme={link.theme}
                 icon={link.icon}
+                colors={colors}
+                setColor={setColor}
+                newColor={newColor}
               />
             </Col>
           );

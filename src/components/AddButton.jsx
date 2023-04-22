@@ -18,12 +18,8 @@ const AddButton = ({
   userId,
   token,
   handleRerender,
-  selectedIcon,
-  handleIconChange,
-  icons,
   colors,
   setColor,
-  color,
   newColor,
 }) => {
   const [show, setShow] = useState(false);
@@ -125,27 +121,6 @@ const AddButton = ({
                 </InputGroup>
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Select a fiting icon to you card </Form.Label>
-                {/* <IconPicker
-                  selectedIcon={selectedIcon}
-                  handleIconChange={handleIconChange}
-                /> */}
-                <Dropdown
-                  onSelect={(eventKey) => handleIconChange(icons[eventKey])}
-                >
-                  <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                    {selectedIcon ? selectedIcon : "Select an icon"}
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    {icons.map((icon, index) => (
-                      <Dropdown.Item key={index} eventKey={index}>
-                        {icon}
-                      </Dropdown.Item>
-                    ))}
-                  </Dropdown.Menu>
-                </Dropdown>
-              </Form.Group>
               <Form.Group
                 className="mb-3"
                 // controlId="exampleForm.ControlInput4"

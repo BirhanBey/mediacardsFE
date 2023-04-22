@@ -30,6 +30,9 @@ const FancyCards = ({
   onIconChange,
   theme,
   icon,
+  colors,
+  setColor,
+  newColor,
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
 
@@ -96,6 +99,9 @@ const FancyCards = ({
                   url={link.link}
                   token={token}
                   handleRerender={handleRerender}
+                  colors={colors}
+                  setColor={setColor}
+                  newColor={newColor}
                 />
                 <DelButton
                   userId={userId}

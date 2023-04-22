@@ -8,6 +8,7 @@ function ChangePasswordModal({ userId, token, handleClose }) {
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordAgain, setNewPasswordAgain] = useState("");
   const [feedback, setFeedback] = useState("");
+  const [passwordChanged, setPasswordChanged] = useState(false);
 
   const handleChangePassword = () => {
     const data = {
@@ -32,6 +33,7 @@ function ChangePasswordModal({ userId, token, handleClose }) {
       .then((response) => {
         console.log(response.data); // You can do something with the response data here
         setFeedback("Password has been changed");
+        setPasswordChanged(true);
       })
       .catch((error) => {
         console.error(error);
@@ -46,7 +48,7 @@ function ChangePasswordModal({ userId, token, handleClose }) {
 
   return (
     <div>
-      <Modal show={true} onHide={handleClose}>
+      <Modal show={!passwordChanged} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>

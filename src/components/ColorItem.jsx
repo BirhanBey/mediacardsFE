@@ -1,6 +1,7 @@
 import React from "react";
 
 const ColorItem = ({ color, setColor }) => {
+
   return (
     <div>
       <div
