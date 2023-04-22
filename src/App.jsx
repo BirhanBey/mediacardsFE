@@ -154,13 +154,20 @@ function App() {
   }, [userName, userBio]);
 
   return (
-    <div
-      className={darkMode ? "dark-mode" : "light-mode"}
+    <div    
       style={{
         backgroundImage: `url(${selectedBackgroundImage})`,
         backgroundSize: "cover",
-      }}
+        backgroundPosition: "center",
+        height: "100vh",
+        backgroundAttachment: "fixed",  
+        overflowX: "hidden",
+      }}      
     >
+      <div 
+        className={darkMode ? "dark-mode" : "light-mode"}
+        style={{ height: "75rem"}}
+      >
       {!loggedIn ? (
         <NotLoggedIn
           handleLogin={handleLogin}
@@ -301,6 +308,7 @@ function App() {
           <Footer />
         </div>
       )}
+      </div>
     </div>
   );
 }
