@@ -48,7 +48,7 @@ const AddButton = ({
     try {
       console.log("this is tokenz" + token);
       const response = await axios.post(
-        `https://s3.syntradeveloper.be/api/users/${userId}`,
+        `https://s3.syntradeveloper.be/backend/api/users/${userId}`,        
         {
           name,
           isActive: active,
