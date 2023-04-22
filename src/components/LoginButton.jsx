@@ -26,13 +26,14 @@ const LoginButton = ({ handleLogin }) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("https://s3.syntradeveloper.be/api/login", {
+      const response = await fetch("https://www.s3.syntradeveloper.be/backend/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ email, password }),
       });
+      console.log("elma");
       if (response.ok) {
         const data = await response.json();
         const { id_user } = data;

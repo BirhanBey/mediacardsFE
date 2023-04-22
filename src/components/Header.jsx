@@ -10,7 +10,7 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
   useEffect(() => {
     const fetchUserImage = async () => {
       const response = await fetch(
-        `https://s3.syntradeveloper.be/api/users/${userId}/pic`
+        `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/pic`
       );
       const blob = await response.blob();
       const imageUrl = URL.createObjectURL(blob);

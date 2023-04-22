@@ -35,7 +35,7 @@ const ListArea = ({
     const fetchLinks = async () => {
       try {
         const response = await axios.get(
-          `https://s3.syntradeveloper.be/api/users/${userId}`
+          `https://www.s3.syntradeveloper.be/backend/api/users/${userId}`
         );
         setCards(response.data.url);
       } catch (error) {
