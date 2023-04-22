@@ -26,7 +26,7 @@ const LoginButton = ({ handleLogin }) => {
     event.preventDefault();
     setIsLoading(true);
     try {
-      const response = await fetch("https://s3.syntradeveloper.be/api/login", {
+      const response = await fetch("https://s3.syntradeveloper.be/backend/api/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
