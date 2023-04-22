@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { Modal, Button, Form, InputGroup } from "react-bootstrap";
+import { Modal, Button, Form, InputGroup, Dropdown } from "react-bootstrap";
 import axios from "axios";
+import ColorItem from "./ColorItem";
 
 const EditButton = ({
   userId,
@@ -11,6 +12,9 @@ const EditButton = ({
   url,
   description,
   isActive,
+  colors,
+  setColor,
+  newColor  
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -20,6 +24,7 @@ const EditButton = ({
     isActive: isActive,
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => {
@@ -52,6 +57,7 @@ const EditButton = ({
           link: formValues.url,
           description: formValues.description,
           isActive: formValues.isActive,
+          theme: newColor,
         },
         {
           headers: {
@@ -102,7 +108,7 @@ const EditButton = ({
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="exampleForm.ControlInput2">
+            <Form.Group className="mb-3">
               <Form.Label htmlFor="basic-url">URL:</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
@@ -118,7 +124,6 @@ const EditButton = ({
 
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
             >
               <Form.Label>Description:</Form.Label>
               <Form.Control
@@ -132,9 +137,26 @@ const EditButton = ({
               />
             </Form.Group>
 
+            <Form.Label>Select a fiting color to you card </Form.Label>
+            <Dropdown className="color-switcher" show={showDropdown}>
+              <Dropdown.Toggle variant="secondary" id="color-dropdown" onClick={() => setShowDropdown(!showDropdown)}>
+                Select a color
+              </Dropdown.Toggle>
+
+              <Dropdown.Menu>
+                {colors.map((color, index) => (
+                  <ColorItem
+                    className="color-item"
+                    key={index}
+                    color={color}
+                    setColor={setColor}
+                  />
+                ))}
+              </Dropdown.Menu>
+            </Dropdown>
+
             <Form.Group
               className="mb-3"
-              controlId="exampleForm.ControlTextarea2"
             >
               <Form.Check
                 type="checkbox"
