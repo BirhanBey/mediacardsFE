@@ -163,16 +163,19 @@
 
 ::-webkit-scrollbar-track {
   background-color: #fefbea;
+  width: 0px;
 }
 
 ::-webkit-scrollbar {
   width: 10px;
   background-color: #f5f5f5;
+  width: 0px;
 }
 
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #1a1919;
+  width: 0px;
 }
 
 /* ---------------- */
@@ -203,16 +206,16 @@
   background-color: #1a1919;
   color: white;
   transition: background-color 0.25s ease-in-out;
-    #username {
-      color: white;
-    }
+  #username {
+    color: white;
+  }
 
-    #accordion:hover {
-      box-shadow: 0px 2px 10px rgb(198, 193, 193);
-    }
-    #footer-text {
-      color: white;
-    }
+  #accordion:hover {
+    box-shadow: 0px 2px 10px rgb(198, 193, 193);
+  }
+  #footer-text {
+    color: white;
+  }
 }
 
 .light-mode {
@@ -281,7 +284,7 @@
 
 .slider:before {
   position: absolute;
-  content: '';
+  content: "";
   height: 26px;
   width: 26px;
   left: 4px;

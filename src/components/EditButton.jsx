@@ -19,7 +19,7 @@ const EditButton = ({
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState({
     name: name,
-    url: url ? url.replace(/^https?:\/\//, "www.") : "",
+    url: url ? url.replace(/^https?:\/\//, "") : "",
     description: description,
     isActive: isActive,
   });
