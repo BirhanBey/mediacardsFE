@@ -2,8 +2,9 @@ import React from "react";
 import RegisterModal from "./RegisterModal";
 import LoginButton from "./LoginButton";
 import { Container, Card, Row, Col, Navbar, Stack } from "react-bootstrap/";
+import GuestCards from "./GuestCards";
 
-const NotLoggedIn = ({ handleLogin, setToken, loggedOut }) => {
+const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2 }) => {
   return (
     <div>
       <Navbar
@@ -33,6 +34,13 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut }) => {
               <LoginButton handleLogin={handleLogin} setToken={setToken} />
               <RegisterModal />
             </div>
+            {/* //if user_id2 is different then loggedin user_id show only cards */}
+            {userId2 ? 
+            <GuestCards 
+              userId2={userId2}
+            /> 
+            : null}
+            {/* //if user_id2 is not exist show nothing */}
           </Stack>
           <div className="flex-grow-1"></div>
         </Stack>
