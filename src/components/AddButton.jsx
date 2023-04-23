@@ -27,6 +27,8 @@ const AddButton = ({
   const [active, setActive] = useState(false);
   const [url, setUrl] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
+  const [showDropdown, setShowDropdown] = useState(false);
+  const [selectedColorStyle, setSelectedColorStyle] = useState({});
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -39,6 +41,11 @@ const AddButton = ({
     }
   };
   const handleUrlChange = (event) => setUrl(event.target.value);
+  const handleColorChange = (kleur) => {
+    setSelectedColor(kleur);
+    setShowDropdown(false);
+    setSelectedColorStyle({ backgroundColor: kleur });
+  };
 
   const handleSave = async () => {
     try {
@@ -49,7 +56,7 @@ const AddButton = ({
           name,
           isActive: active,
           link: url,
-          theme: newColor,
+          theme: selectedColor,
           icon: name.toLowerCase(),
         },
         {
@@ -64,6 +71,7 @@ const AddButton = ({
       setActive(false);
       setUrl("");
       setSelectedColor("");
+
       handleClose();
       handleRerender();
     } catch (error) {
@@ -71,7 +79,6 @@ const AddButton = ({
       console.error(error);
     }
   };
-
   return (
     <Row>
       <Col className="text-center">
@@ -85,10 +92,7 @@ const AddButton = ({
           </Modal.Header>
           <Modal.Body>
             <Form>
-              <Form.Group
-                className="mb-3"
-                // controlId="exampleForm.ControlInput1"
-              >
+              <Form.Group className="mb-3">
                 <Form.Label>Name:</Form.Label>
                 <Form.Control
                   placeholder="Enter name..."
@@ -101,15 +105,9 @@ const AddButton = ({
                 />
               </Form.Group>
 
-              <Form.Group
-                className="mb-3"
-                // controlId="exampleForm.ControlInput2"
-              >
+              <Form.Group className="mb-3">
                 <Form.Label htmlFor="basic-url">URL:</Form.Label>
                 <InputGroup className="mb-3">
-                  {/* <InputGroup.Text id="basic-addon3" placeholder="Enter url...">
-                    https://example.com/users/
-                  </InputGroup.Text> */}
                   <Form.Control
                     placeholder="htttps://..."
                     id="basic-url"
@@ -121,32 +119,49 @@ const AddButton = ({
                 </InputGroup>
               </Form.Group>
 
-              <Form.Group
-                className="mb-3"
-                // controlId="exampleForm.ControlInput4"
-              >
-                <Form.Label>Select a fiting color to you card </Form.Label>
-                <Dropdown className="color-switcher">
+              <Form.Group className="mb-3">
+                <Form.Label>Select a fitting color for your card:</Form.Label>
+
+                <Dropdown
+                  className="color-switcher"
+                  show={showDropdown}
+                  onToggle={setShowDropdown}
+                >
                   <Dropdown.Toggle variant="secondary" id="color-dropdown">
-                    Select a color
+                    {selectedColor ? (
+                      <div
+                        style={{
+                          width: "130px",
+                          height: "2rem",
+                          backgroundColor: selectedColor,
+                          display: "inline-block",
+                          borderRadius: "20px",
+                        }}
+                      ></div>
+                    ) : (
+                      <div
+                        style={{ display: "inline-block", marginRight: "10px" }}
+                      >
+                        Select a color
+                      </div>
+                    )}
                   </Dropdown.Toggle>
 
                   <Dropdown.Menu>
                     {colors.map((color, index) => (
                       <ColorItem
-                        className="color-item"
                         key={index}
                         color={color}
-                        setColor={setColor}
+                        newColor={selectedColor}
+                        setSelectedColor={setSelectedColor}
+                        handleColorChange={handleColorChange}
                       />
                     ))}
                   </Dropdown.Menu>
                 </Dropdown>
               </Form.Group>
-              <Form.Group
-                className="mb-3"
-                // controlId="exampleForm.ControlTextarea1"
-              >
+
+              <Form.Group className="mb-3">
                 <Form.Check
                   type="checkbox"
                   label="Active"
@@ -163,6 +178,14 @@ const AddButton = ({
           </Modal.Footer>
         </Modal>
       </Col>
+      {selectedColor && (
+        <Col className="text-center mt-3">
+          <div
+            className="selected-color"
+            style={{ backgroundColor: selectedColor }}
+          ></div>
+        </Col>
+      )}
     </Row>
   );
 };
