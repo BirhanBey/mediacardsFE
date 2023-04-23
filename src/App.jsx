@@ -154,160 +154,165 @@ function App() {
   }, [userName, userBio]);
 
   return (
-    <div    
+    <div
       style={{
         backgroundImage: `url(${selectedBackgroundImage})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         height: "100vh",
-        backgroundAttachment: "fixed",  
+        backgroundAttachment: "fixed",
         overflowX: "hidden",
-      }}      
+      }}
     >
-      <div 
+      <div
         className={darkMode ? "dark-mode" : "light-mode"}
-        style={{ height: "75rem"}}
+        style={{ height: "75rem" }}
       >
-      {!loggedIn ? (
-        <NotLoggedIn
-          handleLogin={handleLogin}
-          setToken={setToken}
-          loggedOut={loggedOut}
-        />
-      ) : (
-        <div className={darkMode ? "dark-mode" : "light-mode"}>
-          <div className="mode me-2">
-            <span
-              className="sunmoon"
-              style={{ color: darkMode ? "grey" : "yellow" }}
-            >
-              ☀︎
-            </span>
-            <div className="switch-checkbox">
-              <label className="switch">
-                <input
-                  type="checkbox"
-                  onChange={() => setDarkMode(!darkMode)}
-                  checked={darkMode}
-                />
-                <span className="slider round"> </span>
-              </label>
+        {!loggedIn ? (
+          <NotLoggedIn
+            handleLogin={handleLogin}
+            setToken={setToken}
+            loggedOut={loggedOut}
+          />
+        ) : (
+          <div className={darkMode ? "dark-mode" : "light-mode"}>
+            <div className="mode me-2">
+              <span
+                className="sunmoon"
+                style={{ color: darkMode ? "grey" : "yellow" }}
+              >
+                ☀︎
+              </span>
+              <div className="switch-checkbox">
+                <label className="switch">
+                  <input
+                    type="checkbox"
+                    onChange={() => setDarkMode(!darkMode)}
+                    checked={darkMode}
+                  />
+                  <span className="slider round"> </span>
+                </label>
+              </div>
+              <span
+                className="sunmoon"
+                style={{ color: darkMode ? "#c96dfd" : "blue" }}
+              >
+                ☽
+              </span>
             </div>
-            <span
-              className="sunmoon"
-              style={{ color: darkMode ? "#c96dfd" : "blue" }}
+            <Container
+              fluid
+              className="d-flex justify-content-between align-items-center"
             >
-              ☽
-            </span>
-          </div>
-          <Container
-            fluid
-            className="d-flex justify-content-between align-items-center"
-          >
-            <div className="menu">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="50"
-                height="50"
-                fillRule="currentColor"
-                className="bi bi-list rounded"
-                viewBox="0 0 16 16"
-                onClick={handleShow}
-                id="hamburger"
+              <div className="menu">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="50"
+                  height="50"
+                  fillRule="currentColor"
+                  className="bi bi-list rounded"
+                  viewBox="0 0 16 16"
+                  onClick={handleShow}
+                  id="hamburger"
+                  style={{
+                    backgroundColor: darkMode ? "#212529" : "transparent",
+                    color: darkMode ? "white" : "black",
+                  }}
+                >
+                  <path
+                    fillRule="evenodd"
+                    fill={darkMode ? "white" : "black"}
+                    d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+                  />
+                </svg>
+                <br />
+                {/* {loggedIn && (
+                 
+                )} */}
+              </div>
+              <Offcanvas
+                show={show}
+                onHide={handleClose}
+                className={darkMode ? "dark-mode" : "light-mode"}
                 style={{
-                  backgroundColor: darkMode ? "#212529" : "transparent",
+                  backgroundColor: darkMode ? "#212529" : "white",
                   color: darkMode ? "white" : "black",
+                  position: "absolute",
                 }}
               >
-                <path
-                  fillRule="evenodd"
-                  fill={darkMode ? "white" : "black"}
-                  d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
-                />
-              </svg>
-              <br />
-              {loggedIn && (
-                <span
-                  className="ms-2"
-                  style={{ color: darkMode ? "white" : "black" }}
-                >
-                  Logged in as {userName}
-                </span>
-              )}
-            </div>
-            <Offcanvas
-              show={show}
-              onHide={handleClose}
-              className={darkMode ? "dark-mode" : "light-mode"}
-              style={{
-                backgroundColor: darkMode ? "#212529" : "white",
-                color: darkMode ? "white" : "black",
-                position: "absolute",
-              }}
-            >
-              <Offcanvas.Header closeButton>
-                <Offcanvas.Title>Menu</Offcanvas.Title>
-              </Offcanvas.Header>
-              <Offcanvas.Body>
-                <Stack gap={3}>
-                  {loggedIn ? (
-                    <>
-                      <Button variant="secondary" onClick={handleLogout}>
-                        Logout
-                      </Button>
-                    </>
-                  ) : (
-                    <>
-                      <LoginButton
-                        handleLogin={handleLogin}
-                        setToken={setToken}
-                      />
-                      <RegisterModal />
-                    </>
-                  )}
-                  <UserSettings
-                    userId={userId}
-                    token={token}
-                    handleUserImageChange={handleUserImageChange}
-                    handleBackgroundChange={handleBackgroundChange}
-                    setImageUrl={handleUserImageChange}
-                    handleRerender={handleRerender}
-                    setUserName={setUserName}
-                    setUserBio={setUserBio}
-                    userName={userName}
-                    userBio={userBio}
-                  />
-                </Stack>
-              </Offcanvas.Body>
-            </Offcanvas>
-          </Container>
-          <Header
-            userId={userId}
-            userName={userName}
-            userBio={userBio}
-            setUserImage={handleUserImageChange}
-            rerender={rerender}
-            handleRerender={handleRerender}
-            setUserName={setUserName}
-            setUserBio={setUserBio}
-            loggedIn={loggedIn}
-          />
+                <Offcanvas.Header closeButton>
+                  <Offcanvas.Title>Menu</Offcanvas.Title>
+                </Offcanvas.Header>
+                <Offcanvas.Body>
+                  <Stack gap={3}>
+                    {loggedIn ? (
+                      <>
+                        <Button
+                          variant={darkMode ? "secondary" : "dark"}
+                          onClick={handleLogout}
+                        >
+                          Logout
+                        </Button>
+                      </>
+                    ) : (
+                      <>
+                        <LoginButton
+                          handleLogin={handleLogin}
+                          setToken={setToken}
+                        />
+                        <RegisterModal />
+                      </>
+                    )}
+                    <UserSettings
+                      userId={userId}
+                      token={token}
+                      handleUserImageChange={handleUserImageChange}
+                      handleBackgroundChange={handleBackgroundChange}
+                      setImageUrl={handleUserImageChange}
+                      handleRerender={handleRerender}
+                      setUserName={setUserName}
+                      setUserBio={setUserBio}
+                      userName={userName}
+                      userBio={userBio}
+                      darkMode={darkMode}
+                    />
+                    <span
+                      className="ms-2"
+                      style={{ color: darkMode ? "white" : "black" }}
+                    >
+                      Logged in as {userName}
+                    </span>
+                  </Stack>
+                </Offcanvas.Body>
+              </Offcanvas>
+            </Container>
+            <Header
+              userId={userId}
+              userName={userName}
+              userBio={userBio}
+              setUserImage={handleUserImageChange}
+              rerender={rerender}
+              handleRerender={handleRerender}
+              setUserName={setUserName}
+              setUserBio={setUserBio}
+              loggedIn={loggedIn}
+            />
 
-          <ListArea
-            userId={userId}
-            token={token}
-            rerender={rerender}
-            handleRerender={handleRerender}
-            selectedIcon={selectedIcon}
-            handleIconChange={handleIconChange}
-            icons={icons}
-            colors={colors}
-            setColor={setColor}
-            newColor={newColor}
-          />
-          <Footer />
-        </div>
-      )}
+            <ListArea
+              userId={userId}
+              token={token}
+              rerender={rerender}
+              handleRerender={handleRerender}
+              selectedIcon={selectedIcon}
+              handleIconChange={handleIconChange}
+              icons={icons}
+              colors={colors}
+              setColor={setColor}
+              newColor={newColor}
+            />
+            <Footer />
+          </div>
+        )}
       </div>
     </div>
   );

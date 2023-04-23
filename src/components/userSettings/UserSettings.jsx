@@ -17,7 +17,7 @@ function UserSettings({
   handleRerender,
   userName,
   userBio,
-
+  darkMode,
   setUserBio,
 }) {
   const [showPasswordModal, setShowPasswordModal] = useState(false);
@@ -55,12 +55,15 @@ function UserSettings({
     setBackGroundModal(false);
   };
   return (
-    <div className="bg-dark  rounded " style={{ margin: "0", padding: "0" }}>
+    <div
+      className={darkMode ? "bg-secondary rounded" : "bg-dark rounded"}
+      style={{ margin: "0", padding: "0" }}
+    >
       <DropdownButton
         id="dropdown-button-dark-example2"
         title="Settings ⚙️"
         className="text-center"
-        variant="dark"
+        variant={darkMode ? "secondary" : "dark"}
       >
         <Dropdown.Item onClick={handlePasswordClick}>
           Change Password
