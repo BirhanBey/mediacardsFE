@@ -14,12 +14,12 @@ const EditButton = ({
   isActive,
   colors,
   setColor,
-  newColor  
+  newColor,
 }) => {
   const [showModal, setShowModal] = useState(false);
   const [formValues, setFormValues] = useState({
     name: name,
-    url: url,
+    url: url ? url.replace(/^https?:\/\//, "www.") : "",
     description: description,
     isActive: isActive,
   });
@@ -122,9 +122,7 @@ const EditButton = ({
               </InputGroup>
             </Form.Group>
 
-            <Form.Group
-              className="mb-3"
-            >
+            <Form.Group className="mb-3">
               <Form.Label>Description:</Form.Label>
               <Form.Control
                 as="textarea"
@@ -139,7 +137,11 @@ const EditButton = ({
 
             <Form.Label>Select a fiting color to you card </Form.Label>
             <Dropdown className="color-switcher" show={showDropdown}>
-              <Dropdown.Toggle variant="secondary" id="color-dropdown" onClick={() => setShowDropdown(!showDropdown)}>
+              <Dropdown.Toggle
+                variant="secondary"
+                id="color-dropdown"
+                onClick={() => setShowDropdown(!showDropdown)}
+              >
                 Select a color
               </Dropdown.Toggle>
 
@@ -155,9 +157,7 @@ const EditButton = ({
               </Dropdown.Menu>
             </Dropdown>
 
-            <Form.Group
-              className="mb-3"
-            >
+            <Form.Group className="mb-3">
               <Form.Check
                 type="checkbox"
                 label="Active"

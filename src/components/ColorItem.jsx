@@ -1,13 +1,22 @@
 import React from "react";
 
-const ColorItem = ({ color, setColor }) => {
-
+const ColorItem = ({
+  color,
+  setColor,
+  setSelectedColor,
+  newColor,
+  onClick,
+  handleColorChange,
+}) => {
+  const handleClick = () => {
+    handleColorChange(color);
+  };
   return (
     <div>
       <div
-        onClick={setColor}
-        className="color-item"
+        className={`color-item ${newColor === color ? "selected" : ""}`}
         style={{ "--bg-color": color }}
+        onClick={() => handleClick()}
       ></div>
     </div>
   );
