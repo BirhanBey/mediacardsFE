@@ -234,14 +234,9 @@ function App() {
                   />
                 </svg>
                 <br />
-                {loggedIn && (
-                  <span
-                    className="ms-2"
-                    style={{ color: darkMode ? "white" : "black" }}
-                  >
-                    Logged in as {userName}
-                  </span>
-                )}
+                {/* {loggedIn && (
+                 
+                )} */}
               </div>
               <Offcanvas
                 show={show}
@@ -260,7 +255,10 @@ function App() {
                   <Stack gap={3}>
                     {loggedIn ? (
                       <>
-                        <Button variant="secondary" onClick={handleLogout}>
+                        <Button
+                          variant={darkMode ? "secondary" : "dark"}
+                          onClick={handleLogout}
+                        >
                           Logout
                         </Button>
                       </>
@@ -284,7 +282,14 @@ function App() {
                       setUserBio={setUserBio}
                       userName={userName}
                       userBio={userBio}
+                      darkMode={darkMode}
                     />
+                    <span
+                      className="ms-2"
+                      style={{ color: darkMode ? "white" : "black" }}
+                    >
+                      Logged in as {userName}
+                    </span>
                   </Stack>
                 </Offcanvas.Body>
               </Offcanvas>
