@@ -9,7 +9,7 @@ function Footer() {
       <Container>
         <Row className="justify-content-md-center">
           <Col md="auto">
-            <Navbar>
+            <Navbar fixed="bottom">
               <Container>
                 <Navbar.Collapse className="justify-content-center">
                   <Navbar.Text className="text-center" id="footer-text">

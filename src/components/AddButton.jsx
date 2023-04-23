@@ -81,11 +81,10 @@ const AddButton = ({
   };
   return (
     <Row>
+      <Button variant="dark" onClick={handleShow}>
+        Add Link
+      </Button>
       <Col className="text-center">
-        <Button variant="dark" onClick={handleShow}>
-          Add Link
-        </Button>
-
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>New Link</Modal.Title>
