@@ -182,6 +182,7 @@ function App() {
             setToken={setToken}
             loggedOut={loggedOut}
             userId2={userId2}
+            userId={userId}
           />
         ) : (
           <div className={darkMode ? "dark-mode" : "light-mode"}>
