@@ -27,6 +27,8 @@ function App() {
   const [selectedIcon, setSelectedIcon] = useState(null);
   const [selectedBackgroundImage, setSelectedBackgroundImage] = useState("");
   const [newColor, setNewcolor] = useState("");
+  const [userId2, setUserId2] = useState("");
+
   // const navigate = useNavigate();
 
   const colors = [
@@ -61,6 +63,12 @@ function App() {
     setSelectedIcon(icon);
     localStorage.setItem("selectedIcon", JSON.stringify(icon));
   };
+
+  useEffect(() => {
+    const url = new URL(window.location.href);
+    const userId = url.pathname.split("/")[1];
+    setUserId2(userId);
+  }, []);
 
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
@@ -112,7 +120,7 @@ function App() {
     setUserEmail(data.user.email);
     setUserBio(data.user.description);
     setToken(data.token);
-
+    console.log(userId2);
     localStorage.setItem("userId", data.user.id);
   };
 
