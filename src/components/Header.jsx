@@ -39,7 +39,7 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
                   width={171}
                   height={180}
                   alt="default profile picture"
-                  src="/public/profilePicTest.png"
+                  src="/profilePicTest.png"
                 />
               )}
               <Figure.Caption className="text-center">
@@ -50,9 +50,7 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
         </Row>
         <Row className="justify-content-center">
           <Col sm="auto">
-            <p style={{ color: "white" }}>
-              {userBio ? userBio : "This is my description"}
-            </p>
+            <p style={{ color: "white" }}>{userBio}</p>
           </Col>
         </Row>
       </Container>

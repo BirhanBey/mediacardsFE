@@ -35,6 +35,7 @@ const RegisterModal = () => {
             email,
             password,
             password_confirmation: passwordConfirmation,
+            description,
           }),
         }
       );
@@ -123,7 +124,7 @@ const RegisterModal = () => {
               />
             </FloatingLabel>
 
-            {/* <FloatingLabel
+            <FloatingLabel
               controlId="formDescription"
               label="Description"
               className="mb-3"
@@ -134,7 +135,7 @@ const RegisterModal = () => {
                 value={description}
                 onChange={(event) => setDescription(event.target.value)}
               />
-            </FloatingLabel> */}
+            </FloatingLabel>
 
             {!passwordsMatch && (
               <Alert variant="danger">Passwords do not match.</Alert>
