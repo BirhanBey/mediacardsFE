@@ -172,10 +172,7 @@ function App() {
         overflowX: "hidden",
       }}
     >
-      <div
-        className={darkMode ? "dark-mode" : "light-mode"}
-        style={{ height: "75rem" }}
-      >
+      <div className={darkMode ? "dark-mode" : "light-mode"}>
         {!loggedIn ? (
           <NotLoggedIn
             handleLogin={handleLogin}

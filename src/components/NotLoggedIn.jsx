@@ -19,25 +19,33 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
           <Navbar.Brand href="#home" className="fs-3">
             Our Brandname
           </Navbar.Brand>
+          {userId2 ? (
+            <div>
+              <LoginButton handleLogin={handleLogin} setToken={setToken} />
+              <RegisterModal />
+            </div>
+          ) : null}
         </Container>
       </Navbar>
       <Container id="landing-container">
         <Stack className="align-items-center">
           <div className="flex-grow-1"></div>
-          <Stack direction="row" gap={3} className="align-items-center">
+          <Stack direction="row" className="align-items-center">
             {loggedOut ? (
               <h1 id="welcome">See you soon! </h1>
             ) : (
               <h1 id="welcome">Welcome!</h1>
             )}
-            <div>
-              <LoginButton handleLogin={handleLogin} setToken={setToken} />
-              <RegisterModal />
-            </div>
             {/* //if user_id2 is different then loggedin user_id show only cards */}
             {userId2 ? <GuestCards userId2={userId2} userId={userId} /> : null}
           </Stack>
           <div className="flex-grow-1"></div>
+          {userId2 ? null : (
+            <div>
+              <LoginButton handleLogin={handleLogin} setToken={setToken} />
+              <RegisterModal />
+            </div>
+          )}
         </Stack>
       </Container>
     </div>
