@@ -9,15 +9,16 @@ import {
   Stack,
   Modal,
 } from "react-bootstrap";
-
 const LogoutModal = ({ handleLogout, isLoading }) => {
   const [show, setShow] = useState(false);
-
   const handleCloseLogout = () => setShow(false);
   const handleShowLogout = () => {
     setShow(true);
   };
-
+  const handleLogoutAndRedirect = () => {
+    handleLogout();
+    window.location.href = "/";
+  };
   return (
     <Container>
       <Stack>
@@ -33,13 +34,12 @@ const LogoutModal = ({ handleLogout, isLoading }) => {
             <Button variant="secondary" onClick={handleCloseLogout}>
               Never mind
             </Button>
-            <Button variant="dark" onClick={handleLogout}>
+            <Button variant="dark" onClick={handleLogoutAndRedirect}>
               Yes, im sure
             </Button>
           </Modal.Footer>
         </Modal>
       </Stack>
-
       <ScaleLoader
         color={"#36d7b7"}
         loading={isLoading}
@@ -49,5 +49,4 @@ const LogoutModal = ({ handleLogout, isLoading }) => {
     </Container>
   );
 };
-
 export default LogoutModal;
