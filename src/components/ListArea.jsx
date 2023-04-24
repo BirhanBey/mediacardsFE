@@ -48,40 +48,41 @@ const ListArea = ({
   return (
     <Container>
       <Row
-        xs={1}
-        md={2}
-        lg={3}
-        xl={3}
-        xxl={4}
-        gap={1}
+        // xs={1}
+        // md={2}
+        // lg={3}
+        // xl={3}
+        // xxl={4}
+        // gap={1}
         className="d-flex justify-content-center"
       >
-        {cards.map((link, index) => {
-          return (
-            <Col key={index} className="mb-3">
-              <FancyCards
-                id="card-container"
-                link={link}
-                index={index}
-                removeCard={removeCard}
-                userId={userId}
-                linkId={link.id}
-                name={link.name}
-                description={link.description}
-                url={link.link}
-                token={token}
-                handleRerender={handleRerender}
-                selectedIcon={selectedIcon}
-                handleIconChange={handleIconChange}
-                theme={link.theme}
-                icon={link.icon}
-                colors={colors}
-                setColor={setColor}
-                newColor={newColor}
-              />
-            </Col>
-          );
-        })}
+        <div id="card-grid">
+          {cards.map((link, index) => {
+            return (
+              <Col key={index} className="mb-3">
+                <FancyCards
+                  link={link}
+                  index={index}
+                  removeCard={removeCard}
+                  userId={userId}
+                  linkId={link.id}
+                  name={link.name}
+                  description={link.description}
+                  url={link.link}
+                  token={token}
+                  handleRerender={handleRerender}
+                  selectedIcon={selectedIcon}
+                  handleIconChange={handleIconChange}
+                  theme={link.theme}
+                  icon={link.icon}
+                  colors={colors}
+                  setColor={setColor}
+                  newColor={newColor}
+                />
+              </Col>
+            );
+          })}
+        </div>
       </Row>
       <Container className="d-flex justify-content-center align-items-center">
         <Row>
