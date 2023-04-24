@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 function Footer({ loggedIn }) {
   return (
     <div>
-      <Container>
+      <Container className="mt-5">
         <Row className="justify-content-md-center">
           <Col md="auto">
             <Navbar fixed="bottom">
