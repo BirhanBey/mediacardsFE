@@ -17,6 +17,7 @@ const EditButton = ({
   newColor,
 }) => {
   const [showModal, setShowModal] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(newColor || "");
   const [formValues, setFormValues] = useState({
     name: name,
     url: url ? url.replace(/^https?:\/\//, "") : "",
@@ -48,6 +49,10 @@ const EditButton = ({
     });
   };
 
+  const handleColorChange = (color) => {
+    setSelectedColor(color);
+  };
+
   const handleSave = () => {
     axios
       .put(
@@ -57,7 +62,7 @@ const EditButton = ({
           link: formValues.url,
           description: formValues.description,
           isActive: formValues.isActive,
-          theme: newColor,
+          theme: selectedColor,
         },
         {
           headers: {
@@ -136,22 +141,37 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Label>Select a fiting color to you card </Form.Label>
-            <Dropdown className="color-switcher" show={showDropdown}>
-              <Dropdown.Toggle
-                variant="secondary"
-                id="color-dropdown"
-                onClick={() => setShowDropdown(!showDropdown)}
-              >
-                Select a color
+            <Dropdown
+              className="color-switcher"
+              show={showDropdown}
+              onToggle={setShowDropdown}
+            >
+              <Dropdown.Toggle variant="secondary" id="color-dropdown">
+                {selectedColor ? (
+                  <div
+                    style={{
+                      width: "130px",
+                      height: "2rem",
+                      backgroundColor: selectedColor,
+                      display: "inline-block",
+                      borderRadius: "20px",
+                    }}
+                  ></div>
+                ) : (
+                  <div style={{ display: "inline-block", marginRight: "10px" }}>
+                    Select a color
+                  </div>
+                )}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
                 {colors.map((color, index) => (
                   <ColorItem
-                    className="color-item"
                     key={index}
                     color={color}
-                    setColor={setColor}
+                    newColor={selectedColor}
+                    setSelectedColor={setSelectedColor}
+                    handleColorChange={handleColorChange}
                   />
                 ))}
               </Dropdown.Menu>
