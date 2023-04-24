@@ -61,7 +61,13 @@ function ChangeInfo({
   };
 
   return (
-    <Modal show={true} onHide={handleClose}>
+    <Modal 
+      show={true} 
+      onHide={handleClose}
+      style={{
+        backdropFilter: "blur(2px)",
+      }}
+    >
       <Modal.Header closeButton>
         <Modal.Title>Change Info</Modal.Title>
       </Modal.Header>
@@ -85,7 +91,7 @@ function ChangeInfo({
               onChange={handleUserBioChange}
             />
           </Form.Group>
-          <Button variant="primary" type="submit">
+          <Button className="mt-3 w-100" variant="dark" type="submit">
             Save
           </Button>
         </Form>

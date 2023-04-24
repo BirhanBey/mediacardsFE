@@ -47,7 +47,13 @@ function ChangePic({ handleClose, userId, setImageUrl, token }) {
   };
 
   return (
-    <Modal show={true} onHide={handleClose}>
+    <Modal 
+      show={true} 
+      onHide={handleClose}
+      style={{
+        backdropFilter: "blur(5px)",
+      }}  
+    >
       <Modal.Header closeButton>
         <Modal.Title>Change Profile Picture</Modal.Title>
       </Modal.Header>
@@ -68,11 +74,9 @@ function ChangePic({ handleClose, userId, setImageUrl, token }) {
           {successMessage && (
             <div className="alert alert-success">{successMessage}</div>
           )}
-          <Button variant="dark" type="submit" className="me-2">
+          <hr/>
+          <Button variant="dark" type="submit" className="me-2 w-100">
             Save
-          </Button>
-          <Button variant="secondary" onClick={handleClose}>
-            Cancel
           </Button>
         </form>
       </Modal.Body>

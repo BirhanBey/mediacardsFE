@@ -48,7 +48,13 @@ function ChangePasswordModal({ userId, token, handleClose }) {
 
   return (
     <div>
-      <Modal show={!passwordChanged} onHide={handleClose}>
+      <Modal 
+        show={!passwordChanged} 
+        onHide={handleClose}
+        style={{
+          backdropFilter: "blur(5px)",
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Change Password</Modal.Title>
         </Modal.Header>
@@ -89,16 +95,14 @@ function ChangePasswordModal({ userId, token, handleClose }) {
               />
             </FloatingLabel>
 
-            <Button variant="dark" type="submit">
+            <Button variant="dark" type="submit" className="mt-3">
               Save Changes
             </Button>
           </Form>
-          <div>{feedback}</div>
+          {/* <div>{feedback}</div> */}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
+
         </Modal.Footer>
       </Modal>
     </div>

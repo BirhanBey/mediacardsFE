@@ -81,18 +81,24 @@ const AddButton = ({
   };
   return (
     <Row>
-      <Button variant="dark" onClick={handleShow}>
+      <Button variant={"secondary"} onClick={handleShow}>
         Add Link
       </Button>
       <Col className="text-center">
-        <Modal show={show} onHide={handleClose}>
+        <Modal 
+          show={show} 
+          onHide={handleClose}
+          style={{
+            backdropFilter: "blur(2px)",
+          }}
+        >
           <Modal.Header closeButton>
-            <Modal.Title>New Link</Modal.Title>
+            <Modal.Title>New Card</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form>
               <Form.Group className="mb-3">
-                <Form.Label>Name:</Form.Label>
+                <Form.Label>Which platform do you want to add?</Form.Label>
                 <Form.Control
                   placeholder="Enter name..."
                   autoFocus
@@ -105,10 +111,10 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="basic-url">URL:</Form.Label>
+                <Form.Label htmlFor="basic-url">Your account address:</Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    placeholder="htttps://..."
+                    placeholder="https://..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
                     onChange={handleUrlChange}

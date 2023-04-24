@@ -98,7 +98,13 @@ const EditButton = ({
         🖋️
       </button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal 
+        show={showModal} 
+        onHide={handleCloseModal}
+        style={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Change your media card's information</Modal.Title>
         </Modal.Header>
@@ -106,7 +112,7 @@ const EditButton = ({
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3">
-              <Form.Label>Name:</Form.Label>
+              <Form.Label>Which platform do you want to add?</Form.Label>
               <Form.Control
                 placeholder="Enter name..."
                 autoFocus
@@ -119,7 +125,7 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label htmlFor="basic-url">URL:</Form.Label>
+              <Form.Label htmlFor="basic-url">Your account address:</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
                   placeholder="https://..."
