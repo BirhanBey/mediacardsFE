@@ -50,7 +50,9 @@ const Header = ({ userName, userBio, userId, rerender, handleRerender }) => {
         </Row>
         <Row className="justify-content-center">
           <Col sm="auto">
-            <p style={{ color: "white" }}>{userBio}</p>
+            <p style={{ color: "white" }}>
+              {userBio ? userBio : "This is my description"}
+            </p>
           </Col>
         </Row>
       </Container>

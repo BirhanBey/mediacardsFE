@@ -10,6 +10,7 @@ const RegisterModal = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -121,6 +122,19 @@ const RegisterModal = () => {
                 }
               />
             </FloatingLabel>
+
+            {/* <FloatingLabel
+              controlId="formDescription"
+              label="Description"
+              className="mb-3"
+            >
+              <Form.Control
+                type="text"
+                placeholder="Description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </FloatingLabel> */}
 
             {!passwordsMatch && (
               <Alert variant="danger">Passwords do not match.</Alert>
