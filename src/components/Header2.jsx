@@ -18,12 +18,20 @@ const Header2 = ({
       const response = await fetch(
         `https://www.s3.syntradeveloper.be/backend/api/users/${userId2}/pic`
       );
-      const blob = await response.blob();
-      const imageUrl = URL.createObjectURL(blob);
-      setUserImage(imageUrl);
+      if (response.status === 200) {
+        const blob = await response.blob();
+        const imageUrl = URL.createObjectURL(blob);
+        setUserImage(imageUrl);
+      } else {
+        setUserImage(null);
+      }
     };
 
-    fetchUserImage();
+    if (userId2) {
+      fetchUserImage();
+    } else {
+      setUserImage(null);
+    }
   }, [userId2, handleRerender]);
 
   return (
@@ -31,27 +39,20 @@ const Header2 = ({
       <Container className="text-center">
         <Row className="justify-content-center">
           <Col sm="auto">
-            <Figure id="profile-pic">
-              {userImage ? (
+            {userImage && (
+              <Figure id="profile-pic">
                 <Figure.Image
                   width={171}
                   height={180}
-                  alt="171x180"
+                  alt="profile picuuuture"
                   src={userImage}
                   style={{ borderRadius: "50%" }}
                 />
-              ) : (
-                <Figure.Image
-                  width={171}
-                  height={180}
-                  alt="default profile picture"
-                  src="/public/profilePicTest.png"
-                />
-              )}
-              <Figure.Caption className="text-center">
-                <h1 id="username">{userName2}</h1>
-              </Figure.Caption>
-            </Figure>
+                <Figure.Caption className="text-center">
+                  <h1 id="username">{userName2}</h1>
+                </Figure.Caption>
+              </Figure>
+            )}
           </Col>
         </Row>
         <Row className="justify-content-center">

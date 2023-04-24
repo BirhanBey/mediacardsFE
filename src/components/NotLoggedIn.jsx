@@ -36,8 +36,6 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
             </div>
             {/* //if user_id2 is different then loggedin user_id show only cards */}
             {userId2 ? <GuestCards userId2={userId2} userId={userId} /> : null}
-
-            {/* //if user_id2 is not exist show nothing */}
           </Stack>
           <div className="flex-grow-1"></div>
         </Stack>

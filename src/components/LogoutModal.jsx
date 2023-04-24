@@ -15,10 +15,11 @@ const LogoutModal = ({ handleLogout, isLoading }) => {
   const handleShowLogout = () => {
     setShow(true);
   };
-  const handleLogoutAndRedirect = () => {
-    handleLogout();
-    window.location.href = "/";
+  const handleLogoutAndRedirect = async () => {
+    await handleLogout();
+    window.location.replace("https://s10.syntradeveloper.be/");
   };
+
   return (
     <Container>
       <Stack>
