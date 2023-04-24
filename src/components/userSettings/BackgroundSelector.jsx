@@ -28,7 +28,7 @@ function BackgroundSelector({
   };
 
   return (
-    <div>
+    <div className="mt-3">
       <Row>
         <Col>
           <Button
@@ -37,6 +37,7 @@ function BackgroundSelector({
             onClick={() => handleImageSelect(backgroundImage1)}
           >
             <img
+              className="rounded"
               src={backgroundImage1}
               alt="Background Image 1"
               style={imgStyle}
@@ -47,9 +48,10 @@ function BackgroundSelector({
           <Button
             variant="link"
             style={buttonStyle}
-            onClick={() => handleImageSelect(backgroundImage2)}
+            onClick={() => handleImageSelect(backgroundImage2)}            
           >
             <img
+              className="rounded"
               src={backgroundImage2}
               alt="Background Image 2"
               style={imgStyle}
@@ -63,6 +65,7 @@ function BackgroundSelector({
             onClick={() => handleImageSelect(backgroundImage3)}
           >
             <img
+              className="rounded"
               src={backgroundImage3}
               alt="Background Image 3"
               style={imgStyle}

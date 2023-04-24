@@ -4,6 +4,8 @@ import ChangePasswordModal from "./ChangePasswordModal";
 import BackgroundSelector from "./BackgroundSelector";
 import ChangeInfo from "./ChangeInfo";
 import ChangePic from "./ChangePic";
+import "../darkmode/darkMode.scss";
+
 
 function UserSettings({
   userId,
@@ -54,34 +56,34 @@ function UserSettings({
     setBackGroundModal(false);
   };
   return (
-    <div>
+    <div>      
       <Stack spacing={3} gap={3}>
+        <Button
+          onClick={handleInfoClick}
+          className="text-center"
+          variant={darkMode ? "light" : "secondary"}
+        >
+          Edit Profile
+        </Button>
+        <Button
+          onClick={handlePicClick}
+          className="text-center"
+          variant={darkMode ? "light" : "secondary"}
+        >
+          Profile Picture
+        </Button>
         <Button
           onClick={handlePasswordClick}
           className="text-center "
-          variant={darkMode ? "secondary" : "dark"}
+          variant={darkMode ? "light" : "secondary"}
         >
           Change Password
         </Button>
 
         <Button
-          onClick={handlePicClick}
-          className="text-center"
-          variant={darkMode ? "secondary" : "dark"}
-        >
-          Profile Picture
-        </Button>
-        <Button
-          onClick={handleInfoClick}
-          className="text-center"
-          variant={darkMode ? "secondary" : "dark"}
-        >
-          Edit Profile
-        </Button>
-        <Button
           onClick={handleBackgroundClick}
           className="text-center"
-          variant={darkMode ? "secondary" : "dark"}
+          variant={darkMode ? "light" : "secondary"}
         >
           Edit Background Image
         </Button>

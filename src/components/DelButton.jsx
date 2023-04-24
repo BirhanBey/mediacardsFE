@@ -72,7 +72,13 @@ const DelButton = ({ linkId, userId, token, handleRerender }) => {
         </svg>
       </button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal 
+        show={showModal} 
+        onHide={handleCloseModal}
+        style={{
+          backdropFilter: "blur(2px)",
+        }}  
+      >
         <Modal.Header closeButton>
           <Modal.Title>Sure?</Modal.Title>
         </Modal.Header>

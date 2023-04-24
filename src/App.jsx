@@ -9,6 +9,7 @@ import "./components/darkmode/darkMode.scss";
 import UserSettings from "./components/userSettings/UserSettings";
 import { Row, Container, Col, Button, Offcanvas, Stack } from "react-bootstrap";
 import { FaYoutube, FaTwitter, FaFacebook } from "react-icons/fa";
+// import BackdropFilter from "react-backdrop-filter";
 // import { useNavigate } from "react-router-dom";
 
 function App() {
@@ -172,7 +173,7 @@ function App() {
         overflowX: "hidden",
       }}
     >
-      <div className={darkMode ? "dark-mode" : "light-mode"}>
+      <div className={darkMode ? "dark-mode h-100" : "light-mode"}>
         {!loggedIn ? (
           <NotLoggedIn
             handleLogin={handleLogin}
@@ -240,26 +241,47 @@ function App() {
               <Offcanvas
                 show={show}
                 onHide={handleClose}
-                className={darkMode ? "dark-mode" : "light-mode"}
+                className={darkMode ? "dark-mode rounded" : "light-mode rounded"}
                 style={{
-                  backgroundColor: darkMode ? "#212529" : "white",
+                  backdropFilter: "blur(5px)",
+                  backgroundColor: darkMode ? "rgba(255,210,255,0.2)" : "rgba(0,0,0,0.5)",
                   color: darkMode ? "white" : "black",
                   position: "absolute",
                 }}
               >
-                <Offcanvas.Header closeButton>
+                <Offcanvas.Header 
+                  closeButton
+                  style={{
+                    color: darkMode ? "black" : "white",
+                  }}
+                >
                   <Offcanvas.Title>Menu</Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
-                  <Stack gap={3}>
+                  <Stack className="h-100" gap={3}>
                     {loggedIn ? (
                       <>
-                        <Button
-                          variant={darkMode ? "secondary" : "dark"}
-                          onClick={handleLogout}
+                        <div
+                          className="d-flex justify-content-center"
+                          style={{ color: darkMode ? "white" : "white", fontSize: "1.4rem" }}
                         >
-                          Logout
-                        </Button>
+                          <p className="fw-bolder fst-italic text-center"> Welcome {userName} <br/> You can edit your page here</p>
+                        </div>
+
+                        <UserSettings
+                          userId={userId}
+                          token={token}
+                          handleUserImageChange={handleUserImageChange}
+                          handleBackgroundChange={handleBackgroundChange}
+                          setImageUrl={handleUserImageChange}
+                          handleRerender={handleRerender}
+                          setUserName={setUserName}
+                          setUserBio={setUserBio}
+                          userName={userName}
+                          userBio={userBio}
+                          darkMode={darkMode}
+                        />
+                        
                       </>
                     ) : (
                       <>
@@ -270,28 +292,18 @@ function App() {
                         <RegisterModal />
                       </>
                     )}
-                    <UserSettings
-                      userId={userId}
-                      token={token}
-                      handleUserImageChange={handleUserImageChange}
-                      handleBackgroundChange={handleBackgroundChange}
-                      setImageUrl={handleUserImageChange}
-                      handleRerender={handleRerender}
-                      setUserName={setUserName}
-                      setUserBio={setUserBio}
-                      userName={userName}
-                      userBio={userBio}
-                      darkMode={darkMode}
-                    />
-                    <span
-                      className="ms-2"
-                      style={{ color: darkMode ? "white" : "black" }}
-                    >
-                      Logged in as {userName}
-                    </span>
+                      <Button
+                        variant={darkMode ? "secondary" : "dark"}
+                        onClick={handleLogout}
+                        className="mt-auto mb-5"
+                      >
+                        Logout
+                      </Button>
+                    
                   </Stack>
                 </Offcanvas.Body>
               </Offcanvas>
+
             </Container>
             <Header
               userId={userId}
