@@ -35,9 +35,8 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
               <RegisterModal />
             </div>
             {/* //if user_id2 is different then loggedin user_id show only cards */}
-            {userId2 === userId ? (
-              <GuestCards userId2={userId2} userId={userId} />
-            ) : null}
+            {userId2 ? <GuestCards userId2={userId2} userId={userId} /> : null}
+
             {/* //if user_id2 is not exist show nothing */}
           </Stack>
           <div className="flex-grow-1"></div>
