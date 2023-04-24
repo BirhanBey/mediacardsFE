@@ -54,16 +54,19 @@ const EditButton = ({
   };
 
   const handleSave = () => {
+    const data = {
+      name: formValues.name,
+      link: formValues.url,
+      description: formValues.description,
+      isActive: formValues.isActive,
+    };
+    if (selectedColor) {
+      data.theme = selectedColor;
+    }
     axios
       .put(
         `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
-        {
-          name: formValues.name,
-          link: formValues.url,
-          description: formValues.description,
-          isActive: formValues.isActive,
-          theme: selectedColor,
-        },
+        data,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -74,6 +77,7 @@ const EditButton = ({
         console.log(response.data);
         handleCloseModal();
         handleRerender();
+        console.log("old color" + newColor);
       })
       .catch((error) => {
         console.log(error);
@@ -84,6 +88,7 @@ const EditButton = ({
         }
       });
   };
+
   return (
     <div className="ms-auto ">
       <button
