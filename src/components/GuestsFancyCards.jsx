@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Footer from "./Footer";
 
 // import "./darkmode/darkMode.scss";
 import { Container } from "react-bootstrap";
@@ -135,6 +136,7 @@ const FancyCards = ({
           </div>
         </div> */}
       </Container>
+      <Footer />
     </>
   );
 };
