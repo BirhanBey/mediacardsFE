@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
+import { Dropdown, DropdownButton, Button, Stack } from "react-bootstrap/";
 import ChangePasswordModal from "./ChangePasswordModal";
 import BackgroundSelector from "./BackgroundSelector";
 import ChangeInfo from "./ChangeInfo";
@@ -55,11 +54,39 @@ function UserSettings({
     setBackGroundModal(false);
   };
   return (
-    <div
-      className={darkMode ? "bg-secondary rounded" : "bg-dark rounded"}
-      style={{ margin: "0", padding: "0" }}
-    >
-      <DropdownButton
+    <div>
+      <Stack spacing={3} gap={3}>
+        <Button
+          onClick={handlePasswordClick}
+          className="text-center "
+          variant={darkMode ? "secondary" : "dark"}
+        >
+          Change Password
+        </Button>
+
+        <Button
+          onClick={handlePicClick}
+          className="text-center"
+          variant={darkMode ? "secondary" : "dark"}
+        >
+          Profile Picture
+        </Button>
+        <Button
+          onClick={handleInfoClick}
+          className="text-center"
+          variant={darkMode ? "secondary" : "dark"}
+        >
+          Edit Profile
+        </Button>
+        <Button
+          onClick={handleBackgroundClick}
+          className="text-center"
+          variant={darkMode ? "secondary" : "dark"}
+        >
+          Edit Background Image
+        </Button>
+      </Stack>
+      {/* <DropdownButton
         id="dropdown-button-dark-example2"
         title="Settings ⚙️"
         className="text-center"
@@ -70,12 +97,14 @@ function UserSettings({
         </Dropdown.Item>
         <Dropdown.Item onClick={handlePicClick}>Profile Picture</Dropdown.Item>
         <Dropdown.Item onClick={handleInfoClick}>Edit Profile</Dropdown.Item>
+
         <Dropdown.Item onClick={handleBackgroundClick}>
           Edit Background Image
         </Dropdown.Item>
         <Dropdown.Divider />
         <Dropdown.Item href="#/action-4">Log Out</Dropdown.Item>
-      </DropdownButton>
+      </DropdownButton> */}
+
       {showPasswordModal && (
         <ChangePasswordModal
           token={token}
