@@ -23,10 +23,18 @@ const FancyCards = ({
     setIsFlipped(!isFlipped);
   };
 
+  const handleMouseLeave = () => {
+    setIsFlipped(false);
+  };
+
   return (
     <>
       <Container className="d-flex justify-content-center">
-        <div className="flip-card" onClick={handleCardClick}>
+        <div
+          className="flip-card"
+          onClick={handleCardClick}
+          onMouseLeave={handleMouseLeave}
+        >
           <div
             className="flip-card-inner"
             style={{ transform: isFlipped ? "rotateY(180deg)" : "" }}
