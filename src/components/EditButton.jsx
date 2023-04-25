@@ -128,7 +128,7 @@ const EditButton = ({
               <Form.Label htmlFor="basic-url">Your account address:</Form.Label>
               <InputGroup className="mb-3">
                 <Form.Control
-                  placeholder="https://..."
+                  placeholder="Please remove 'www.'"
                   id="new-url"
                   name="url"
                   aria-describedby="new-addon3"

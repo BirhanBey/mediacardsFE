@@ -24,6 +24,7 @@ const AddButton = ({
 }) => {
   const [show, setShow] = useState(false);
   const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
   const [active, setActive] = useState(false);
   const [url, setUrl] = useState("");
   const [selectedColor, setSelectedColor] = useState("");
@@ -33,6 +34,7 @@ const AddButton = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleNameChange = (event) => setName(event.target.value);
+  const handleDescriptionChange = (event) => setDescription(event.target.value);
   const handleActiveChange = (event) => {
     if (event.target.checked) {
       setActive(true);
@@ -58,6 +60,7 @@ const AddButton = ({
           link: url,
           theme: selectedColor,
           icon: name.toLowerCase(),
+          description,
         },
         {
           headers: {
@@ -71,6 +74,7 @@ const AddButton = ({
       setActive(false);
       setUrl("");
       setSelectedColor("");
+      setDescription("");
 
       handleClose();
       handleRerender();
@@ -116,7 +120,7 @@ const AddButton = ({
                 </Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    placeholder="https://..."
+                    placeholder="Please remove 'www.'"
                     id="basic-url"
                     aria-describedby="basic-addon3"
                     onChange={handleUrlChange}
@@ -125,6 +129,18 @@ const AddButton = ({
                   />
                 </InputGroup>
               </Form.Group>
+
+              <Form.Group className="mb-3">
+              <Form.Label>Description:</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={3}
+                placeholder="Enter description..."
+                id="description"
+                name="description"
+                onChange={handleDescriptionChange}
+              />
+            </Form.Group>
 
               <Form.Group className="mb-3 d-flex ">
                 <Form.Label className="mt-2">
