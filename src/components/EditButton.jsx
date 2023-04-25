@@ -98,8 +98,8 @@ const EditButton = ({
         🖋️
       </button>
 
-      <Modal 
-        show={showModal} 
+      <Modal
+        show={showModal}
         onHide={handleCloseModal}
         style={{
           backdropFilter: "blur(2px)",
@@ -152,7 +152,9 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3 d-flex ">
-              <Form.Label className="mt-2 me-2">Select a fiting color to you card: </Form.Label>
+              <Form.Label className="mt-2 me-2">
+                Select a fiting color to you card:{" "}
+              </Form.Label>
               <Dropdown
                 className="color-switcher"
                 show={showDropdown}
@@ -170,15 +172,16 @@ const EditButton = ({
                       }}
                     ></div>
                   ) : (
-                    <div style={{ display: "inline-block", marginRight: "10px" }}>
+                    <div
+                      style={{ display: "inline-block", marginRight: "10px" }}
+                    >
                       Select a color
                     </div>
                   )}
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu
-                  style={{backgroundColor: "transparent", border: "none"}}
-
+                  style={{ backgroundColor: "transparent", border: "none" }}
                 >
                   {colors.map((color, index) => (
                     <ColorItem
@@ -187,8 +190,7 @@ const EditButton = ({
                       newColor={selectedColor}
                       setSelectedColor={setSelectedColor}
                       handleColorChange={handleColorChange}
-                      style={{backgroundColor: "transparent"}}
-
+                      style={{ backgroundColor: "transparent" }}
                     />
                   ))}
                 </Dropdown.Menu>
@@ -196,14 +198,24 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Check
+              <label class="lns-checkbox">
+                <input
+                  type="checkbox"
+                  id="active"
+                  name="isActive"
+                  checked={formValues.isActive}
+                  onChange={handleCheckboxChange}
+                />
+                <span>Active</span>
+              </label>
+              {/* <Form.Check
                 type="checkbox"
                 label="Active"
                 id="active"
                 name="isActive"
                 checked={formValues.isActive}
                 onChange={handleCheckboxChange}
-              />
+              /> */}
             </Form.Group>
           </Form>
           {errorMessage && (
@@ -217,7 +229,6 @@ const EditButton = ({
           <Button variant="secondary" type="submit" onClick={handleSave}>
             Save
           </Button>
-
         </Modal.Footer>
       </Modal>
     </div>

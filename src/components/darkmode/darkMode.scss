@@ -1,3 +1,10 @@
+:root {
+  --color-accent: #19ff70;
+  --color-text: white;
+  --color-bg: #181729;
+  --bstrap-primary: #0275d8
+}
+
 /* ----------- New Card V2 ------------------ */
 
 .flip-card {
@@ -88,9 +95,6 @@
 }
 
 /* ----------- Color Picker -------------- */
-:root {
-  --bg-color: pink;
-}
 
 .heading {
   font-size: 1.2rem;
@@ -413,3 +417,71 @@ input:checked + .slider:before {
 .navv{
   position: fixed;
 }
+
+/* ------------- Fancy Checkbox --------------  */
+
+.lns-checkbox {
+  display: inline-flex;
+  color: var(--color-text);
+  font-size: 1rem;
+  align-items: center;
+  line-height: 1;
+  border-radius: 5px;
+  background-color: #010101;
+  padding: 5px 7px 5px 7px;
+  user-select: none;
+
+  span {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+
+  input[type="checkbox"] {
+    position: absolute;
+    clip: rect(1px, 1px, 1px, 1px);
+    padding: 0;
+    border: 0;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+
+    &:checked + span::after {
+      background-color: var(--color-accent);
+    }
+
+    &:checked + span {
+      color: var(--color-accent);
+    }
+
+  
+
+  
+  }
+
+  span::before {
+    content: "";
+    display: inline-block;
+    border-radius: 3px;
+    background-color: #414051;
+    margin-right: 8px;
+    height: 16px;
+    width: 16px;
+    border: 1px solid transparent;
+  }
+
+  // input[type="checkbox"] {
+  // }
+
+  span::after {
+    content: "";
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    border-radius: 3px;
+    background-color: transparent;
+    left: 3px;
+    position: absolute;
+  }
+}
+

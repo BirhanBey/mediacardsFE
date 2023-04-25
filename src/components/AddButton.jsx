@@ -85,8 +85,8 @@ const AddButton = ({
         Add Link
       </Button>
       <Col className="text-center">
-        <Modal 
-          show={show} 
+        <Modal
+          show={show}
           onHide={handleClose}
           style={{
             backdropFilter: "blur(2px)",
@@ -111,7 +111,9 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Label htmlFor="basic-url">Your account address:</Form.Label>
+                <Form.Label htmlFor="basic-url">
+                  Your account address:
+                </Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
                     placeholder="https://..."
@@ -125,17 +127,19 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3 d-flex ">
-                <Form.Label className="mt-2">Select a fitting color for your card:</Form.Label>
+                <Form.Label className="mt-2">
+                  Select a fitting color for your card:
+                </Form.Label>
 
                 <Dropdown
                   className="color-switcher"
                   show={showDropdown}
                   onToggle={setShowDropdown}
                 >
-                  <Dropdown.Toggle 
-                    variant="secondary" 
+                  <Dropdown.Toggle
+                    variant="secondary"
                     id="color-dropdown"
-                    style={{ marginLeft: "15px"}}
+                    style={{ marginLeft: "15px" }}
                   >
                     {selectedColor ? (
                       <div
@@ -145,20 +149,18 @@ const AddButton = ({
                           backgroundColor: selectedColor,
                           display: "inline-block",
                           borderRadius: "20px",
-                          padding: "0"
+                          padding: "0",
                         }}
                       ></div>
                     ) : (
-                      <div
-                        style={{ display: "inline-block" }}
-                      >
+                      <div style={{ display: "inline-block" }}>
                         Select a color
                       </div>
                     )}
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu                    
-                    style={{backgroundColor: "transparent", border: "none"}}
+                  <Dropdown.Menu
+                    style={{ backgroundColor: "transparent", border: "none" }}
                   >
                     {colors.map((color, index) => (
                       <ColorItem
@@ -174,12 +176,20 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <Form.Check
+                <label class="lns-checkbox">
+                  <input
+                    type="checkbox"
+                    onChange={handleActiveChange}
+                    checked={active}
+                  />
+                  <span>Active</span>
+                </label>
+                {/* <Form.Check
                   type="checkbox"
                   label="Active"
                   onChange={handleActiveChange}
                   checked={active}
-                />
+                /> */}
               </Form.Group>
             </Form>
           </Modal.Body>
