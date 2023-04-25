@@ -151,42 +151,49 @@ const EditButton = ({
               />
             </Form.Group>
 
-            <Form.Label>Select a fiting color to you card </Form.Label>
-            <Dropdown
-              className="color-switcher"
-              show={showDropdown}
-              onToggle={setShowDropdown}
-            >
-              <Dropdown.Toggle variant="secondary" id="color-dropdown">
-                {selectedColor ? (
-                  <div
-                    style={{
-                      width: "130px",
-                      height: "2rem",
-                      backgroundColor: selectedColor,
-                      display: "inline-block",
-                      borderRadius: "20px",
-                    }}
-                  ></div>
-                ) : (
-                  <div style={{ display: "inline-block", marginRight: "10px" }}>
-                    Select a color
-                  </div>
-                )}
-              </Dropdown.Toggle>
+            <Form.Group className="mb-3 d-flex ">
+              <Form.Label className="mt-2 me-2">Select a fiting color to you card: </Form.Label>
+              <Dropdown
+                className="color-switcher"
+                show={showDropdown}
+                onToggle={setShowDropdown}
+              >
+                <Dropdown.Toggle variant="secondary" id="color-dropdown">
+                  {selectedColor ? (
+                    <div
+                      style={{
+                        width: "130px",
+                        height: "1.8rem",
+                        backgroundColor: selectedColor,
+                        display: "inline-block",
+                        borderRadius: "20px",
+                      }}
+                    ></div>
+                  ) : (
+                    <div style={{ display: "inline-block", marginRight: "10px" }}>
+                      Select a color
+                    </div>
+                  )}
+                </Dropdown.Toggle>
 
-              <Dropdown.Menu>
-                {colors.map((color, index) => (
-                  <ColorItem
-                    key={index}
-                    color={color}
-                    newColor={selectedColor}
-                    setSelectedColor={setSelectedColor}
-                    handleColorChange={handleColorChange}
-                  />
-                ))}
-              </Dropdown.Menu>
-            </Dropdown>
+                <Dropdown.Menu
+                  style={{backgroundColor: "transparent", border: "none"}}
+
+                >
+                  {colors.map((color, index) => (
+                    <ColorItem
+                      key={index}
+                      color={color}
+                      newColor={selectedColor}
+                      setSelectedColor={setSelectedColor}
+                      handleColorChange={handleColorChange}
+                      style={{backgroundColor: "transparent"}}
+
+                    />
+                  ))}
+                </Dropdown.Menu>
+              </Dropdown>
+            </Form.Group>
 
             <Form.Group className="mb-3">
               <Form.Check
@@ -207,12 +214,10 @@ const EditButton = ({
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="primary" type="submit" onClick={handleSave}>
+          <Button variant="secondary" type="submit" onClick={handleSave}>
             Save
           </Button>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Cancel
-          </Button>
+
         </Modal.Footer>
       </Modal>
     </div>

@@ -124,35 +124,42 @@ const AddButton = ({
                 </InputGroup>
               </Form.Group>
 
-              <Form.Group className="mb-3">
-                <Form.Label>Select a fitting color for your card:</Form.Label>
+              <Form.Group className="mb-3 d-flex ">
+                <Form.Label className="mt-2">Select a fitting color for your card:</Form.Label>
 
                 <Dropdown
                   className="color-switcher"
                   show={showDropdown}
                   onToggle={setShowDropdown}
                 >
-                  <Dropdown.Toggle variant="secondary" id="color-dropdown">
+                  <Dropdown.Toggle 
+                    variant="secondary" 
+                    id="color-dropdown"
+                    style={{ marginLeft: "15px"}}
+                  >
                     {selectedColor ? (
                       <div
                         style={{
                           width: "130px",
-                          height: "2rem",
+                          height: "1.8rem",
                           backgroundColor: selectedColor,
                           display: "inline-block",
                           borderRadius: "20px",
+                          padding: "0"
                         }}
                       ></div>
                     ) : (
                       <div
-                        style={{ display: "inline-block", marginRight: "10px" }}
+                        style={{ display: "inline-block" }}
                       >
                         Select a color
                       </div>
                     )}
                   </Dropdown.Toggle>
 
-                  <Dropdown.Menu>
+                  <Dropdown.Menu                    
+                    style={{backgroundColor: "transparent", border: "none"}}
+                  >
                     {colors.map((color, index) => (
                       <ColorItem
                         key={index}

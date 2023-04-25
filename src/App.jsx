@@ -223,7 +223,7 @@ function App() {
                   onClick={handleShow}
                   id="hamburger"
                   style={{
-                    backgroundColor: darkMode ? "#212529" : "transparent",
+                    backgroundColor: darkMode ? "#212529" : "rgba(255,210,255,0.18)",
                     color: darkMode ? "white" : "black",
                   }}
                 >
@@ -241,7 +241,7 @@ function App() {
               <Offcanvas
                 show={show}
                 onHide={handleClose}
-                className={darkMode ? "dark-mode rounded" : "light-mode rounded"}
+                className={darkMode ? "dark-mode rounded-end" : "light-mode rounded-end"}
                 style={{
                   backdropFilter: "blur(5px)",
                   backgroundColor: darkMode ? "rgba(255,210,255,0.2)" : "rgba(0,0,0,0.5)",
@@ -251,7 +251,10 @@ function App() {
               >
                 <Offcanvas.Header 
                   closeButton
+                  className="rounded-bottom"
                   style={{
+                    backdropFilter: "blur(2px)",
+                    backgroundColor: darkMode ? "rgba(0,0,0,0.5)" : "rgba(255,210,255,0.18)",
                     color: darkMode ? "black" : "white",
                   }}
                 >
