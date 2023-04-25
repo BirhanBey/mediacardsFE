@@ -27,7 +27,7 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
           ) : null}
         </Container>
       </Navbar>
-      <Container id="landing-container">
+      <Container id="landing-container" style={{ height: "10rem"}} >
         <Stack className="align-items-center">
           <div className="flex-grow-1"></div>
           {userId2 ? (
@@ -35,9 +35,9 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
           ) : (
             <Stack direction="row" className="align-items-center">
               {loggedOut ? (
-                <h1 id="welcome">See you soon! </h1>
+                <h1 style={{paddingTop: "300px"}} id="welcome">See you soon! </h1>
               ) : (
-                <h1 id="welcome">Welcome!</h1>
+                <h1 style={{paddingTop: "300px"}} id="welcome">Welcome!</h1>
               )}
               <div style={{ margin: "20px 0" }}>
                 <LoginButton handleLogin={handleLogin} setToken={setToken} />

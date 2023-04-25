@@ -36,10 +36,11 @@ function App() {
     "#2d3436",
     "#be2edd",
     "#f9ca24",
-    "#6ab04c",
+    "#00D856",
     "#3b579d",
-    "#1da0f1",
+    "#0274B3",
     "#ff0000",
+    "#F97637",
   ];
   useEffect(() => {
     const currentColor = localStorage.getItem("color");
