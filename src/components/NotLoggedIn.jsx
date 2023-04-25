@@ -17,7 +17,7 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
       >
         <Container>
           <Navbar.Brand href="#home" className="fs-3">
-            OhMyCard!
+          <img style={{maxWidth: "400px", marginLeft: "-30px", marginRight: "-30px"}} src="../public/ohMyCard.png" alt="Page Name"/>
           </Navbar.Brand>
           {userId2 ? (
             <div>

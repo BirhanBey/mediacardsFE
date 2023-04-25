@@ -267,7 +267,9 @@ function App() {
                     color: darkMode ? "black" : "white",
                   }}
                 >
-                  <Offcanvas.Title>Menu</Offcanvas.Title>
+                  <Offcanvas.Title>
+                    <img style={{maxWidth: "400px", marginLeft: "-30px", marginRight: "-30px"}} src="../public/ohMyCard.png" alt="Page Name"/>
+                  </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                   <Stack className="h-100" gap={3}>
@@ -314,6 +316,7 @@ function App() {
                       variant={darkMode ? "secondary" : "dark"}
                       onClick={handleLogout}
                       className="mt-auto mb-5"
+                      style={{border: darkMode ? "1px solid white" : "1px solid grey"}}
                     >
                       Logout
                     </Button>
