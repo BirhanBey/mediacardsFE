@@ -212,7 +212,7 @@ function App() {
               fluid
               className="d-flex justify-content-between align-items-center"
             >
-              <div className="menu">
+              <div className="menu mt-2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="50"
@@ -223,7 +223,9 @@ function App() {
                   onClick={handleShow}
                   id="hamburger"
                   style={{
-                    backgroundColor: darkMode ? "#212529" : "rgba(255,210,255,0.18)",
+                    backgroundColor: darkMode
+                      ? "#212529"
+                      : "rgba(255,210,255,0.18)",
                     color: darkMode ? "white" : "black",
                   }}
                 >
@@ -241,20 +243,26 @@ function App() {
               <Offcanvas
                 show={show}
                 onHide={handleClose}
-                className={darkMode ? "dark-mode rounded-end" : "light-mode rounded-end"}
+                className={
+                  darkMode ? "dark-mode rounded-end" : "light-mode rounded-end"
+                }
                 style={{
                   backdropFilter: "blur(5px)",
-                  backgroundColor: darkMode ? "rgba(255,210,255,0.2)" : "rgba(0,0,0,0.5)",
+                  backgroundColor: darkMode
+                    ? "rgba(255,210,255,0.2)"
+                    : "rgba(0,0,0,0.5)",
                   color: darkMode ? "white" : "black",
                   position: "absolute",
                 }}
               >
-                <Offcanvas.Header 
+                <Offcanvas.Header
                   closeButton
                   className="rounded-bottom"
                   style={{
                     backdropFilter: "blur(2px)",
-                    backgroundColor: darkMode ? "rgba(0,0,0,0.5)" : "rgba(255,210,255,0.18)",
+                    backgroundColor: darkMode
+                      ? "rgba(0,0,0,0.5)"
+                      : "rgba(255,210,255,0.18)",
                     color: darkMode ? "black" : "white",
                   }}
                 >
@@ -266,9 +274,16 @@ function App() {
                       <>
                         <div
                           className="d-flex justify-content-center"
-                          style={{ color: darkMode ? "white" : "white", fontSize: "1.4rem" }}
+                          style={{
+                            color: darkMode ? "white" : "white",
+                            fontSize: "1.4rem",
+                          }}
                         >
-                          <p className="fw-bolder fst-italic text-center"> Welcome {userName} <br/> You can edit your page here</p>
+                          <p className="fw-bolder fst-italic text-center">
+                            {" "}
+                            Welcome {userName} <br /> You can edit your page
+                            here
+                          </p>
                         </div>
 
                         <UserSettings
@@ -284,7 +299,6 @@ function App() {
                           userBio={userBio}
                           darkMode={darkMode}
                         />
-                        
                       </>
                     ) : (
                       <>
@@ -295,18 +309,16 @@ function App() {
                         <RegisterModal />
                       </>
                     )}
-                      <Button
-                        variant={darkMode ? "secondary" : "dark"}
-                        onClick={handleLogout}
-                        className="mt-auto mb-5"
-                      >
-                        Logout
-                      </Button>
-                    
+                    <Button
+                      variant={darkMode ? "secondary" : "dark"}
+                      onClick={handleLogout}
+                      className="mt-auto mb-5"
+                    >
+                      Logout
+                    </Button>
                   </Stack>
                 </Offcanvas.Body>
               </Offcanvas>
-
             </Container>
             <Header
               userId={userId}
