@@ -52,7 +52,10 @@ const FancyCards = ({
 
   return (
     <>
-      <Container className="d-flex justify-content-center">
+      <Container 
+        className="d-flex justify-content-center"
+        style={{maxWidth: "500px"}}
+      >
         <div
           className="flip-card"
           onClick={handleCardClick}
