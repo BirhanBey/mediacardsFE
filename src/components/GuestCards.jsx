@@ -34,42 +34,43 @@ const GuestCards = ({
   }, [userId2, rerender]); // add rerender to the dependency array of useEffect
 
   return (
-    <div>
+    <>
       <Header2 userId2={userId2} userName2={userName2} userBio2={userBio2} />
       <Container>
         <Row
-          xs={1}
-          md={2}
-          lg={3}
-          xl={3}
-          xxl={4}
-          gap={1}
+          // xs={1}
+          // md={2}
+          // lg={3}
+          // xl={3}
+          // xxl={4}
+          // gap={1}
           className="d-flex justify-content-center"
         >
-          {showGuestCards.map((link, index) => {
-            return (
-              <Col key={index} className="mb-3">
-                <GuestsFancyCards
-                  id="card-container"
-                  link={link}
-                  index={index}
-                  userId2={userId2}
-                  linkId={link.id}
-                  name={link.name}
-                  description={link.description}
-                  url={link.link}
-                  token={token}
-                  handleRerender={handleRerender}
-                  selectedIcon={selectedIcon}
-                  theme={link.theme}
-                  icon={link.icon}
-                />
-              </Col>
-            );
-          })}
+          <div id="card-grid">
+            {showGuestCards.map((link, index) => {
+              return (
+                <Col key={index} className="mb-3">
+                  <GuestsFancyCards
+                    link={link}
+                    index={index}
+                    userId2={userId2}
+                    linkId={link.id}
+                    name={link.name}
+                    description={link.description}
+                    url={link.link}
+                    token={token}
+                    handleRerender={handleRerender}
+                    selectedIcon={selectedIcon}
+                    theme={link.theme}
+                    icon={link.icon}
+                  />
+                </Col>
+              );
+            })}
+          </div>
         </Row>
       </Container>
-    </div>
+    </>
   );
 };
 
