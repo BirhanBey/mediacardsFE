@@ -36,7 +36,7 @@ const Header2 = ({
 
   return (
     <div className="header-container">
-      <Container className="text-center">
+      <Container className="text-center mt-3">
         <Row className="justify-content-center">
           <Col sm="auto">
             {userImage && (
