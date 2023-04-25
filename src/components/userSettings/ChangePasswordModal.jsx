@@ -99,7 +99,7 @@ function ChangePasswordModal({ userId, token, handleClose }) {
               Save Changes
             </Button>
           </Form>
-          {/* <div>{feedback}</div> */}
+          <div>{feedback}</div>
         </Modal.Body>
         <Modal.Footer>
 

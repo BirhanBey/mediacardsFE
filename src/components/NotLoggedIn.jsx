@@ -8,10 +8,10 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
   return (
     <div>
       <Navbar
+        className="sticky-top absolute"
         bg="dark"
         variant="dark"
         style={{
-          position: "-webkit-sticky",
           top: 0,
         }}
       >
