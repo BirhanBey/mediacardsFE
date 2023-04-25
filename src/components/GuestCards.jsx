@@ -47,26 +47,28 @@ const GuestCards = ({
           className="d-flex justify-content-center"
         >
           <div id="card-grid">
-            {showGuestCards.map((link, index) => {
-              return (
-                <Col key={index} className="mb-3">
-                  <GuestsFancyCards
-                    link={link}
-                    index={index}
-                    userId2={userId2}
-                    linkId={link.id}
-                    name={link.name}
-                    description={link.description}
-                    url={link.link}
-                    token={token}
-                    handleRerender={handleRerender}
-                    selectedIcon={selectedIcon}
-                    theme={link.theme}
-                    icon={link.icon}
-                  />
-                </Col>
-              );
-            })}
+            {showGuestCards
+              .filter((card) => card.isActive === 1)
+              .map((link, index) => {
+                return (
+                  <Col key={index} className="mb-3">
+                    <GuestsFancyCards
+                      link={link}
+                      index={index}
+                      userId2={userId2}
+                      linkId={link.id}
+                      name={link.name}
+                      description={link.description}
+                      url={link.link}
+                      token={token}
+                      handleRerender={handleRerender}
+                      selectedIcon={selectedIcon}
+                      theme={link.theme}
+                      icon={link.icon}
+                    />
+                  </Col>
+                );
+              })}
           </div>
         </Row>
       </Container>
