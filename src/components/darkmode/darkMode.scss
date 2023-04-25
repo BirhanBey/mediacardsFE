@@ -286,6 +286,11 @@
   align-items: center;
 }
 
+#hamburger{
+  position: relative;
+  z-index: 1;
+}
+
 #hamburger:hover {
   transition: 0.2s;
   transform: scale(1.2);
