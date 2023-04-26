@@ -30,6 +30,7 @@ const AddButton = ({
   const [selectedColor, setSelectedColor] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
   const [selectedColorStyle, setSelectedColorStyle] = useState({});
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -54,7 +55,21 @@ const AddButton = ({
       setActive(false);
     }
   };
-  const handleUrlChange = (event) => setUrl(event.target.value);
+  const [showUrlModified, setShowUrlModified] = useState(false);
+
+  const handleUrlChange = (event) => {
+    const urlValue = event.target.value;
+    const pattern = /^https?:\/\//i;
+    const startsWithHttp = pattern.test(urlValue);
+    if (urlValue !== "" && !startsWithHttp) {
+      setUrl("https://www." + urlValue);
+      setShowUrlModified(true);
+    } else {
+      setUrl(urlValue);
+      setShowUrlModified(false);
+    }
+  };
+
   const handleColorChange = (kleur) => {
     setSelectedColor(kleur);
     setShowDropdown(false);
@@ -91,8 +106,11 @@ const AddButton = ({
       handleClose();
       handleRerender();
     } catch (error) {
-      console.log("cnewcolor" + newColor);
-      console.error(error);
+      if (error.response && error.response.status === 400) {
+        setErrorMessage("Name does not match with the domain.");
+      } else {
+        setErrorMessage("An error occurred. Please try again later.");
+      }
     }
   };
   return (
@@ -132,7 +150,7 @@ const AddButton = ({
                 </Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    placeholder="Please remove 'www.'"
+                    placeholder="Enter url..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
                     onChange={handleUrlChange}
@@ -146,8 +164,10 @@ const AddButton = ({
                 <Form.Label>Description:</Form.Label>
                 <Form.Control
                   as="textarea"
+
                   rows={2}
                   maxLength={40}
+
                   placeholder="Enter description..."
                   id="description"
                   name="description"
@@ -205,7 +225,7 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <label class="lns-checkbox">
+                <label className="lns-checkbox">
                   <input
                     type="checkbox"
                     onChange={handleActiveChange}
@@ -221,6 +241,11 @@ const AddButton = ({
                 /> */}
               </Form.Group>
             </Form>
+            {errorMessage && (
+              <div className="alert alert-danger" role="alert">
+                {errorMessage}
+              </div>
+            )}
           </Modal.Body>
           <Modal.Footer>
             <Button variant="dark" onClick={handleSave}>

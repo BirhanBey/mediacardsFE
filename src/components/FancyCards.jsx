@@ -33,14 +33,15 @@ const FancyCards = ({
   colors,
   setColor,
   newColor,
+  isActive,
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
   const [isFlipped, setIsFlipped] = useState(false);
 
-  const handleIconClick = (icon) => {
-    setCardIcon(icon);
-    onIconChange(index, icon);
-  };
+  // const handleIconClick = (icon) => {
+  //   setCardIcon(icon);
+  //   onIconChange(index, icon);
+  // };
 
   const handleCardClick = () => {
     setIsFlipped(!isFlipped);
@@ -68,7 +69,7 @@ const FancyCards = ({
             <div className="flip-card-front">
               <div
                 className="icon rounded"
-                onClick={() => handleIconClick(cardIcon)}
+                // onClick={() => handleIconClick(cardIcon)}
                 style={{
                   backgroundColor: `${theme}`,
                 }}
@@ -147,6 +148,7 @@ const FancyCards = ({
                       colors={colors}
                       setColor={setColor}
                       newColor={newColor}
+                      isActive
                     />
                   </div>
 

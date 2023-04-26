@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, InputGroup, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import ColorItem from "./ColorItem";
@@ -21,7 +21,7 @@ const EditButton = ({
   const [selectedColor, setSelectedColor] = useState(newColor || "");
   const [formValues, setFormValues] = useState({
     name: name,
-    url: url ? url.replace(/^https?:\/\//, "") : "",
+    url: url,
     description: description,
     isActive: isActive,
   });
@@ -33,6 +33,29 @@ const EditButton = ({
     setShowModal(false);
     setErrorMessage("");
   };
+  useEffect(() => {
+    setFormValues({
+      name: name,
+      url: url,
+      description: description,
+      isActive: isActive,
+    });
+  }, [isActive, name, url, description]);
+
+  function handleUrlChange(e) {
+    const value = e.target.value.trim();
+    let formattedUrl = value;
+
+    // Check if the URL already contains "http://" or "https://"
+    if (!value.includes("http://") && !value.includes("https://")) {
+      formattedUrl = "https://" + value;
+    }
+
+    setFormValues({
+      ...formValues,
+      url: formattedUrl,
+    });
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -124,6 +147,12 @@ const EditButton = ({
                 type="text"
                 value={formValues.name}
                 onChange={handleInputChange}
+                readOnly // added readOnly attribute
+                style={{
+                  backgroundColor: "#e9ecef",
+                  color: "#6c757d",
+                  cursor: "not-allowed",
+                }} // added style to indicate that the field is not editable
               />
             </Form.Group>
 
@@ -144,13 +173,14 @@ const EditButton = ({
             <Form.Group className="mb-3">
               <Form.Label>Description:</Form.Label>
               <Form.Control
-                as="textarea"
+                // as="textarea"
                 rows={3}
                 placeholder="Enter description..."
                 id="description"
                 name="description"
                 value={formValues.description}
                 onChange={handleInputChange}
+                style={{ height: "100px" }}
               />
             </Form.Group>
 
@@ -201,24 +231,14 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <label class="lns-checkbox">
-                <input
-                  type="checkbox"
-                  id="active"
-                  name="isActive"
-                  checked={formValues.isActive}
-                  onChange={handleCheckboxChange}
-                />
-                <span>Active</span>
-              </label>
-              {/* <Form.Check
+              <Form.Check
                 type="checkbox"
-                label="Active"
-                id="active"
+                id="isActive"
                 name="isActive"
+                label="Active"
                 checked={formValues.isActive}
                 onChange={handleCheckboxChange}
-              /> */}
+              />
             </Form.Group>
           </Form>
           {errorMessage && (
