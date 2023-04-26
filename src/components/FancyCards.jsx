@@ -100,21 +100,42 @@ const FancyCards = ({
                 )}
               </div>
             </div>
-            <div className="flip-card-back">
+            <div
+              className="flip-card-back"
+              style={{ backgroundColor: darkMode ? "black" : "white" }}
+            >
+              <div className="icon-back">
+                <i className={`fa fa-${icon}`} aria-hidden="true"></i>
+              </div>
               <div
                 className="content w-100"
                 style={{
                   color: darkMode ? "#ff0000" : "black",
                 }}
               >
-                <h5 className="mt-3">{link.name}</h5>
-                {link.description || "No description available."}
-                <br />
+                <h5
+                  className="mt-4"
+                  // style={{
+                  //   color: darkMode ? "#ff0000" : "black",
+                  // }}
+                >
+                  {link.name}
+                </h5>
+
+                <div className="description" style={{ fontStyle: "italic" }}>
+                  {link.description
+                    ? link.description.slice(0, 20) +
+                      (link.description.length > 20
+                        ? "\n" + link.description.slice(20, 40)
+                        : "")
+                    : "No description available."}
+                </div>
+
                 <a href={link.link} target="_blank">
                   Go to {link.name}
                 </a>
 
-                <div className="mt-5" id="card-buttons">
+                <div className="mt-2" id="card-buttons">
                   <div id="edit-button">
                     <EditButton
                       userId={userId}

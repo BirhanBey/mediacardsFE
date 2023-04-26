@@ -35,7 +35,19 @@ const AddButton = ({
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const handleNameChange = (event) => setName(event.target.value);
-  const handleDescriptionChange = (event) => setDescription(event.target.value);
+  // const handleDescriptionChange = (event) => setDescription(event.target.value);
+  const handleDescriptionChange = (event) => {
+    const inputValue = event.target.value;
+    const firstLine = inputValue.slice(0, 20);
+    const secondLine = inputValue.slice(20, 40);
+
+    // Do something with the two lines of input
+    console.log("First line:", firstLine);
+    console.log("Second line:", secondLine);
+
+    setDescription(inputValue);
+  };
+
   const handleActiveChange = (event) => {
     if (event.target.checked) {
       setActive(true);
@@ -152,7 +164,10 @@ const AddButton = ({
                 <Form.Label>Description:</Form.Label>
                 <Form.Control
                   as="textarea"
-                  rows={3}
+
+                  rows={2}
+                  maxLength={40}
+
                   placeholder="Enter description..."
                   id="description"
                   name="description"
