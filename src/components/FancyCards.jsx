@@ -148,7 +148,7 @@ const FancyCards = ({
                       colors={colors}
                       setColor={setColor}
                       newColor={newColor}
-                      isActive
+                      isActive={isActive}
                     />
                   </div>
 
