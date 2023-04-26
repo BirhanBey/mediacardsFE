@@ -19,7 +19,7 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
         }}
       >
         <Container className="d-flex w-100">
-          <Navbar.Brand href="#home">
+          <Navbar.Brand href="#home" style={{ marginTop: "-4px"}}>
           <img style={{ maxWidth: "140px"}} src="../public/logo2.png" alt="Page Name"/>
           </Navbar.Brand>
           {userId2 ? (

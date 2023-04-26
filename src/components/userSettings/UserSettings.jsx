@@ -62,7 +62,7 @@ function UserSettings({
           onClick={handleInfoClick}
           className="text-center"
           variant={darkMode ? "light" : "secondary"}
-          style={{border: darkMode ? "1px solid black" : "2px solid orangered"}}
+          // style={{border: darkMode ? "1px solid black" : "2px solid orangered"}}
         >
           Edit Profile
         </Button>
@@ -70,7 +70,7 @@ function UserSettings({
           onClick={handlePicClick}
           className="text-center"
           variant={darkMode ? "light" : "secondary"}
-          style={{border: darkMode ? "1px solid white" : "1px solid yellow"}}
+          // style={{border: darkMode ? "1px solid white" : "1px solid yellow"}}
         >
           Profile Picture
         </Button>
@@ -78,7 +78,7 @@ function UserSettings({
           onClick={handlePasswordClick}
           className="text-center "
           variant={darkMode ? "light" : "secondary"}
-          style={{border: darkMode ? "1px solid white" : "2px solid green"}}
+          // style={{border: darkMode ? "1px solid white" : "2px solid green"}}
         >
           Change Password
         </Button>
@@ -87,7 +87,7 @@ function UserSettings({
           onClick={handleBackgroundClick}
           className="text-center"
           variant={darkMode ? "light" : "secondary"}
-          style={{border: darkMode ? "1px solid black" : "1px solid #7F7FFF"}}
+          // style={{border: darkMode ? "1px solid black" : "1px solid #7F7FFF"}}
         >
           Edit Background Image
         </Button>
