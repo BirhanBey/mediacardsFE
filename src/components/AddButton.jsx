@@ -138,7 +138,7 @@ const AddButton = ({
                 </Form.Label>
                 <InputGroup className="mb-3">
                   <Form.Control
-                    placeholder="Enter url"
+                    placeholder="Enter url..."
                     id="basic-url"
                     aria-describedby="basic-addon3"
                     onChange={handleUrlChange}
