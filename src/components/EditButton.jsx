@@ -51,7 +51,8 @@ const EditButton = ({
 
   const handleColorChange = (color) => {
     setSelectedColor(color);
-  };
+    setShowDropdown(false);
+};
 
   const handleSave = () => {
     const data = {
