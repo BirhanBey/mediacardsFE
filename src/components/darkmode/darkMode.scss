@@ -9,7 +9,7 @@
 
 .flip-card {
   background-color: transparent;
-  width: 100%;
+  width: 320px;
   height: 200px;
   perspective: 1000px;
 }
@@ -148,10 +148,9 @@ a {
 
 #card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(calc(33.33% - 1rem), 1fr));
   gap: 1rem;
 }
-
 
 
 /* ----------- Color Picker -------------- */
