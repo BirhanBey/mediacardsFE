@@ -56,7 +56,14 @@ const EditButton = ({
       url: formattedUrl,
     });
   }
-
+  useEffect(() => {
+    setFormValues({
+      name: name,
+      url: url,
+      description: description,
+      isActive: isActive,
+    });
+  }, [isActive, name, url, description]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues({
