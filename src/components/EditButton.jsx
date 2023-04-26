@@ -20,7 +20,7 @@ const EditButton = ({
   const [selectedColor, setSelectedColor] = useState(newColor || "");
   const [formValues, setFormValues] = useState({
     name: name,
-    url: url ? url.replace(/^https?:\/\//, "") : "",
+    url: url,
     description: description,
     isActive: isActive,
   });
@@ -32,6 +32,21 @@ const EditButton = ({
     setShowModal(false);
     setErrorMessage("");
   };
+
+  function handleUrlChange(e) {
+    const value = e.target.value.trim();
+    let formattedUrl = value;
+
+    // Check if the URL already contains "http://" or "https://"
+    if (!value.includes("http://") && !value.includes("https://")) {
+      formattedUrl = "https://" + value;
+    }
+
+    setFormValues({
+      ...formValues,
+      url: formattedUrl,
+    });
+  }
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -52,7 +67,7 @@ const EditButton = ({
   const handleColorChange = (color) => {
     setSelectedColor(color);
     setShowDropdown(false);
-};
+  };
 
   const handleSave = () => {
     const data = {
@@ -122,6 +137,12 @@ const EditButton = ({
                 type="text"
                 value={formValues.name}
                 onChange={handleInputChange}
+                readOnly // added readOnly attribute
+                style={{
+                  backgroundColor: "#e9ecef",
+                  color: "#6c757d",
+                  cursor: "not-allowed",
+                }} // added style to indicate that the field is not editable
               />
             </Form.Group>
 
@@ -149,7 +170,7 @@ const EditButton = ({
                 name="description"
                 value={formValues.description}
                 onChange={handleInputChange}
-                style={{ height: "100px"}}
+                style={{ height: "100px" }}
               />
             </Form.Group>
 
