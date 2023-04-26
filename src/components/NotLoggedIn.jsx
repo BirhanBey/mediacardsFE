@@ -6,11 +6,8 @@ import GuestCards from "./GuestCards";
 
 const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
   return (
-    <div
-
-
-      >
-        <Navbar 
+    <div>
+      <Navbar
         className="sticky-top absolute"
         bg="dark"
         variant="dark"
@@ -19,18 +16,26 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
         }}
       >
         <Container className="d-flex w-100">
-          <Navbar.Brand href="#home" style={{ marginTop: "-4px"}}>
-          <img style={{ maxWidth: "140px"}} src="../public/logo2.png" alt="Page Name"/>
+          <Navbar.Brand href="#home" style={{ marginTop: "-4px" }}>
+            <img
+              style={{ maxWidth: "140px" }}
+              src="./logo2.png"
+              alt="Page Name"
+            />
           </Navbar.Brand>
           {userId2 ? (
             <div className="ms-auto">
-              <LoginButton className="ms-auto" handleLogin={handleLogin} setToken={setToken} />
+              <LoginButton
+                className="ms-auto"
+                handleLogin={handleLogin}
+                setToken={setToken}
+              />
               <RegisterModal />
             </div>
           ) : null}
         </Container>
       </Navbar>
-      <Container id="landing-container" style={{ height: "10rem"}} >
+      <Container id="landing-container" style={{ height: "10rem" }}>
         <Stack className="align-items-center">
           <div className="flex-grow-1"></div>
           {userId2 ? (
@@ -38,11 +43,15 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
           ) : (
             <Stack direction="row" className="align-items-center">
               {loggedOut ? (
-                <h1 style={{paddingTop: "300px"}} id="welcome">See you soon! </h1>
+                <h1 style={{ paddingTop: "300px" }} id="welcome">
+                  See you soon!{" "}
+                </h1>
               ) : (
-                <h1 style={{paddingTop: "300px"}} id="welcome">Welcome!</h1>
+                <h1 style={{ paddingTop: "300px" }} id="welcome">
+                  Welcome!
+                </h1>
               )}
-              <div >
+              <div>
                 <LoginButton handleLogin={handleLogin} setToken={setToken} />
                 <RegisterModal />
               </div>

@@ -283,7 +283,9 @@ function App() {
                         marginLeft: "30px",
                         marginRight: "-30px",
                       }}
-                      src="../public/Offcanvas.png"
+
+                      src="./Offcanvas.png"
+
                       alt="Page Name"
                     />
                   </Offcanvas.Title>
