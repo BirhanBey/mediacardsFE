@@ -6,8 +6,11 @@ import GuestCards from "./GuestCards";
 
 const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
   return (
-    <div>
-      <Navbar
+    <div
+
+
+      >
+        <Navbar 
         className="sticky-top absolute"
         bg="dark"
         variant="dark"
@@ -15,13 +18,13 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
           top: 0,
         }}
       >
-        <Container>
-          <Navbar.Brand href="#home" className="fs-3">
-          <img style={{maxWidth: "400px", marginLeft: "-30px", marginRight: "-30px"}} src="../public/ohMyCard.png" alt="Page Name"/>
+        <Container className="d-flex w-100">
+          <Navbar.Brand href="#home">
+          <img style={{ maxWidth: "140px"}} src="../public/logo2.png" alt="Page Name"/>
           </Navbar.Brand>
           {userId2 ? (
-            <div>
-              <LoginButton handleLogin={handleLogin} setToken={setToken} />
+            <div className="ms-auto">
+              <LoginButton className="ms-auto" handleLogin={handleLogin} setToken={setToken} />
               <RegisterModal />
             </div>
           ) : null}
@@ -39,7 +42,7 @@ const NotLoggedIn = ({ handleLogin, setToken, loggedOut, userId2, userId }) => {
               ) : (
                 <h1 style={{paddingTop: "300px"}} id="welcome">Welcome!</h1>
               )}
-              <div style={{ margin: "20px 0" }}>
+              <div >
                 <LoginButton handleLogin={handleLogin} setToken={setToken} />
                 <RegisterModal />
               </div>
