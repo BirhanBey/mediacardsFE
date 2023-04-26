@@ -33,6 +33,7 @@ const FancyCards = ({
   colors,
   setColor,
   newColor,
+  isActive,
 }) => {
   const [cardIcon, setCardIcon] = useState(selectedIcon);
   const [isFlipped, setIsFlipped] = useState(false);
@@ -126,6 +127,7 @@ const FancyCards = ({
                       colors={colors}
                       setColor={setColor}
                       newColor={newColor}
+                      isActive
                     />
                   </div>
 

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Modal, Button, Form, InputGroup, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import ColorItem from "./ColorItem";
@@ -47,7 +47,14 @@ const EditButton = ({
       url: formattedUrl,
     });
   }
-
+  useEffect(() => {
+    setFormValues({
+      name: name,
+      url: url,
+      description: description,
+      isActive: isActive,
+    });
+  }, [isActive, name, url, description]);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormValues({
@@ -221,24 +228,14 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <label className="lns-checkbox">
-                <input
-                  type="checkbox"
-                  id="active"
-                  name="isActive"
-                  checked={formValues.isActive}
-                  onChange={handleCheckboxChange}
-                />
-                <span>Active</span>
-              </label>
-              {/* <Form.Check
+              <Form.Check
                 type="checkbox"
-                label="Active"
-                id="active"
+                id="isActive"
                 name="isActive"
+                label="Active"
                 checked={formValues.isActive}
                 onChange={handleCheckboxChange}
-              /> */}
+              />
             </Form.Group>
           </Form>
           {errorMessage && (
