@@ -78,6 +78,7 @@ const ListArea = ({
                   colors={colors}
                   setColor={setColor}
                   newColor={newColor}
+                  isActive={link.isActive}
                 />
               </Col>
             );
