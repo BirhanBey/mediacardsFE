@@ -163,6 +163,15 @@ function App() {
     setRerender(rerender + 1);
   }, [userName, userBio]);
 
+  useEffect(() => {
+    document.body.classList.add("default-background");
+
+    // Remove the class when the component unmounts
+    return () => {
+      document.body.classList.remove("default-background");
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -274,7 +283,9 @@ function App() {
                         marginLeft: "30px",
                         marginRight: "-30px",
                       }}
+
                       src="./Offcanvas.png"
+
                       alt="Page Name"
                     />
                   </Offcanvas.Title>
