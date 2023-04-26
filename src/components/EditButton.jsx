@@ -23,7 +23,7 @@ const EditButton = ({
     name: name,
     url: url,
     description: description,
-    isActive: isActive,
+    isActive,
   });
   const [errorMessage, setErrorMessage] = useState("");
   const [showDropdown, setShowDropdown] = useState(false);
