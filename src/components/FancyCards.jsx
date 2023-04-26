@@ -55,7 +55,7 @@ const FancyCards = ({
     <>
       <Container
         className="d-flex justify-content-center"
-        style={{ maxWidth: "500px" }}
+        style={{ maxWidth: "500px",minWidth:"400px" }}
       >
         <div
           className="flip-card"
