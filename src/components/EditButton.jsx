@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button, Form, InputGroup, Dropdown } from "react-bootstrap";
 import axios from "axios";
 import ColorItem from "./ColorItem";
+import { BsPencilFill } from "react-icons/bs";
 
 const EditButton = ({
   userId,
@@ -52,7 +53,7 @@ const EditButton = ({
   const handleColorChange = (color) => {
     setSelectedColor(color);
     setShowDropdown(false);
-};
+  };
 
   const handleSave = () => {
     const data = {
@@ -93,10 +94,11 @@ const EditButton = ({
   return (
     <div className="ms-auto ">
       <button
-        className="btn btn-danger ms-auto me-1 mt-1 rounded"
+        id="edit-button"
+        className="btn  ms-auto"
         onClick={handleShowModal}
       >
-        🖋️
+        <BsPencilFill />
       </button>
 
       <Modal
