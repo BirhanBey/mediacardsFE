@@ -260,15 +260,15 @@ function App() {
                   closeButton
                   className="rounded-bottom"
                   style={{
-                    backdropFilter: "blur(2px)",
-                    backgroundColor: darkMode
-                      ? "rgba(0,0,0,0.5)"
-                      : "rgba(255,210,255,0.18)",
+                    // backdropFilter: "blur(2px)",
+                    // backgroundColor: darkMode
+                    //   ? "rgba(0,0,0,0.5)"
+                    //   : "rgba(255,210,255,0.18)",
                     color: darkMode ? "black" : "white",
                   }}
                 >
                   <Offcanvas.Title>
-                    <img style={{maxWidth: "350px", marginLeft: "-5px", marginRight: "-30px"}} src="../public/Offcanvas.png" alt="Page Name"/>
+                    <img style={{maxWidth: "300px", marginLeft: "30px", marginRight: "-30px"}} src="../public/Offcanvas.png" alt="Page Name"/>
                   </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
