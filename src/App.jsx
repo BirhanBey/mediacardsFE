@@ -163,6 +163,15 @@ function App() {
     setRerender(rerender + 1);
   }, [userName, userBio]);
 
+  useEffect(() => {
+    document.body.classList.add("default-background");
+
+    // Remove the class when the component unmounts
+    return () => {
+      document.body.classList.remove("default-background");
+    };
+  }, []);
+
   return (
     <div
       style={{
@@ -268,7 +277,15 @@ function App() {
                   }}
                 >
                   <Offcanvas.Title>
-                    <img style={{maxWidth: "300px", marginLeft: "30px", marginRight: "-30px"}} src="../public/Offcanvas.png" alt="Page Name"/>
+                    <img
+                      style={{
+                        maxWidth: "300px",
+                        marginLeft: "30px",
+                        marginRight: "-30px",
+                      }}
+                      src="../public/Offcanvas.png"
+                      alt="Page Name"
+                    />
                   </Offcanvas.Title>
                 </Offcanvas.Header>
                 <Offcanvas.Body>
@@ -316,7 +333,9 @@ function App() {
                       variant={darkMode ? "secondary" : "dark"}
                       onClick={handleLogout}
                       className="mt-auto mb-5"
-                      style={{border: darkMode ? "1px solid white" : "1px solid grey"}}
+                      style={{
+                        border: darkMode ? "1px solid white" : "1px solid grey",
+                      }}
                     >
                       Logout
                     </Button>
