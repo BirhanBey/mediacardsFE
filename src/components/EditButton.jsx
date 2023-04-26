@@ -142,13 +142,14 @@ const EditButton = ({
             <Form.Group className="mb-3">
               <Form.Label>Description:</Form.Label>
               <Form.Control
-                as="textarea"
+                // as="textarea"
                 rows={3}
                 placeholder="Enter description..."
                 id="description"
                 name="description"
                 value={formValues.description}
                 onChange={handleInputChange}
+                style={{ height: "100px"}}
               />
             </Form.Group>
 
@@ -199,7 +200,7 @@ const EditButton = ({
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <label class="lns-checkbox">
+              <label className="lns-checkbox">
                 <input
                   type="checkbox"
                   id="active"

@@ -192,7 +192,7 @@ const AddButton = ({
               </Form.Group>
 
               <Form.Group className="mb-3">
-                <label class="lns-checkbox">
+                <label className="lns-checkbox">
                   <input
                     type="checkbox"
                     onChange={handleActiveChange}
