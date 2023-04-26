@@ -39,7 +39,7 @@ const ListArea = ({
         );
         setCards(response.data.url);
       } catch (error) {
-        console.error(error);
+        // console.error(error);
       }
     };
     fetchLinks();
@@ -92,7 +92,7 @@ const ListArea = ({
               token={token}
               userId={userId}
               handleRerender={handleRerender}
-              selectedIcon={selectedIcon}
+              // selectedIcon={selectedIcon}
               handleIconChange={handleIconChange}
               icons={icons}
               colors={colors}
