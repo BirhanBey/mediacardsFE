@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
+import { BsFillTrashFill } from "react-icons/bs";
 
-const DelButton = ({ linkId }) => {
+const DelButton = ({ linkId, userId, token, handleRerender }) => {
   const [showModal, setShowModal] = useState(false);
-  const [isDeleted, setIsDeleted] = useState(false); // add new state
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState(null);
+  const [feedbackMessage, setFeedbackMessage] = useState(null);
 
   const handleShowModal = () => setShowModal(true);
   const handleCloseModal = () => setShowModal(false);
@@ -12,30 +15,50 @@ const DelButton = ({ linkId }) => {
   const handleDelete = async () => {
     try {
       const response = await axios.delete(
-        `https://s3.syntradeveloper.be/api/users/${linkId}`
+        `https://www.s3.syntradeveloper.be/backend/api/users/${userId}/urls/${linkId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      if (response.status === 204) {
-        setIsDeleted(true); // update the state to mark the card as deleted
+
+      if (response.status === 200) {
+        setIsDeleted(true);
+        setFeedbackMessage("Card deleted successfully!");
         handleCloseModal();
+        handleRerender();
       } else {
         console.log("Failed to delete card");
+        setFeedbackMessage("Failed to delete card");
+        handleRerender();
+        handleCloseModal();
       }
     } catch (error) {
       console.error("Error deleting card:", error);
+      setFeedbackMessage("Error deleting card");
+      handleRerender();
+      handleCloseModal();
     }
   };
 
   if (isDeleted) {
-    return null; // return null instead of rendering the card if it has been deleted
+    return (
+      <div className="alert alert-success mt-3" role="alert">
+        {deleteMessage}
+      </div>
+    );
   }
 
   return (
-    <>
-      <button
-        className="btn btn-danger ms-auto me-1 mt-1 rounded"
-        onClick={handleShowModal}
-      >
-        <svg
+    <div>
+      {feedbackMessage && (
+        <div className="alert alert-info mt-3" role="alert">
+          {feedbackMessage}
+        </div>
+      )}
+      <button id="del-button" className="btn " onClick={handleShowModal}>
+        {/* <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
           height="16"
@@ -44,10 +67,17 @@ const DelButton = ({ linkId }) => {
           viewBox="0 0 16 16"
         >
           <path d="M11 1.5v1h3.5a.5.5 0 0 1 0 1h-.538l-.853 10.66A2 2 0 0 1 11.115 16h-6.23a2 2 0 0 1-1.994-1.84L2.038 3.5H1.5a.5.5 0 0 1 0-1H5v-1A1.5 1.5 0 0 1 6.5 0h3A1.5 1.5 0 0 1 11 1.5Zm-5 0v1h4v-1a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5ZM4.5 5.029l.5 8.5a.5.5 0 1 0 .998-.06l-.5-8.5a.5.5 0 1 0-.998.06Zm6.53-.528a.5.5 0 0 0-.528.47l-.5 8.5a.5.5 0 0 0 .998.058l.5-8.5a.5.5 0 0 0-.47-.528ZM8 4.5a.5.5 0 0 0-.5.5v8.5a.5.5 0 0 0 1 0V5a.5.5 0 0 0-.5-.5Z" />
-        </svg>
+        </svg> */}
+        <BsFillTrashFill />
       </button>
 
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal
+        show={showModal}
+        onHide={handleCloseModal}
+        style={{
+          backdropFilter: "blur(2px)",
+        }}
+      >
         <Modal.Header closeButton>
           <Modal.Title>Sure?</Modal.Title>
         </Modal.Header>
@@ -71,7 +101,7 @@ const DelButton = ({ linkId }) => {
           </Button>
         </Modal.Footer>
       </Modal>
-    </>
+    </div>
   );
 };
 

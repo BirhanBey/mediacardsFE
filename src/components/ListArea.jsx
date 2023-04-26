@@ -1,16 +1,27 @@
 import React, { useState, useEffect } from "react";
+import CardAccordion from "./CardAccordion";
 import AddButton from "./AddButton";
+import EditButton from "./EditButton";
 import CardLink from "./CardLink";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
+import { Row, Col, Card, Container, Accordion } from "react-bootstrap/";
+import FancyCards from "./FancyCards";
 import DelButton from "./DelButton";
 import axios from "axios";
 
-const ListArea = ({ userId }) => {
+const ListArea = ({
+  userId,
+  token,
+  rerender,
+  handleRerender,
+  handleIconChange,
+  selectedIcon,
+  icons,
+  colors,
+  setColor,
+  newColor,
+}) => {
   const [cards, setCards] = useState([]);
-  const [token, setToken] = useState(""); // define the token variable
+  const [activeEventKey, setActiveEventKey] = useState(null); // add new state to keep track of active event key
 
   const addCard = (link) => {
     setCards((prevCards) => [...prevCards, link]);
@@ -24,36 +35,74 @@ const ListArea = ({ userId }) => {
     const fetchLinks = async () => {
       try {
         const response = await axios.get(
-          `https://s3.syntradeveloper.be/api/users/${userId}`
+          `https://www.s3.syntradeveloper.be/backend/api/users/${userId}`
         );
-        // console.log("response" + response);
-        // console.log("r" + JSON.stringify(response.data.url));
-
-        setCards(response.data.url); // update cards state with the retrieved data
+        setCards(response.data.url);
       } catch (error) {
-        // console.log("response" + data.user.description);
-        // console.log("r" + JSON.stringify(response.data.url));
-
-        console.error(error);
+        // console.error(error);
       }
     };
     fetchLinks();
-  }, [userId]);
+  }, [userId, rerender]); // add rerender to the dependency array of useEffect
 
   return (
     <Container>
-      {cards.map((link, index, name) => (
-        <Row className="d-flex justify-content-sm-center" key={index}>
-          <Col sm="auto">
-            <br />
-
-            <Card.Body className="d-flex text-center text-center list-item">
-              <CardLink link={link} />
-            </Card.Body>
+      <Row
+        // xs={1}
+        // md={2}
+        // lg={3}
+        // xl={3}
+        // xxl={4}
+        // gap={1}
+        className="d-flex justify-content-center"
+      >
+        <div id="card-grid">
+          {cards.map((link, index) => {
+            return (
+              <Col key={index} className="mb-3">
+                <FancyCards
+                  link={link}
+                  index={index}
+                  removeCard={removeCard}
+                  userId={userId}
+                  linkId={link.id}
+                  name={link.name}
+                  description={link.description}
+                  url={link.link}
+                  token={token}
+                  handleRerender={handleRerender}
+                  selectedIcon={selectedIcon}
+                  handleIconChange={handleIconChange}
+                  theme={link.theme}
+                  icon={link.icon}
+                  colors={colors}
+                  setColor={setColor}
+                  newColor={newColor}
+                  isActive={link.isActive}
+                />
+              </Col>
+            );
+          })}
+        </div>
+      </Row>
+      <Container className="d-flex justify-content-center align-items-center">
+        <Row>
+          <Col>
+            <AddButton
+              addCard={addCard}
+              token={token}
+              userId={userId}
+              handleRerender={handleRerender}
+              // selectedIcon={selectedIcon}
+              handleIconChange={handleIconChange}
+              icons={icons}
+              colors={colors}
+              setColor={setColor}
+              newColor={newColor}
+            />
           </Col>
         </Row>
-      ))}
-      <AddButton addCard={addCard} setToken={setToken} userId={userId} />{" "}
+      </Container>
     </Container>
   );
 };

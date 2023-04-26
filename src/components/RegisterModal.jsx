@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Modal, Button, Form, Alert, FloatingLabel } from "react-bootstrap";
 
 const RegisterModal = () => {
@@ -11,28 +10,10 @@ const RegisterModal = () => {
   const [error, setError] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [passwordsMatch, setPasswordsMatch] = useState(true);
-  const [success, setSuccess] = useState(false);
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [emailExists, setEmailExists] = useState(false);
+  const [description, setDescription] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    // Validate email format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      setError("Please enter a valid email address.");
-      return;
-    }
-
-    // Validate password format
-    const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    if (!passwordRegex.test(password)) {
-      setError(
-        "Password must be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number."
-      );
-      return;
-    }
 
     if (password !== passwordConfirmation) {
       setPasswordsMatch(false);
@@ -43,7 +24,7 @@ const RegisterModal = () => {
 
     try {
       const response = await fetch(
-        "https://s3.syntradeveloper.be/api/register",
+        "https://www.s3.syntradeveloper.be/backend/api/register",
         {
           method: "POST",
           headers: {
@@ -54,45 +35,29 @@ const RegisterModal = () => {
             email,
             password,
             password_confirmation: passwordConfirmation,
+            description,
           }),
-          
-      const response = await axios.post(
-        "https://s10.syntradeveloper.be/api/register",
-        {
-          name,
-          email,
-          password,
-          password_confirmation: passwordConfirmation,
-
         }
       );
 
-      setIsRegistered(true);
-    } catch (error) {
-      if (error.response && error.response.status === 422) {
-        const { data } = error.response;
-        if (data.errors.email) {
-          setEmailExists(true);
-        }
-      } else if (error.response && error.response.status === 500) {
-        setError("Server error, please try again later");
-      } else if (error.message === "Network Error") {
-        setError("Network error, please try again later");
-      } else {
-        setError("Unknown error, please try again later");
+      if (!response.ok) {
+        throw new Error("Failed to register user");
       }
+
+      // TODO: handle successful registration
+    } catch (error) {
+      setError(error.message);
     } finally {
       setIsSubmitting(false);
+      setShowModal(false);
     }
   };
 
   const handleClose = () => {
     setShowModal(false);
     setPasswordsMatch(true);
-    setSuccess(false);
-    setIsRegistered(false);
-    setEmailExists(false);
   };
+
   return (
     <>
       <Button
@@ -108,7 +73,6 @@ const RegisterModal = () => {
           <Modal.Title>Register</Modal.Title>
         </Modal.Header>
         <Modal.Body className="d-flex flex-column">
-
           <Form onSubmit={handleSubmit}>
             <FloatingLabel controlId="formName" label="Name" className="mb-3">
               <Form.Control
@@ -160,6 +124,19 @@ const RegisterModal = () => {
               />
             </FloatingLabel>
 
+            <FloatingLabel
+              controlId="formDescription"
+              label="Description"
+              className="mb-3"
+            >
+              <Form.Control
+                type="text"
+                placeholder="Description"
+                value={description}
+                onChange={(event) => setDescription(event.target.value)}
+              />
+            </FloatingLabel>
+
             {!passwordsMatch && (
               <Alert variant="danger">Passwords do not match.</Alert>
             )}
@@ -175,94 +152,10 @@ const RegisterModal = () => {
               {isSubmitting ? "Submitting..." : "Submit"}
             </Button>
           </Form>
-
-          {isRegistered ? (
-            <div className="text-center">
-              <p className="mb-3">Registration successful!</p>
-              <p>Please log in to continue.</p>
-            </div>
-          ) : (
-            <Form onSubmit={handleSubmit}>
-              <FloatingLabel controlId="formName" label="Name" className="mb-3">
-                <Form.Control
-                  type="text"
-                  placeholder="Enter name"
-                  value={name}
-                  onChange={(event) => setName(event.target.value)}
-                />
-              </FloatingLabel>
-
-              <FloatingLabel
-                controlId="formEmail"
-                label="Email address"
-                className="mb-3"
-              >
-                <Form.Control
-                  type="email"
-                  placeholder="Enter E-mail"
-                  value={email}
-                  onChange={(event) => setEmail(event.target.value)}
-                />
-              </FloatingLabel>
-
-              <FloatingLabel
-                controlId="formPassword"
-                label="Password"
-                className="mb-3"
-              >
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  value={password}
-                  onChange={(event) => setPassword(event.target.value)}
-                />
-              </FloatingLabel>
-
-              <FloatingLabel
-                controlId="formPasswordConfirmation"
-                label="Confirm Password"
-                className="mb-3"
-              >
-                <Form.Control
-                  type="password"
-                  placeholder="Confirm Password"
-                  value={passwordConfirmation}
-                  onChange={(event) =>
-                    setPasswordConfirmation(event.target.value)
-                  }
-                />
-              </FloatingLabel>
-
-              {!passwordsMatch && (
-                <Alert variant="danger">Passwords do not match.</Alert>
-              )}
-
-              {error && <Alert variant="danger">{error}</Alert>}
-
-              {emailExists && (
-                <Alert variant="danger">
-                  This email is already registered.
-                </Alert>
-              )}
-
-              {success && (
-                <Alert variant="success">Registration successful!</Alert>
-              )}
-
-              <Button
-                className="btn-lg d-flex mx-auto"
-                variant="primary"
-                type="submit"
-                disabled={isSubmitting || passwordsMatch === false}
-              >
-                {isSubmitting ? "Submitting..." : "Submit"}
-              </Button>
-            </Form>
-          )}
-
         </Modal.Body>
       </Modal>
     </>
   );
 };
+
 export default RegisterModal;

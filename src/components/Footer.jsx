@@ -3,16 +3,20 @@ import Navbar from "react-bootstrap/Navbar";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-function Footer() {
+function Footer({ loggedIn }) {
   return (
     <div>
-      <Container>
+      <Container className="mt-5">
         <Row className="justify-content-md-center">
           <Col md="auto">
-            <Navbar style={{ position: "fixed-bottom", bottom: 0 }}>
+            <Navbar fixed="bottom">
               <Container>
                 <Navbar.Collapse className="justify-content-center">
-                  <Navbar.Text className="text-center">
+                  <Navbar.Text
+                    className="text-center"
+                    id="footer-text"
+                    style={{ color: !loggedIn ? "grey" : "" }}
+                  >
                     copyright{" "}
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
